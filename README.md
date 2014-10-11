@@ -12,3 +12,6 @@ Two transitions are supported: "overlay" and "full".
 ![Alt text](/Images/Full_Transition.gif?raw=true "Optional Title" = 200x354 loop=infinite)
 
 ##How to use##
+```Objective-C
+NSLog(@"");
+```
