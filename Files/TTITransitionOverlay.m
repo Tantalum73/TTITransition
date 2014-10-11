@@ -67,6 +67,7 @@
         toShot.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 150, 150);
 
         [self applyShinyEffectsToView:toShot];
+        [self applyShinyEffectsToView:toView];
         toShot.layer.opacity = 0.4;
         
         [inView addSubview:toShot];
