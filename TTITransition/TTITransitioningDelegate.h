@@ -13,7 +13,8 @@
 */
 typedef enum TransitionType : NSInteger {
 	TTIFullTransition,
-	TTIOverlayTransition
+	TTIOverlayTransition,
+    TTISlideTransition
 } TransitionType;
 
 @interface TTITransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate, UIStateRestoring>

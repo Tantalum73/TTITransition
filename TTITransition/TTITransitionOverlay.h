@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
 
-@interface TTITransitionOverlay : NSObject <UIViewControllerAnimatedTransitioning, UIDynamicAnimatorDelegate>
+@interface TTITransitionOverlay : NSObject <UIViewControllerAnimatedTransitioning>
 @property (nonatomic) CGPoint fromPoint;
 @property (nonatomic) BOOL open;
 @end

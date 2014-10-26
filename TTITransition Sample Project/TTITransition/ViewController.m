@@ -31,12 +31,17 @@
     
     _transitionDelegate = [TTITransitioningDelegate new];
     _transitionDelegate.fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
+    
     if([segue.identifier isEqualToString:@"ShowFull"]) {
         _transitionDelegate.transitionType = TTIFullTransition;
     }
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
         
         _transitionDelegate.transitionType = TTIOverlayTransition;
+    }
+    else if([segue.identifier isEqualToString:@"ShowSlide"]) {
+        
+        _transitionDelegate.transitionType = TTISlideTransition;
     }
     
     destination.transitioningDelegate = _transitionDelegate;

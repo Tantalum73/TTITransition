@@ -9,6 +9,7 @@
 #import "TTITransitioningDelegate.h"
 #import "TTITransitionOverlay.h"
 #import "TTITransitionFull.h"
+#import "TTITransitionSlide.h"
 
 @interface TTITransitioningDelegate () {
 }
@@ -34,7 +35,12 @@
 			transitionController.fromPoint = self.fromPoint;
 			return transitionController;
 		}
-			
+        case TTISlideTransition: {
+            TTITransitionSlide *transitionController = [TTITransitionSlide new];
+            transitionController.open = YES;
+            transitionController.fromPoint = self.fromPoint;
+            return transitionController;
+        }
 		
 	}
 
@@ -58,6 +64,12 @@
 			return transitionController;
 			
 		}
+        case TTISlideTransition: {
+            TTITransitionSlide *transitionController = [TTITransitionSlide new];
+            transitionController.open = NO;
+            transitionController.fromPoint = self.fromPoint;
+            return transitionController;
+        }
 	}
 	return nil;
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -16,17 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOG-gI-qld">
-                                <rect key="frame" x="97" y="119" width="123" height="30"/>
-                                <state key="normal" title="Overlay Transition">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowOverlay" id="qLU-cx-QfJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivd-U6-SOv">
-                                <rect key="frame" x="252" y="119" width="95" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivd-U6-SOv">
+                                <rect key="frame" x="253" y="240" width="95" height="30"/>
                                 <state key="normal" title="Full Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -34,12 +25,39 @@
                                     <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowFull" id="e83-gr-VRH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPB-je-JW4">
+                                <rect key="frame" x="248" y="111" width="105" height="30"/>
+                                <state key="normal" title="Slide Transition">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowSlide" id="pf7-cR-eof"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOG-gI-qld">
+                                <rect key="frame" x="239" y="176" width="123" height="30"/>
+                                <state key="normal" title="Overlay Transition">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowOverlay" id="qLU-cx-QfJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="5Gu-Ea-pef"/>
+                            <constraint firstItem="NPB-je-JW4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="91" id="6yy-pZ-gLT"/>
+                            <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="Ivd-U6-SOv" secondAttribute="centerX" id="KgC-qu-WcK"/>
+                            <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="dOG-gI-qld" secondAttribute="centerX" id="WwA-ww-upD"/>
+                            <constraint firstItem="Ivd-U6-SOv" firstAttribute="top" secondItem="dOG-gI-qld" secondAttribute="bottom" constant="34" id="o1f-Pf-g8w"/>
+                            <constraint firstItem="dOG-gI-qld" firstAttribute="top" secondItem="NPB-je-JW4" secondAttribute="bottom" constant="35" id="xuK-Cd-WDI"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="162" y="302"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="8Yk-9O-rWm">
@@ -72,6 +90,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qLU-cx-QfJ"/>
+        <segue reference="pf7-cR-eof"/>
     </inferredMetricsTieBreakers>
 </document>

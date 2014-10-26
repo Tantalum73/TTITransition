@@ -3,13 +3,16 @@ TTITransition
 
 Modal transition between ViewControllers – Easy and beautifully 
 
-Two transitions are implemented: "overlay" and "full".
+Three transitions are implemented: "slide" "overlay" and "full", more are about to come.
+
+##Slide Transition:##
+![Slide Transition Screencast](/Images/Slide_Transition.gif?raw=true "Overlay Transition Screencast" = 250px)
 
 ##Overlay Transition:##
-![Overlay Transition Screencast](/Images/Overlay_Transition.gif?raw=true "Overlay Transition Screencast") 
+![Overlay Transition Screencast](/Images/Overlay_Transition.gif?raw=true "Overlay Transition Screencast"  = 250px) 
 
 ##Full Transition:##
-![Full Transition Screencast](/Images/Full_Transition.gif?raw=true "Full Transition Screencast" loop=infinite)
+![Full Transition Screencast](/Images/Full_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 
 ##How to use##
 ```Objective-C
@@ -25,7 +28,10 @@ Two transitions are implemented: "overlay" and "full".
         
         _transitionDelegate.transitionType = TTIOverlayTransition;
     }
-    
+    else if([segue.identifier isEqualToString:@"ShowSlide"]) {
+        
+        _transitionDelegate.transitionType = TTISlideTransition;
+    }
     destination.transitioningDelegate = _transitionDelegate;
 }
 ```
