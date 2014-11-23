@@ -43,7 +43,14 @@
         
         _transitionDelegate.transitionType = TTISlideTransition;
     }
-    
+    else if([segue.identifier isEqualToString:@"ShowFold"]) {
+        /*Works best under UINavigationBar or above UIToolbar*/
+        _transitionDelegate.transitionType = TTIFoldTransition;
+    }
+    else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
+        
+        _transitionDelegate.transitionType = TTIHangInTransition;
+    }
     destination.transitioningDelegate = _transitionDelegate;
 }
 

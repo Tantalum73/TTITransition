@@ -12,9 +12,11 @@
     Set type of transition: overlay or transition that covers entire screen
 */
 typedef enum TransitionType : NSInteger {
-	TTIFullTransition,
-	TTIOverlayTransition,
-    TTISlideTransition
+    TTIFullTransition,
+    TTIOverlayTransition,
+    TTISlideTransition,
+    TTIFoldTransition,
+    TTIHangInTransition
 } TransitionType;
 
 @interface TTITransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate, UIStateRestoring>

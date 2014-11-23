@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -43,13 +43,35 @@
                                     <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowOverlay" id="qLU-cx-QfJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3p-XX-EyJ">
+                                <rect key="frame" x="250" y="304" width="101" height="30"/>
+                                <state key="normal" title="Fold Transition">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowFold" id="aFf-yn-Ta8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywt-p3-Goz">
+                                <rect key="frame" x="231" y="363" width="138" height="30"/>
+                                <state key="normal" title="Hang Into Transition">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowHangIn" id="9rd-x1-w1Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="5Gu-Ea-pef"/>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="91" id="6yy-pZ-gLT"/>
+                            <constraint firstItem="P3p-XX-EyJ" firstAttribute="top" secondItem="Ivd-U6-SOv" secondAttribute="bottom" constant="34" id="A8g-Na-GWa"/>
+                            <constraint firstItem="P3p-XX-EyJ" firstAttribute="centerX" secondItem="Ivd-U6-SOv" secondAttribute="centerX" id="Dtj-70-J6n"/>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="Ivd-U6-SOv" secondAttribute="centerX" id="KgC-qu-WcK"/>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="dOG-gI-qld" secondAttribute="centerX" id="WwA-ww-upD"/>
+                            <constraint firstItem="P3p-XX-EyJ" firstAttribute="centerX" secondItem="ywt-p3-Goz" secondAttribute="centerX" id="haL-Fm-QUZ"/>
+                            <constraint firstItem="ywt-p3-Goz" firstAttribute="top" secondItem="P3p-XX-EyJ" secondAttribute="bottom" constant="29" id="mj8-EF-Vai"/>
                             <constraint firstItem="Ivd-U6-SOv" firstAttribute="top" secondItem="dOG-gI-qld" secondAttribute="bottom" constant="34" id="o1f-Pf-g8w"/>
                             <constraint firstItem="dOG-gI-qld" firstAttribute="top" secondItem="NPB-je-JW4" secondAttribute="bottom" constant="35" id="xuK-Cd-WDI"/>
                         </constraints>
@@ -71,8 +93,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8Z-dN-6No">
-                                <rect key="frame" x="177" y="65" width="35" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8Z-dN-6No">
+                                <rect key="frame" x="283" y="285" width="35" height="30"/>
                                 <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -82,6 +104,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.70196078429999997" green="0.87450980389999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="S8Z-dN-6No" secondAttribute="centerX" constant="-0.5" id="aPi-Ff-jKR"/>
+                            <constraint firstAttribute="centerY" secondItem="S8Z-dN-6No" secondAttribute="centerY" id="vIl-EI-37A"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZnL-tt-sDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -90,6 +116,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pf7-cR-eof"/>
+        <segue reference="e83-gr-VRH"/>
     </inferredMetricsTieBreakers>
 </document>

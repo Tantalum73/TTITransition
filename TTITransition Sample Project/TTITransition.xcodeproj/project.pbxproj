@@ -15,6 +15,8 @@
 		A16CCC2719E86D4E00717793 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A16CCC2519E86D4E00717793 /* LaunchScreen.xib */; };
 		A16CCC3319E86D4E00717793 /* TTITransitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC3219E86D4E00717793 /* TTITransitionTests.m */; };
 		A16CCC4D19E86E4C00717793 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC4C19E86E4C00717793 /* DetailViewController.m */; };
+		A19977D21A2254DE007EA8EA /* TTITransitionFold.m in Sources */ = {isa = PBXBuildFile; fileRef = A19977CF1A2254DE007EA8EA /* TTITransitionFold.m */; };
+		A19977D31A2254DE007EA8EA /* TTIHangIn.m in Sources */ = {isa = PBXBuildFile; fileRef = A19977D11A2254DE007EA8EA /* TTIHangIn.m */; };
 		A1C7CC4819FD70BF00D08EB6 /* TTITransitionFull.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CC3F19FD70BF00D08EB6 /* TTITransitionFull.m */; };
 		A1C7CC4919FD70BF00D08EB6 /* TTITransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CC4119FD70BF00D08EB6 /* TTITransitioningDelegate.m */; };
 		A1C7CC4A19FD70BF00D08EB6 /* TTITransitionOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CC4319FD70BF00D08EB6 /* TTITransitionOverlay.m */; };
@@ -48,6 +50,10 @@
 		A16CCC3219E86D4E00717793 /* TTITransitionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTITransitionTests.m; sourceTree = "<group>"; };
 		A16CCC4B19E86E4C00717793 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
 		A16CCC4C19E86E4C00717793 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
+		A19977CE1A2254DE007EA8EA /* TTITransitionFold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITransitionFold.h; sourceTree = "<group>"; };
+		A19977CF1A2254DE007EA8EA /* TTITransitionFold.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITransitionFold.m; sourceTree = "<group>"; };
+		A19977D01A2254DE007EA8EA /* TTIHangIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIHangIn.h; sourceTree = "<group>"; };
+		A19977D11A2254DE007EA8EA /* TTIHangIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIHangIn.m; sourceTree = "<group>"; };
 		A1C7CC3E19FD70BF00D08EB6 /* TTITransitionFull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTITransitionFull.h; path = ../TTITransition/TTITransitionFull.h; sourceTree = "<group>"; };
 		A1C7CC3F19FD70BF00D08EB6 /* TTITransitionFull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTITransitionFull.m; path = ../TTITransition/TTITransitionFull.m; sourceTree = "<group>"; };
 		A1C7CC4019FD70BF00D08EB6 /* TTITransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTITransitioningDelegate.h; path = ../TTITransition/TTITransitioningDelegate.h; sourceTree = "<group>"; };
@@ -151,6 +157,10 @@
 				A1C7CC4319FD70BF00D08EB6 /* TTITransitionOverlay.m */,
 				A1C7CC4419FD70BF00D08EB6 /* TTITransitionSlide.h */,
 				A1C7CC4519FD70BF00D08EB6 /* TTITransitionSlide.m */,
+				A19977CE1A2254DE007EA8EA /* TTITransitionFold.h */,
+				A19977CF1A2254DE007EA8EA /* TTITransitionFold.m */,
+				A19977D01A2254DE007EA8EA /* TTIHangIn.h */,
+				A19977D11A2254DE007EA8EA /* TTIHangIn.m */,
 				A1C7CC4619FD70BF00D08EB6 /* UIImage+ImageEffects.h */,
 				A1C7CC4719FD70BF00D08EB6 /* UIImage+ImageEffects.m */,
 			);
@@ -264,6 +274,8 @@
 				A1C7CC4B19FD70BF00D08EB6 /* TTITransitionSlide.m in Sources */,
 				A1C7CC4C19FD70BF00D08EB6 /* UIImage+ImageEffects.m in Sources */,
 				A16CCC1C19E86D4E00717793 /* AppDelegate.m in Sources */,
+				A19977D31A2254DE007EA8EA /* TTIHangIn.m in Sources */,
+				A19977D21A2254DE007EA8EA /* TTITransitionFold.m in Sources */,
 				A16CCC1919E86D4E00717793 /* main.m in Sources */,
 				A1C7CC4819FD70BF00D08EB6 /* TTITransitionFull.m in Sources */,
 			);

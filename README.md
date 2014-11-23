@@ -3,7 +3,7 @@ TTITransition
 
 Modal transition between ViewControllers – Easy and beautifully 
 
-Three transitions are implemented: "slide" "overlay" and "full", more are about to come.
+Three transitions are implemented: "slide", "overlay", "full", "fold" and "hang into", perfect for AlertViewish views – more is about to come.
 
 ##Slide Transition:##
 ![Slide Transition Screencast](/Images/Slide_Transition.gif?raw=true "Overlay Transition Screencast" = 250px)
@@ -14,6 +14,11 @@ Three transitions are implemented: "slide" "overlay" and "full", more are about 
 ##Full Transition:##
 ![Full Transition Screencast](/Images/Full_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 
+##Fold Transition:##
+![Fold Transition Screencast](/Images/Fold_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
+
+##Hang Into Transition:##
+![Hang In Transition Screencast](/Images/Hang_In_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 ##How to use##
 ```Objective-C
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
