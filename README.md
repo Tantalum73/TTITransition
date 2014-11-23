@@ -26,6 +26,7 @@ Three transitions are implemented: "slide", "overlay", "full", "fold" and "hang 
     
     _transitionDelegate = [TTITransitioningDelegate new];
     _transitionDelegate.fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
+    
     if([segue.identifier isEqualToString:@"ShowFull"]) {
         _transitionDelegate.transitionType = TTIFullTransition;
     }
@@ -37,8 +38,17 @@ Three transitions are implemented: "slide", "overlay", "full", "fold" and "hang 
         
         _transitionDelegate.transitionType = TTISlideTransition;
     }
+    else if([segue.identifier isEqualToString:@"ShowFold"]) {
+        /*Works best under UINavigationBar or above UIToolbar*/
+        _transitionDelegate.transitionType = TTIFoldTransition;
+    }
+    else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
+        
+        _transitionDelegate.transitionType = TTIHangInTransition;
+    }
     destination.transitioningDelegate = _transitionDelegate;
 }
+
 ```
 Just set the transitioningDelegate of the presented ViewController to an instance of TTITransitioningDelegate and let the segue-magic happen (or present the ViewController manually).
 
