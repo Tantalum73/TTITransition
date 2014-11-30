@@ -12,6 +12,7 @@
 #import "TTITransitionSlide.h"
 #import "TTITransitionFold.h"
 #import "TTIHangIn.h"
+#import "TTITransitionSpinn.h"
 
 
 @interface TTITransitioningDelegate () {
@@ -56,7 +57,12 @@
             transitionController.sizeOfToViewController = CGSizeMake(300, 250);
             return transitionController;
         }
-            
+        case TTISpinnTransition: {
+            TTITransitionSpinn *transitionController = [TTITransitionSpinn new];
+            transitionController.open = YES;
+            transitionController.fromPoint = self.fromPoint;
+            return transitionController;
+        }
     }
     
     return nil;
@@ -94,6 +100,12 @@
         }
         case TTIHangInTransition: {
             TTIHangIn *transitionController = [TTIHangIn new];
+            transitionController.open = NO;
+            transitionController.fromPoint = self.fromPoint;
+            return transitionController;
+        }
+        case TTISpinnTransition: {
+            TTITransitionSpinn *transitionController = [TTITransitionSpinn new];
             transitionController.open = NO;
             transitionController.fromPoint = self.fromPoint;
             return transitionController;

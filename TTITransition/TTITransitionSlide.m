@@ -19,8 +19,11 @@
     UIView *toView;
     UIView *fromView;
     UIView *backgroundView = [[UIView alloc] initWithFrame:inView.frame];
-    backgroundView.backgroundColor = [UIColor lightGrayColor];
-    
+    if(!self.colorForBackgroundView) {
+        self.colorForBackgroundView = [UIColor lightGrayColor];
+    }
+    backgroundView.backgroundColor = self.colorForBackgroundView;
+
     [inView insertSubview:backgroundView atIndex:0];
     
     if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {

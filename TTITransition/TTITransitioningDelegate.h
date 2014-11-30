@@ -16,7 +16,8 @@ typedef enum TransitionType : NSInteger {
     TTIOverlayTransition,
     TTISlideTransition,
     TTIFoldTransition,
-    TTIHangInTransition
+    TTIHangInTransition,
+    TTISpinnTransition
 } TransitionType;
 
 @interface TTITransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate, UIStateRestoring>
