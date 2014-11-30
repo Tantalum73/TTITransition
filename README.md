@@ -3,10 +3,10 @@ TTITransition
 
 Modal transition between ViewControllers – Easy and beautifully 
 
-Three transitions are implemented: "slide", "overlay", "full", "fold" and "hang into", perfect for AlertViewish views – more is about to come.
+Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn" and "hang into", perfect for AlertViewish views – more is about to come.
 
 ##Slide Transition:##
-![Slide Transition Screencast](/Images/Slide_Transition.gif?raw=true "Overlay Transition Screencast" = 250px)
+![Slide Transition Screencast](/Images/Slide_Transition.gif?raw=true "Slide Transition Screencast" = 250px)
 
 ##Overlay Transition:##
 ![Overlay Transition Screencast](/Images/Overlay_Transition.gif?raw=true "Overlay Transition Screencast"  = 250px) 
@@ -15,10 +15,15 @@ Three transitions are implemented: "slide", "overlay", "full", "fold" and "hang 
 ![Full Transition Screencast](/Images/Full_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 
 ##Fold Transition:##
-![Fold Transition Screencast](/Images/Fold_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
+![Fold Transition Screencast](/Images/Fold_Transition.gif?raw=true "Fold Transition Screencast" loop=infinite  = 250px)
 
 ##Hang Into Transition:##
-![Hang In Transition Screencast](/Images/Hang_In_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
+![Hang In Transition Screencast](/Images/Hang_In_Transition.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 250px)
+
+##Spinn Transition:##
+![Spinn Transition Screencast](/Images/Spinn_Transition.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 250px)
+
+
 ##How to use##
 ```Objective-C
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -46,6 +51,10 @@ Three transitions are implemented: "slide", "overlay", "full", "fold" and "hang 
         
         _transitionDelegate.transitionType = TTIHangInTransition;
     }
+    else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
+        
+        _transitionDelegate.transitionType = TTISpinnTransition;
+    }
     destination.transitioningDelegate = _transitionDelegate;
 }
 
@@ -58,7 +67,7 @@ You can change the point from which the new ViewController fades in by setting t
 This point also specified where the presented ViewController will fade out to. 
 if you want them to fade into a different direction, just change the `_transitionDelegate.fromPoint` property before the ViewController is dismissed.
 
-
+More properties can be customized, individual for the given transition.
 ##Related##
 I use this transition-technique in my own app.
 Please take a look at [TourTime](https://anerma.de/TourTime/), the app that measures the time you need to get from one location to another without draining your battery.

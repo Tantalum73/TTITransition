@@ -51,6 +51,10 @@
         
         _transitionDelegate.transitionType = TTIHangInTransition;
     }
+    else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
+        
+        _transitionDelegate.transitionType = TTISpinnTransition;
+    }
     destination.transitioningDelegate = _transitionDelegate;
 }
 

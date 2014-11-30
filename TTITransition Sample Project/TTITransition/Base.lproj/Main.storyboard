@@ -61,6 +61,15 @@
                                     <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowHangIn" id="9rd-x1-w1Y"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2O-QP-SGV">
+                                <rect key="frame" x="245" y="415" width="110" height="30"/>
+                                <state key="normal" title="Spinn Transition">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowSpinn" id="DOu-0R-UuS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -70,6 +79,8 @@
                             <constraint firstItem="P3p-XX-EyJ" firstAttribute="centerX" secondItem="Ivd-U6-SOv" secondAttribute="centerX" id="Dtj-70-J6n"/>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="Ivd-U6-SOv" secondAttribute="centerX" id="KgC-qu-WcK"/>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="dOG-gI-qld" secondAttribute="centerX" id="WwA-ww-upD"/>
+                            <constraint firstItem="b2O-QP-SGV" firstAttribute="centerX" secondItem="ywt-p3-Goz" secondAttribute="centerX" id="cUp-xy-tvw"/>
+                            <constraint firstItem="b2O-QP-SGV" firstAttribute="top" secondItem="ywt-p3-Goz" secondAttribute="bottom" constant="22" id="gbe-q0-WPS"/>
                             <constraint firstItem="P3p-XX-EyJ" firstAttribute="centerX" secondItem="ywt-p3-Goz" secondAttribute="centerX" id="haL-Fm-QUZ"/>
                             <constraint firstItem="ywt-p3-Goz" firstAttribute="top" secondItem="P3p-XX-EyJ" secondAttribute="bottom" constant="29" id="mj8-EF-Vai"/>
                             <constraint firstItem="Ivd-U6-SOv" firstAttribute="top" secondItem="dOG-gI-qld" secondAttribute="bottom" constant="34" id="o1f-Pf-g8w"/>
@@ -116,6 +127,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="e83-gr-VRH"/>
+        <segue reference="DOu-0R-UuS"/>
     </inferredMetricsTieBreakers>
 </document>
