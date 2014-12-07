@@ -55,6 +55,10 @@
         
         _transitionDelegate.transitionType = TTISpinnTransition;
     }
+    else if([segue.identifier isEqualToString:@"ShowScale"]) {
+        
+        _transitionDelegate.transitionType = TTIScaleTransition;
+    }
     destination.transitioningDelegate = _transitionDelegate;
 }
 

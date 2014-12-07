@@ -13,6 +13,7 @@
 #import "TTITransitionFold.h"
 #import "TTIHangIn.h"
 #import "TTITransitionSpinn.h"
+#import "TTITransitionScale.h"
 
 
 @interface TTITransitioningDelegate () {
@@ -63,6 +64,12 @@
             transitionController.fromPoint = self.fromPoint;
             return transitionController;
         }
+        case TTIScaleTransition: {
+            TTITransitionScale *transitionController = [TTITransitionScale new];
+            transitionController.open = YES;
+            transitionController.fromPoint = self.fromPoint;
+            return transitionController;
+        }
     }
     
     return nil;
@@ -106,6 +113,12 @@
         }
         case TTISpinnTransition: {
             TTITransitionSpinn *transitionController = [TTITransitionSpinn new];
+            transitionController.open = NO;
+            transitionController.fromPoint = self.fromPoint;
+            return transitionController;
+        }
+        case TTIScaleTransition: {
+            TTITransitionScale *transitionController = [TTITransitionScale new];
             transitionController.open = NO;
             transitionController.fromPoint = self.fromPoint;
             return transitionController;

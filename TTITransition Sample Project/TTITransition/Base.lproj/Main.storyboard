@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -70,14 +70,25 @@
                                     <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowSpinn" id="DOu-0R-UuS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzb-pU-Nfb">
+                                <rect key="frame" x="246" y="462" width="109" height="30"/>
+                                <state key="normal" title="Scale Transition">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowScale" id="FlC-Lt-nM8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="5Gu-Ea-pef"/>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="91" id="6yy-pZ-gLT"/>
                             <constraint firstItem="P3p-XX-EyJ" firstAttribute="top" secondItem="Ivd-U6-SOv" secondAttribute="bottom" constant="34" id="A8g-Na-GWa"/>
+                            <constraint firstItem="wzb-pU-Nfb" firstAttribute="top" secondItem="b2O-QP-SGV" secondAttribute="bottom" constant="17" id="C5d-vf-4W4"/>
                             <constraint firstItem="P3p-XX-EyJ" firstAttribute="centerX" secondItem="Ivd-U6-SOv" secondAttribute="centerX" id="Dtj-70-J6n"/>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="Ivd-U6-SOv" secondAttribute="centerX" id="KgC-qu-WcK"/>
+                            <constraint firstItem="wzb-pU-Nfb" firstAttribute="trailing" secondItem="b2O-QP-SGV" secondAttribute="trailing" id="M9C-QJ-iGG"/>
                             <constraint firstItem="NPB-je-JW4" firstAttribute="centerX" secondItem="dOG-gI-qld" secondAttribute="centerX" id="WwA-ww-upD"/>
                             <constraint firstItem="b2O-QP-SGV" firstAttribute="centerX" secondItem="ywt-p3-Goz" secondAttribute="centerX" id="cUp-xy-tvw"/>
                             <constraint firstItem="b2O-QP-SGV" firstAttribute="top" secondItem="ywt-p3-Goz" secondAttribute="bottom" constant="22" id="gbe-q0-WPS"/>
@@ -127,6 +138,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DOu-0R-UuS"/>
+        <segue reference="FlC-Lt-nM8"/>
     </inferredMetricsTieBreakers>
 </document>

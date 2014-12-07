@@ -23,6 +23,7 @@
 		A1C7CC4A19FD70BF00D08EB6 /* TTITransitionOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CC4319FD70BF00D08EB6 /* TTITransitionOverlay.m */; };
 		A1C7CC4B19FD70BF00D08EB6 /* TTITransitionSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CC4519FD70BF00D08EB6 /* TTITransitionSlide.m */; };
 		A1C7CC4C19FD70BF00D08EB6 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C7CC4719FD70BF00D08EB6 /* UIImage+ImageEffects.m */; };
+		A1DE1E731A3394C500BCAAE0 /* TTITransitionScale.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DE1E721A3394C500BCAAE0 /* TTITransitionScale.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		A1C7CC4519FD70BF00D08EB6 /* TTITransitionSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTITransitionSlide.m; path = ../TTITransition/TTITransitionSlide.m; sourceTree = "<group>"; };
 		A1C7CC4619FD70BF00D08EB6 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "../TTITransition/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		A1C7CC4719FD70BF00D08EB6 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "../TTITransition/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		A1DE1E711A3394C500BCAAE0 /* TTITransitionScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTITransitionScale.h; path = ../TTITransition/TTITransitionScale.h; sourceTree = "<group>"; };
+		A1DE1E721A3394C500BCAAE0 /* TTITransitionScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTITransitionScale.m; path = ../TTITransition/TTITransitionScale.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,8 @@
 				A19977CF1A2254DE007EA8EA /* TTITransitionFold.m */,
 				A19977D01A2254DE007EA8EA /* TTIHangIn.h */,
 				A19977D11A2254DE007EA8EA /* TTIHangIn.m */,
+				A1DE1E711A3394C500BCAAE0 /* TTITransitionScale.h */,
+				A1DE1E721A3394C500BCAAE0 /* TTITransitionScale.m */,
 				A1C7CC4619FD70BF00D08EB6 /* UIImage+ImageEffects.h */,
 				A1C7CC4719FD70BF00D08EB6 /* UIImage+ImageEffects.m */,
 			);
@@ -283,6 +288,7 @@
 				A19977D21A2254DE007EA8EA /* TTITransitionFold.m in Sources */,
 				A16CCC1919E86D4E00717793 /* main.m in Sources */,
 				A1C7CC4819FD70BF00D08EB6 /* TTITransitionFull.m in Sources */,
+				A1DE1E731A3394C500BCAAE0 /* TTITransitionScale.m in Sources */,
 				A142459C1A2B32BA003A4F52 /* TTITransitionSpinn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

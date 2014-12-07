@@ -3,7 +3,7 @@ TTITransition
 
 Modal transition between ViewControllers – Easy and beautifully 
 
-Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn" and "hang into", perfect for AlertViewish views – more is about to come.
+Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn", "scale" and "hang into", perfect for AlertViewish views – more is about to come.
 
 ##Slide Transition:##
 ![Slide Transition Screencast](/Images/Slide_Transition.gif?raw=true "Slide Transition Screencast" = 250px)
@@ -20,8 +20,12 @@ Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn" a
 ##Hang Into Transition:##
 ![Hang In Transition Screencast](/Images/Hang_In_Transition.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 250px)
 
+##Scale Transition:##
+![Scale Transition Screencast](/Images/Scale_Transition.gif?raw=true "Scale Transition Screencast" loop=infinite  = 250px)
+
 ##Spinn Transition:##
 ![Spinn Transition Screencast](/Images/Spinn_Transition.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 250px)
+
 
 
 ##How to use##
@@ -54,6 +58,10 @@ Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn" a
     else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
         
         _transitionDelegate.transitionType = TTISpinnTransition;
+    }
+    else if([segue.identifier isEqualToString:@"ShowScale"]) {
+        
+        _transitionDelegate.transitionType = TTIScaleTransition;
     }
     destination.transitioningDelegate = _transitionDelegate;
 }
