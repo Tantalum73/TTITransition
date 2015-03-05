@@ -33,6 +33,8 @@ Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn", 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *destination = segue.destinationViewController;
     
+    //Make sure this property is not released immediately!
+    //For example use a property or instance variable!
     _transitionDelegate = [TTITransitioningDelegate new];
     _transitionDelegate.fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
     
@@ -68,6 +70,8 @@ Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn", 
 
 ```
 Just set the transitioningDelegate of the presented ViewController to an instance of TTITransitioningDelegate and let the segue-magic happen (or present the ViewController manually).
+Also make sure that the property, holding the TTITransitioningDelegate instance, is not released as long as the new ViewController is presented!
+You can do so, by using a property or an local instance variable.
 
 ##Customization##
 You can change the point from which the new ViewController fades in by setting the `_transitionDelegate.fromPoint` property to the CGPoint you like.
