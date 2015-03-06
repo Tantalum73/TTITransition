@@ -10,6 +10,7 @@
 #import "TTITransitioningDelegate.h"
 
 @interface ViewController () {
+    //Important to store this variable as long as the new ViewController is presented.
     TTITransitioningDelegate *_transitionDelegate;
 }
 

@@ -64,7 +64,7 @@
 
          UIView *toShot = [toView snapshotViewAfterScreenUpdates:YES];
 
-        toShot.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 150, 150);
+        toShot.frame = CGRectMake(self.fromPoint.x-150/2, self.fromPoint.y, 150, 150);
 
         [self applyShinyEffectsToView:toShot];
         [self applyShinyEffectsToView:toView];
