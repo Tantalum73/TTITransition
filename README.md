@@ -11,8 +11,6 @@ Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn", 
 ##Overlay Transition:##
 ![Overlay Transition Screencast](/Images/Overlay_Transition.gif?raw=true "Overlay Transition Screencast"  = 250px) 
 
-##Full Transition:##
-![Full Transition Screencast](/Images/Full_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 
 ##Fold Transition:##
 ![Fold Transition Screencast](/Images/Fold_Transition.gif?raw=true "Fold Transition Screencast" loop=infinite  = 250px)
@@ -26,6 +24,8 @@ Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn", 
 ##Spinn Transition:##
 ![Spinn Transition Screencast](/Images/Spinn_Transition.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 250px)
 
+##Full Transition:##
+![Full Transition Screencast](/Images/Full_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 
 
 ##How to use##
@@ -49,29 +49,16 @@ Three transitions are implemented: "slide", "overlay", "full", "fold", "spinn", 
         
         _transitionDelegate.transitionType = TTISlideTransition;
     }
-    else if([segue.identifier isEqualToString:@"ShowFold"]) {
-        /*Works best under UINavigationBar or above UIToolbar*/
-        _transitionDelegate.transitionType = TTIFoldTransition;
-    }
-    else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
-        
-        _transitionDelegate.transitionType = TTIHangInTransition;
-    }
-    else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
-        
-        _transitionDelegate.transitionType = TTISpinnTransition;
-    }
-    else if([segue.identifier isEqualToString:@"ShowScale"]) {
-        
-        _transitionDelegate.transitionType = TTIScaleTransition;
-    }
-    destination.transitioningDelegate = _transitionDelegate;
+    //... just set the transition type you want
 }
 
 ```
 Just set the transitioningDelegate of the presented ViewController to an instance of TTITransitioningDelegate and let the segue-magic happen (or present the ViewController manually).
 Also make sure that the property, holding the TTITransitioningDelegate instance, is not released as long as the new ViewController is presented!
 You can do so, by using a property or an local instance variable.
+
+**Tip:**
+If you want to see the actual ```tintColor``` in the performing transition, you can set this property in the ```viewDidLoad()``` of the newly presented ViewController.
 
 ##Customization##
 You can change the point from which the new ViewController fades in by setting the `_transitionDelegate.fromPoint` property to the CGPoint you like.
