@@ -39,10 +39,10 @@
         UIView  *fromShot = [fromView snapshotViewAfterScreenUpdates:YES];
 
         [inView insertSubview:fromShot aboveSubview:fromView];
-//        [fromView removeFromSuperview];
+        [fromView removeFromSuperview];
         
         
-        [inView addSubview:fromView];
+//        [inView addSubview:fromView];
 
         if(CGSizeEqualToSize(self.sizeOfToViewController, CGSizeZero)) {
             self.sizeOfToViewController = CGSizeMake(300, 200);
@@ -73,7 +73,7 @@
 
     }
     else {
-        [inView insertSubview:toView atIndex:0];
+//        [inView insertSubview:toView atIndex:0];
         UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[fromView]];
         [self.animator addBehavior:gravity];
         

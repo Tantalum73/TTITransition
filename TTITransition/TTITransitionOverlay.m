@@ -174,7 +174,7 @@
 }
 
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-	return (self.open) ? 1.0f : 0.5f;
+	return (self.open) ? 0.6f : 0.5f;
 }
 -(void)applyShinyEffectsToView:(UIView *)view {
     view.layer.borderWidth = 4.0f;

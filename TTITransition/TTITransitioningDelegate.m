@@ -55,7 +55,7 @@
             TTIHangIn *transitionController = [TTIHangIn new];
             transitionController.open = YES;
             transitionController.fromPoint = self.fromPoint;
-            if (self.sizeOfPresentedViewController.height == CGSizeZero.height && self.sizeOfPresentedViewController.width == CGSizeZero.width) {
+            if(CGSizeEqualToSize(self.sizeOfPresentedViewController, CGSizeZero)) {
                 
                 transitionController.sizeOfToViewController = CGSizeMake(300, 250);
             }
