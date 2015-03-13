@@ -55,7 +55,11 @@
             TTIHangIn *transitionController = [TTIHangIn new];
             transitionController.open = YES;
             transitionController.fromPoint = self.fromPoint;
-            transitionController.sizeOfToViewController = CGSizeMake(300, 250);
+            if (self.sizeOfPresentedViewController.height == CGSizeZero.height && self.sizeOfPresentedViewController.width == CGSizeZero.width) {
+                
+                transitionController.sizeOfToViewController = CGSizeMake(300, 250);
+            }
+            transitionController.sizeOfToViewController = self.sizeOfPresentedViewController;
             return transitionController;
         }
         case TTISpinnTransition: {

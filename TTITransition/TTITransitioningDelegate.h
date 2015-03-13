@@ -31,9 +31,17 @@ typedef enum TransitionType : NSInteger {
 @property (nonatomic) CGPoint fromPoint;
 
 /*
+ The size, that the new ViewController should have.
+ Only works in TTIHangInTransition!
+ */
+@property (nonatomic, assign) CGSize sizeOfPresentedViewController;
+
+/*
  The type of transition: overlay or transition that covers entire screen
  */
 @property (nonatomic, assign) TransitionType transitionType;
+
+
 @end
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
