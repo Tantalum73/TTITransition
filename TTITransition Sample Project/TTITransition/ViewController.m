@@ -61,6 +61,8 @@
     else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
         
         _transitionDelegate.transitionType = TTISpinnTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowScale"]) {
         
