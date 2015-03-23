@@ -35,6 +35,8 @@
     
     if([segue.identifier isEqualToString:@"ShowFull"]) {
         _transitionDelegate.transitionType = TTIFullTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
         
@@ -45,6 +47,8 @@
     else if([segue.identifier isEqualToString:@"ShowSlide"]) {
         
         _transitionDelegate.transitionType = TTISlideTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerLeftEdge;
     }
     else if([segue.identifier isEqualToString:@"ShowFold"]) {
         /*Works best under UINavigationBar or above UIToolbar*/

@@ -93,7 +93,6 @@
     
     if ([animator isKindOfClass:[TTITransitionSuper class]]) {
         TTITransitionSuper *transitionController = (TTITransitionSuper *)animator;
-//        transitionController.open = false;
         
         if (transitionController.interactive && transitionController.interactiveAnimator) {
             return transitionController.interactiveAnimator;
@@ -102,7 +101,6 @@
             return nil;
         }
         
-//        return transitionController.interactiveAnimator;
     }
     
     return nil;

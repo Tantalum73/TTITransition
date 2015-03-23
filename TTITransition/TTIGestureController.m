@@ -68,8 +68,8 @@
     CGFloat animationRatio = 1-gr.scale;
     
     CGFloat normalizedRatio = MIN(MAX(0, animationRatio), 1);
-    NSLog(@"Ratio: %f", animationRatio);
-    NSLog(@"Normalized Ratio: %f", normalizedRatio);
+//    NSLog(@"Ratio: %f", animationRatio);
+//    NSLog(@"Normalized Ratio: %f", normalizedRatio);
     switch (gr.state) {
         case UIGestureRecognizerStateBegan: {
             self.animator.interactive = YES;

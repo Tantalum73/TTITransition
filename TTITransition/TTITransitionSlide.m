@@ -51,7 +51,8 @@
 //
     
     [inView insertSubview:fromShot aboveSubview:fromView];
-    [fromView removeFromSuperview];
+//    [fromView removeFromSuperview];//when removed, the Gesture stops!
+    fromView.alpha = 0;
     
     CGFloat slideToRight = -[UIScreen mainScreen].bounds.size.width+self.gapBetweenViewControllers;
     
@@ -85,14 +86,30 @@
                 toShot.frame = [UIScreen mainScreen].bounds;
                 
             } completion:^(BOOL finished) {
-                [inView addSubview:toView];
-                [fromView removeFromSuperview];
+                if ([transitionContext transitionWasCancelled]) {
+                    fromView.alpha = 1;
+                    
+                    [inView addSubview:toView];
+                    [fromView removeFromSuperview];
+                    
+                    [fromShot removeFromSuperview];
+                    [toShot removeFromSuperview];
+                    
+                    [backgroundView removeFromSuperview];
+                    [transitionContext completeTransition:NO];
+                }
+                else {
+                    [inView addSubview:toView];
+                    [fromView removeFromSuperview];
+                    
+                    [fromShot removeFromSuperview];
+                    [toShot removeFromSuperview];
+                    
+                    [backgroundView removeFromSuperview];
+                    [transitionContext completeTransition:YES];
+                }
                 
-                [fromShot removeFromSuperview];
-                [toShot removeFromSuperview];
                 
-                [backgroundView removeFromSuperview];
-                [transitionContext completeTransition:YES];
             }];
             
         }];

@@ -52,7 +52,8 @@
 
         [inView addSubview:toView];
 		[inView addSubview:intermediateView];
-        [fromView removeFromSuperview];
+//        [fromView removeFromSuperview];
+        fromView.alpha = 0;
 		
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:6 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
 			intermediateView.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
@@ -61,10 +62,19 @@
 			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
 		}completion:^(BOOL finished) {
-			[intermediateView  removeFromSuperview];
-			[fromView removeFromSuperview];
-			[inView addSubview:toView];
-			[transitionContext completeTransition:YES];
+            if ([transitionContext transitionWasCancelled]) {
+                fromView.alpha = 1;
+                [intermediateView removeFromSuperview];
+                [transitionContext completeTransition:NO];
+            }
+            else {
+                [intermediateView  removeFromSuperview];
+                [fromView removeFromSuperview];
+                [inView addSubview:toView];
+                [transitionContext completeTransition:YES];
+            }
+            
+			
         }];
 		
 	}
