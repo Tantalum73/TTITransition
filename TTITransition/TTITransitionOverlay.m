@@ -16,7 +16,9 @@
 @implementation TTITransitionOverlay {
 }
 
-
+-(instancetype)init {
+    return self = [super init];
+}
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
 	UIView *inView = [transitionContext containerView];
 	UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -59,6 +61,7 @@
         UIImage *blurredFrom = [fromShot applyStandardBlurForTourTime];
         blurredFromView = [[UIImageView alloc] initWithImage:blurredFrom];
         blurredFromView.layer.opacity = 0.0f;
+        
         [inView insertSubview:blurredFromView belowSubview:toView];
 
 
@@ -106,9 +109,8 @@
             			UIImage *blurredFrom = [fromShot applyStandardBlurForTourTime];
             			UIImageView *blurredFromView = [[UIImageView alloc] initWithImage:blurredFrom];
             			blurredFromView.layer.opacity = 0.0f;
-            			[inView insertSubview:blurredFromView belowSubview:toShot];
                         
-                        [blurredFromView removeFromSuperview];
+//                        [blurredFromView removeFromSuperview];
             
             			[UIView animateWithDuration:[self transitionDuration:transitionContext]/5 animations:^{
             				blurredFromView.layer.opacity = 1.0f;
@@ -116,24 +118,29 @@
                             
                             [inView addSubview:toView];
                             [toShot removeFromSuperview];
+                            [blurredFromView removeFromSuperview];
                             
+                            self.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
                     
-            				[transitionContext completeTransition:YES];
+//            				[transitionContext completeTransition:YES];
+                            
+                            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
             			}];
             		}];
 
 	}
 	else {
+        //state: toShot:removed, toView: added, blurredFromView: added
         
         
 		fromView.frame = [transitionContext initialFrameForViewController:fromVC];
 		toView.frame = [transitionContext finalFrameForViewController:toVC];
 
-		UIView *intermediateView = [fromView snapshotViewAfterScreenUpdates:YES];
+		UIView *intermediateView = [fromView snapshotViewAfterScreenUpdates:NO];
 		intermediateView.frame = fromView.frame;
 		
         [inView addSubview:intermediateView];
-		[fromView removeFromSuperview];
+//		[fromView removeFromSuperview];
 		
 		
 		UIGraphicsBeginImageContextWithOptions(toView.frame.size, NO, toView.window.screen.scale);
@@ -158,12 +165,28 @@
 			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
 		}completion:^(BOOL finished) {
-			[intermediateView removeFromSuperview];
-			[fromView removeFromSuperview];
-			[blurredToView removeFromSuperview];
+                        
+            if ([transitionContext transitionWasCancelled]) {
+                [intermediateView removeFromSuperview];
+                [inView addSubview:fromView];
             
-            
-            [transitionContext completeTransition:YES];
+                [blurredToView removeFromSuperview];
+                
+                
+                [transitionContext completeTransition:NO];
+            }
+            else {
+                [intermediateView removeFromSuperview];
+                [fromView removeFromSuperview];
+                [blurredToView removeFromSuperview];
+                
+                [inView addSubview:toView];
+                toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+                self.interactiveAnimator = nil;
+                
+                [transitionContext completeTransition:YES];
+            }
+			
 		}];
 	}
 

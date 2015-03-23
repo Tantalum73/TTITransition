@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
+#import "TTIPercentDrivenInteractionTransitionController.h"
+#import "TTITransitionSuper.h"
 
-@interface TTITransitionOverlay : NSObject <UIViewControllerAnimatedTransitioning>
-@property (nonatomic) CGPoint fromPoint;
-@property (nonatomic) BOOL open;
+@interface TTITransitionOverlay : TTITransitionSuper //<UIViewControllerAnimatedTransitioning>
+//@property (nonatomic) CGPoint fromPoint;
+//@property (nonatomic, getter=isOpening) BOOL open;
+//@property (nonatomic, getter=isInteractive) BOOL interactive;//set, when gesture begins, before calling dismissVC...()
+//@property (nonatomic, strong) TTIPercentDrivenInteractionTransitionController *interactiveAnimator;
 @end

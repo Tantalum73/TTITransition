@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import <UIKit/UIKit.h>
 
 @interface DetailViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(gr:)];
+    
+    [self.view addGestureRecognizer:pinch];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,7 +31,9 @@
 - (IBAction)backButtonPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+-(void)gr:(UIPinchGestureRecognizer *)gr {
+    NSLog(@"SCALING to: %f", gr.scale);
+}
 /*
 #pragma mark - Navigation
 
