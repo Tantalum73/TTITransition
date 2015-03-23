@@ -75,12 +75,13 @@
     else {
 //        [inView insertSubview:toView atIndex:0];
         UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[fromView]];
+        gravity.magnitude = 1.5;
         [self.animator addBehavior:gravity];
         
         UIDynamicItemBehavior *dynamic = [[UIDynamicItemBehavior alloc] initWithItems:@[fromView]];
 //        [dynamic addLinearVelocity:CGPointMake(0, 0) forItem:fromView];
-        [dynamic addAngularVelocity:2 forItem:fromView];
-        [dynamic setAngularResistance:2];
+        [dynamic addAngularVelocity:1 forItem:fromView];
+        [dynamic setAngularResistance:3];
         
         // when the view no longer intersects with its superview, go ahead and remove it
         

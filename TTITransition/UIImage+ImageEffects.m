@@ -103,7 +103,7 @@
 
 
 -(UIImage *)applyStandardBlurForTourTime {
-    return [self applyBlurWithRadius:5.0f tintColor:[[UIColor blackColor] colorWithAlphaComponent:0.3f] saturationDeltaFactor:2.0f maskImage:nil];
+    return [self applyBlurWithRadius:2.0f tintColor:[[UIColor blackColor] colorWithAlphaComponent:0.3f] saturationDeltaFactor:2.0f maskImage:nil];
 }
 
 
