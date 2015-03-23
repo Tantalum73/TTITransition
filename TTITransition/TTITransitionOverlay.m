@@ -14,6 +14,7 @@
 @end
 
 @implementation TTITransitionOverlay {
+    UIImageView *_blurredBackgroundView;
 }
 
 -(instancetype)init {
@@ -48,8 +49,6 @@
         }
         toView.layer.opacity = 1.0f;
         
-        UIImageView *blurredFromView;
-        UIView *blurredFromViewBlurredWithUIBlurEffect;
         
 
         UIGraphicsBeginImageContextWithOptions(fromView.frame.size, NO, fromView.window.screen.scale);
@@ -59,18 +58,20 @@
 
 
         UIImage *blurredFrom = [fromShot applyStandardBlurForTourTime];
-        blurredFromView = [[UIImageView alloc] initWithImage:blurredFrom];
-        blurredFromView.layer.opacity = 0.0f;
+        _blurredBackgroundView = [[UIImageView alloc] initWithImage:blurredFrom];
+        _blurredBackgroundView.layer.opacity = 0.0f;
         
-        [inView insertSubview:blurredFromView belowSubview:toView];
+        [inView insertSubview:_blurredBackgroundView belowSubview:toView];
 
 
          UIView *toShot = [toView snapshotViewAfterScreenUpdates:YES];
 
         toShot.frame = CGRectMake(self.fromPoint.x-150/2, self.fromPoint.y, 150, 150);
 
-        [self applyShinyEffectsToView:toShot];
-        [self applyShinyEffectsToView:toView];
+        [self applyShadowEffectToView:toShot];
+        [self applyBorderToView:toShot];
+        [self applyShadowEffectToView:toView];
+        [self applyBorderToView:toView];
         toShot.layer.opacity = 0.4;
         
         [inView addSubview:toShot];
@@ -92,93 +93,80 @@
             			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
             			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             
-            if(blurredFromViewBlurredWithUIBlurEffect) {
-                blurredFromViewBlurredWithUIBlurEffect.layer.opacity = 1.0f;
-            }
-            else {
-                blurredFromView.layer.opacity = 1.0f;
-            }
+            
+            _blurredBackgroundView.layer.opacity = 1.0f;
+            
             
             		}completion:^(BOOL finished) {
-            
-            			UIGraphicsBeginImageContextWithOptions(fromView.frame.size, NO, fromView.window.screen.scale);
-            			[fromView drawViewHierarchyInRect:fromView.frame afterScreenUpdates:NO];
-            			UIImage *fromShot = UIGraphicsGetImageFromCurrentImageContext();
-            			UIGraphicsEndImageContext();
-            
-            			UIImage *blurredFrom = [fromShot applyStandardBlurForTourTime];
-            			UIImageView *blurredFromView = [[UIImageView alloc] initWithImage:blurredFrom];
-            			blurredFromView.layer.opacity = 0.0f;
+
+                        [inView addSubview:toView];
+                        [toShot removeFromSuperview];
                         
-//                        [blurredFromView removeFromSuperview];
+                        self.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
+                        
+                        
+                        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
             
-            			[UIView animateWithDuration:[self transitionDuration:transitionContext]/5 animations:^{
-            				blurredFromView.layer.opacity = 1.0f;
-            			}completion:^(BOOL finished) {
-                            
-                            [inView addSubview:toView];
-                            [toShot removeFromSuperview];
-                            [blurredFromView removeFromSuperview];
-                            
-                            self.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
-                    
-//            				[transitionContext completeTransition:YES];
-                            
-                            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-            			}];
+
             		}];
 
 	}
 	else {
-        //state: toShot:removed, toView: added, blurredFromView: added
+        //state: toShot:removed, toView: added, _blurredBackgroundView: added
         
         
 		fromView.frame = [transitionContext initialFrameForViewController:fromVC];
 		toView.frame = [transitionContext finalFrameForViewController:toVC];
 
-		UIView *intermediateView = [fromView snapshotViewAfterScreenUpdates:NO];
-		intermediateView.frame = fromView.frame;
+		UIView *fromShot = [fromView snapshotViewAfterScreenUpdates:NO];
+		fromShot.frame = fromView.frame;
+        [self applyShadowEffectToView:fromShot];
 		
-        [inView addSubview:intermediateView];
+        [inView addSubview:fromShot];
 //		[fromView removeFromSuperview];
+        fromView.alpha = 0;
 		
-		
-		UIGraphicsBeginImageContextWithOptions(toView.frame.size, NO, toView.window.screen.scale);
-		[toView drawViewHierarchyInRect:toView.frame afterScreenUpdates:YES];
-		UIImage *toShot = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-		
-		UIImage *blurredTo = [toShot applyStandardBlurForTourTime];
-		UIImageView *blurredToView = [[UIImageView alloc] initWithImage:blurredTo];
-		blurredToView.layer.opacity = 1.0f;
-		
-		[inView insertSubview:blurredToView belowSubview:intermediateView];
-		[inView insertSubview:toView belowSubview:blurredToView];
+//		UIGraphicsBeginImageContextWithOptions(toView.frame.size, NO, toView.window.screen.scale);
+//		[toView drawViewHierarchyInRect:toView.frame afterScreenUpdates:YES];
+//		UIImage *toShot = UIGraphicsGetImageFromCurrentImageContext();
+//		UIGraphicsEndImageContext();
+//		
+//		UIImage *blurredTo = [toShot applyStandardBlurForTourTime];
+//		UIImageView *blurredToView = [[UIImageView alloc] initWithImage:blurredTo];
+//		blurredToView.layer.opacity = 1.0f;
+//		
+//		[inView insertSubview:blurredToView belowSubview:fromShot];
+        
+		[inView insertSubview:toView belowSubview:_blurredBackgroundView];
 		
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:6 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
-			intermediateView.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
-			intermediateView.layer.opacity = 0.3f;
-			blurredToView.layer.opacity = 0.0f;
+			fromShot.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
+			fromShot.layer.opacity = 0.3f;
+			_blurredBackgroundView.layer.opacity = 0.0f;
 			
-			toView.layer.opacity = 1.0f;
+//			toView.layer.opacity = 1.0f;
 			
+
 			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+            
 		}completion:^(BOOL finished) {
                         
             if ([transitionContext transitionWasCancelled]) {
-                [intermediateView removeFromSuperview];
-                [inView addSubview:fromView];
-            
-                [blurredToView removeFromSuperview];
                 
+                [fromShot removeFromSuperview];
+                
+                fromView.alpha = 1;
+            
+//                [_blurredBackgroundView removeFromSuperview];
+                fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
                 
                 [transitionContext completeTransition:NO];
             }
             else {
-                [intermediateView removeFromSuperview];
+                [fromShot removeFromSuperview];
                 [fromView removeFromSuperview];
-                [blurredToView removeFromSuperview];
+                [_blurredBackgroundView removeFromSuperview];
                 
                 [inView addSubview:toView];
                 toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
@@ -199,10 +187,13 @@
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
 	return (self.open) ? 0.6f : 0.5f;
 }
--(void)applyShinyEffectsToView:(UIView *)view {
+-(void)applyBorderToView:(UIView *)view {
     view.layer.borderWidth = 4.0f;
     view.layer.borderColor = [UIColor lightTextColor].CGColor;
     
+    
+}
+-(void)applyShadowEffectToView:(UIView *)view {
     view.layer.shadowRadius = 4.0f;
     view.layer.shadowOpacity = 0.6f;
     view.layer.shadowColor = [UIColor blackColor].CGColor;
