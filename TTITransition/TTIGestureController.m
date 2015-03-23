@@ -64,6 +64,8 @@
 
 - (void) pinchAction:(UIPinchGestureRecognizer *)gr {
     
+   
+    
 //    NSLog(@"Scale: %f", gr.scale);
     CGFloat animationRatio = 1-gr.scale;
     
@@ -85,7 +87,7 @@
         }
             break;
         case UIGestureRecognizerStateEnded: {
-            if (normalizedRatio > 0.05) {
+            if (gr.velocity < 0) {//(normalizedRatio > 0.05) {
                 [self.animator.interactiveAnimator finishInteractiveTransition];
             }
             else {
@@ -133,6 +135,7 @@
             else {
                 [self.animator.interactiveAnimator cancelInteractiveTransition];
             }
+            
         }
             break;
         default:

@@ -77,7 +77,7 @@
         [inView addSubview:toShot];
 
         
-        [UIView animateWithDuration:([self transitionDuration:transitionContext]/5)*4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        [UIView animateWithDuration:([self transitionDuration:transitionContext]/5)*4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionBeginFromCurrentState animations:^{
             
             if(fromView) {
                 toShot.frame = CGRectMake(fromView.frame.origin.x+10, fromView.frame.origin.y+20, fromView.frame.size.width-20, fromView.frame.size.height-40);
@@ -101,10 +101,6 @@
 
                         [inView addSubview:toView];
                         [toShot removeFromSuperview];
-                        
-                        self.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
-                        
-                        
                         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
             
 
@@ -112,9 +108,6 @@
 
 	}
 	else {
-        //state: toShot:removed, toView: added, _blurredBackgroundView: added
-        
-        
 		fromView.frame = [transitionContext initialFrameForViewController:fromVC];
 		toView.frame = [transitionContext finalFrameForViewController:toVC];
 
@@ -125,28 +118,14 @@
         [inView addSubview:fromShot];
 //		[fromView removeFromSuperview];
         fromView.alpha = 0;
-		
-//		UIGraphicsBeginImageContextWithOptions(toView.frame.size, NO, toView.window.screen.scale);
-//		[toView drawViewHierarchyInRect:toView.frame afterScreenUpdates:YES];
-//		UIImage *toShot = UIGraphicsGetImageFromCurrentImageContext();
-//		UIGraphicsEndImageContext();
-//		
-//		UIImage *blurredTo = [toShot applyStandardBlurForTourTime];
-//		UIImageView *blurredToView = [[UIImageView alloc] initWithImage:blurredTo];
-//		blurredToView.layer.opacity = 1.0f;
-//		
-//		[inView insertSubview:blurredToView belowSubview:fromShot];
         
 		[inView insertSubview:toView belowSubview:_blurredBackgroundView];
 		
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:6 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:6 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+            
 			fromShot.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
 			fromShot.layer.opacity = 0.3f;
 			_blurredBackgroundView.layer.opacity = 0.0f;
-			
-//			toView.layer.opacity = 1.0f;
-			
-
 			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             
@@ -158,8 +137,8 @@
                 
                 fromView.alpha = 1;
             
-//                [_blurredBackgroundView removeFromSuperview];
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+                self.interactive = NO;
                 
                 [transitionContext completeTransition:NO];
             }
