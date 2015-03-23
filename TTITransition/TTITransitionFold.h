@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
+#import "TTITransitionSuper.h"
 
 /*Works best under UINavigationBar or above UIToolbar*/
 
-@interface TTITransitionFold : NSObject  <UIViewControllerAnimatedTransitioning>
-@property (nonatomic) CGPoint fromPoint;
-@property (nonatomic) BOOL open;
+@interface TTITransitionFold : TTITransitionSuper
 @end
 

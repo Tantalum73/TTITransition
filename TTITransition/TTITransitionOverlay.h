@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
-#import "TTIPercentDrivenInteractionTransitionController.h"
 #import "TTITransitionSuper.h"
 
 @interface TTITransitionOverlay : TTITransitionSuper //<UIViewControllerAnimatedTransitioning>

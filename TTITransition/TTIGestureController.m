@@ -7,15 +7,19 @@
 //
 
 #import "TTIGestureController.h"
+@interface TTIGestureController()
+
+@property (nonatomic, strong) UIScreenEdgePanGestureRecognizer * screenEdgePanGestureRecognizer;
+@property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
+
+@end
 
 @implementation TTIGestureController
+
 
 - (UIScreenEdgePanGestureRecognizer *)screenEdgePanGestureRecognizer {
     if(!_screenEdgePanGestureRecognizer) {
         _screenEdgePanGestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(screenEdgePanAction:)];
-        _screenEdgePanGestureRecognizer.edges = UIRectEdgeLeft;
-        
-//        [self.targetViewController.view addGestureRecognizer:_screenEdgePanGestureRecognizer];
     }
     return _screenEdgePanGestureRecognizer;
 }
@@ -27,14 +31,32 @@
     return _pinchGestureRecognizer;
 }
 
--(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator {
+-(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(GestureRecognizerType)gestureType {
     self = [super init];
     if (self) {
         self.targetViewController = target;
         self.animator = animator;
         
-        //[self.targetViewController.view.window addGestureRecognizer:self.screenEdgePanGestureRecognizer];
-        [self.targetViewController.view addGestureRecognizer:self.pinchGestureRecognizer];
+        
+        switch (gestureType) {
+            case TTIGestureRecognizerPinch: {
+                [self.targetViewController.view addGestureRecognizer:self.pinchGestureRecognizer];
+            }
+                break;
+            case TTIGestureRecognizerLeftEdge: {
+                self.screenEdgePanGestureRecognizer.edges = UIRectEdgeLeft;
+                [self.targetViewController.view addGestureRecognizer:self.screenEdgePanGestureRecognizer];
+            }
+                break;
+            case TTIGestureRecognizerRightEdge: {
+                self.screenEdgePanGestureRecognizer.edges = UIRectEdgeRight;
+                [self.targetViewController.view addGestureRecognizer:self.screenEdgePanGestureRecognizer];
+            }
+                break;
+            default:
+                break;
+        }
+        
     }
     
     return self;

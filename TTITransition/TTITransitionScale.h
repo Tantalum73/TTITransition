@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
+#import "TTITransitionSuper.h"
 
-@interface TTITransitionScale :NSObject  <UIViewControllerAnimatedTransitioning>
-
-@property (nonatomic) CGPoint fromPoint;
-@property (nonatomic) BOOL open;
+@interface TTITransitionScale : TTITransitionSuper
 /*
  The color of the background view that is shown while the transition takes place.
  Default: a light gray.

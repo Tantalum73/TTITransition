@@ -14,7 +14,7 @@
 @property (nonatomic) CGPoint fromPoint;
 @property (nonatomic) BOOL open;
 
-@property (nonatomic, getter=isInteractive) BOOL interactive;//set, when gesture begins, before calling dismissVC...()
+@property (nonatomic) BOOL interactive;//set, when gesture begins, before calling dismissVC...()
 @property (nonatomic, strong) TTIPercentDrivenInteractionTransitionController *interactiveAnimator;
 
 //@property (nonatomic, strong) TTIGestureController *gestureController;

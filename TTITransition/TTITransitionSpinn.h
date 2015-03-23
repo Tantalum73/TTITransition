@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTITransitionSuper.h"
 
-@interface TTITransitionSpinn : UIViewController <UIViewControllerAnimatedTransitioning>
-@property (nonatomic) CGPoint fromPoint;
-@property (nonatomic) BOOL open;
+@interface TTITransitionSpinn : TTITransitionSuper
 /*
  The color of the background view that is shown while the transition takes place.
  Default: light gray.

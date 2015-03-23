@@ -19,15 +19,20 @@
 //
 //@end
 
+typedef NS_ENUM(NSInteger, GestureRecognizerType) {
+    TTIGestureRecognizerPinch,
+    TTIGestureRecognizerLeftEdge,
+    TTIGestureRecognizerRightEdge
+};
 
 @interface TTIGestureController : NSObject
 @property (nonatomic, strong) UIViewController *targetViewController;
 //@property (nonatomic, strong) TTITransitionSuper *currentAnimator;
-@property (nonatomic, strong) UIScreenEdgePanGestureRecognizer * screenEdgePanGestureRecognizer;
-@property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
 //@property (nonatomic, strong) id<TTIGestureControllerProtocol> delegate;
 @property (nonatomic, strong) TTITransitionSuper *animator;
 
--(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator;
+
+
+-(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(GestureRecognizerType)gestureType;
 @end
 

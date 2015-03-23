@@ -39,6 +39,8 @@
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
         
         _transitionDelegate.transitionType = TTIOverlayTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowSlide"]) {
         

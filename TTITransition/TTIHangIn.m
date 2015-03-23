@@ -15,6 +15,14 @@
 
 @implementation TTIHangIn
 
+-(instancetype)initWithSizeOfToViewController:(CGSize)size {
+    if (self = [super init]) {
+        self.sizeOfToViewController = size;
+    }
+    
+    return self;
+}
+
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *inView = [transitionContext containerView];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
