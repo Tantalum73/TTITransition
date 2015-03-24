@@ -26,7 +26,7 @@
 
     [inView insertSubview:backgroundView atIndex:0];
     
-    if(false){//(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         toView = [transitionContext viewForKey:UITransitionContextToViewKey];
         fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     }
@@ -52,9 +52,6 @@
     fromView.alpha = 0;
     
     CGFloat slideToRight = -[UIScreen mainScreen].bounds.size.width+self.gapBetweenViewControllers;
-    
-//    toShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:self.open? (fromShot.frame.size.width + self.gapBetweenViewControllers) : (-fromShot.frame.size.width - self.gapBetweenViewControllers) yOffset:0];
-    
     [inView addSubview:toShot];
     [toView removeFromSuperview];
 
@@ -68,6 +65,7 @@
         
         [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.1 animations:^{
             
+            //marking the fromView small
             fromShot.transform = scale;
         }];
         
@@ -95,10 +93,6 @@
     } completion:^(BOOL finished) {
         if ([transitionContext transitionWasCancelled]) {
             fromView.alpha = 1;
-            
-            //                    [inView addSubview:toView];
-            //                    [fromView removeFromSuperview];
-            
             [fromShot removeFromSuperview];
             [toShot removeFromSuperview];
             
@@ -197,9 +191,9 @@
     return 1;
 }
 
--(CGRect)rectWithOriginOffsetFromRect:(CGRect)rect xOffset:(CGFloat)xOffset yOffset:(CGFloat)yOffset {
-    return CGRectMake(rect.origin.x + xOffset, rect.origin.y + yOffset, rect.size.width, rect.size.height);
-}
+//-(CGRect)rectWithOriginOffsetFromRect:(CGRect)rect xOffset:(CGFloat)xOffset yOffset:(CGFloat)yOffset {
+//    return CGRectMake(rect.origin.x + xOffset, rect.origin.y + yOffset, rect.size.width, rect.size.height);
+//}
 -(void)applyShinyEffectsToView:(UIView *)view {
     view.layer.borderWidth = 4.0f;
     view.layer.borderColor = [UIColor lightTextColor].CGColor;
