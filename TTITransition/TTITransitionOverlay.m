@@ -114,10 +114,15 @@
 		[inView insertSubview:toView belowSubview:_blurredBackgroundView];
         
         CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
+        CGAffineTransform translation = CGAffineTransformMakeTranslation((self.fromPoint.x < fromView.center.x)?
+                                                                         -abs(self.fromPoint.x - fromView.center.x) : abs(self.fromPoint.x - fromView.center.x)
+                                                                         
+                                                                         ,(self.fromPoint.y < fromView.center.y)?
+                                                                         -abs(self.fromPoint.y - fromView.center.y) : abs(self.fromPoint.y - fromView.center.y));
 		
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:4 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
             
-            fromView.transform = scale;
+            fromView.transform = CGAffineTransformConcat(scale, translation);;
             fromView.alpha = 0;
             
 			_blurredBackgroundView.alpha = 0.0f;
