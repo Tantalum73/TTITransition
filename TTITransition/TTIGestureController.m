@@ -31,7 +31,7 @@
     return _pinchGestureRecognizer;
 }
 
--(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(GestureRecognizerType)gestureType {
+-(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(TTIGestureRecognizerType)gestureType {
     self = [super init];
     if (self) {
         self.targetViewController = target;

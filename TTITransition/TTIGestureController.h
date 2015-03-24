@@ -11,7 +11,7 @@
 #import "TTITransitionSuper.h"
 
 
-typedef NS_ENUM(NSInteger, GestureRecognizerType) {
+typedef NS_ENUM(NSInteger, TTIGestureRecognizerType) {
     TTIGestureRecognizerPinch,
     TTIGestureRecognizerLeftEdge,
     TTIGestureRecognizerRightEdge
@@ -24,6 +24,6 @@ typedef NS_ENUM(NSInteger, GestureRecognizerType) {
 
 
 
--(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(GestureRecognizerType)gestureType;
+-(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(TTIGestureRecognizerType)gestureType;
 @end
 

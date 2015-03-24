@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, TTITransitionType) {
 /*
  The GestureRecognizer, being used to dismiss the presented ViewController.
  */
-@property (nonatomic) GestureRecognizerType gestureType;
+@property (nonatomic) TTIGestureRecognizerType gestureType;
 
 @end
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
