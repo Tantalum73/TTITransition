@@ -124,8 +124,9 @@
             // Get the ratio of the animation depending on the touch location.
             // When location is at the left of the screen the animation is at its initial phase.
             // Moving to the right, the animation proceed, while moving to the right it is reverse played
-            CGFloat animationRatio = location.x / CGRectGetWidth([self.targetViewController.view window].bounds);
-            [self.animator.interactiveAnimator updateInteractiveTransition:animationRatio];
+            CGFloat animationRatio = (location.x-10) / CGRectGetWidth([self.targetViewController.view window].bounds);
+            NSLog(@"Ratio : %f", animationRatio);
+            [self.animator.interactiveAnimator updateInteractiveTransition:MAX(0, animationRatio)];
         }
             break;
         case UIGestureRecognizerStateEnded: {

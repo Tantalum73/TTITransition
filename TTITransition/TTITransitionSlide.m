@@ -61,7 +61,7 @@
     
     toShot.transform = CGAffineTransformConcat(scale, self.open? slideRight : slideLeft);
     
-    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionCalculationModePaced animations:^{
+    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
         
         [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.1 animations:^{
             

@@ -47,41 +47,36 @@
         }];
 		
 	}
-	else {
-        UIView *intermediateView = [fromView snapshotViewAfterScreenUpdates:YES];
+    else {
+        [inView insertSubview:toView atIndex:0];
+        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
 
-        [inView addSubview:toView];
-		[inView addSubview:intermediateView];
-//        [fromView removeFromSuperview];
-        fromView.alpha = 0;
-		
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:6 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
-			intermediateView.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
-			intermediateView.layer.opacity = 0.3f;
-			
-			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
-			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-		}completion:^(BOOL finished) {
+            
+            fromView.transform = scale;
+            fromView.alpha = 0;
+            
+//            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+            toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+        }completion:^(BOOL finished) {
             if ([transitionContext transitionWasCancelled]) {
-                fromView.alpha = 1;
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
                 [toView removeFromSuperview];
-                [intermediateView removeFromSuperview];
                 
                 self.interactive = NO;
                 [transitionContext completeTransition:NO];
             }
             else {
-                [intermediateView  removeFromSuperview];
                 [fromView removeFromSuperview];
                 [inView addSubview:toView];
                 [transitionContext completeTransition:YES];
             }
             
-			
+            
         }];
-		
-	}
+        
+    }
 	
 }
 
