@@ -34,35 +34,35 @@
     _transitionDelegate.fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
     
     if([segue.identifier isEqualToString:@"ShowFull"]) {
-        _transitionDelegate.transitionType = TTIFullTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeFull;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
-        _transitionDelegate.transitionType = TTIOverlayTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeOverlay;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowSlide"]) {
-        _transitionDelegate.transitionType = TTISlideTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeSlide;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerLeftEdge;
     }
     else if([segue.identifier isEqualToString:@"ShowFold"]) {
-        _transitionDelegate.transitionType = TTIFoldTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeFold;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerLeftEdge;
     }
     else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
-        _transitionDelegate.transitionType = TTIHangInTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeHangIn;
     }
     else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
-        _transitionDelegate.transitionType = TTISpinnTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeSpinn;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowScale"]) {
-        _transitionDelegate.transitionType = TTIScaleTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeScale;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }

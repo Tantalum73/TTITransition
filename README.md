@@ -104,7 +104,7 @@ Please take a look at [TourTime](https://anerma.de/TourTime/), the app that meas
 Please feel free to use and have fun with **TTITransition**. If you do so, I would appreciate if you send me s short message.
 Also please be so kind and leave a short 
 
-##License
+##License##
 TTITransition is published under MIT License
 
     Copyright (c) 2015 Andreas Neusüß (@Klaarname)

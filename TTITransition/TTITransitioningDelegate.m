@@ -32,23 +32,23 @@
     TTITransitionSuper *transitionController;
     
     switch (self.transitionType) {
-        case TTIOverlayTransition: {
+        case TTITransitionTypeOverlay: {
             transitionController = [TTITransitionOverlay new];
         }
             break;
-        case TTIFullTransition: {
+        case TTITransitionTypeFull: {
             transitionController = [TTITransitionFull new];
         }
             break;
-        case TTISlideTransition: {
+        case TTITransitionTypeSlide: {
             transitionController = [TTITransitionSlide new];
         }
             break;
-        case TTIFoldTransition: {
+        case TTITransitionTypeFold: {
             transitionController = [TTITransitionFold new];
         }
             break;
-        case TTIHangInTransition: {
+        case TTITransitionTypeHangIn: {
             CGSize correctSize;
             if(CGSizeEqualToSize(self.sizeOfPresentedViewController, CGSizeZero)) {
                  correctSize = CGSizeMake(300, 250);
@@ -57,11 +57,11 @@
             transitionController = [[TTIHangIn alloc] initWithSizeOfToViewController:correctSize];
         }
             break;
-        case TTISpinnTransition: {
+        case TTITransitionTypeSpinn: {
             transitionController = [TTITransitionSpinn new];
         }
             break;
-        case TTIScaleTransition: {
+        case TTITransitionTypeScale: {
             transitionController = [TTITransitionScale new];
         }
             break;
@@ -168,7 +168,7 @@
 }
 -(void)decodeRestorableStateWithCoder:(NSCoder *)coder {
     self.fromPoint = [coder decodeCGPointForKey:@"fromPoint"];
-    self.transitionType = (TransitionType)[coder decodeIntegerForKey:@"TransitionType"];
+    self.transitionType = (TTITransitionType)[coder decodeIntegerForKey:@"TransitionType"];
 }
 
 @end

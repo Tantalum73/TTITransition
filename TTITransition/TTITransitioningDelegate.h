@@ -13,14 +13,14 @@
 /*
     Set type of transition: overlay or transition that covers entire screen
 */
-typedef NS_ENUM(NSInteger, TransitionType) {
-    TTIFullTransition,
-    TTIOverlayTransition,
-    TTISlideTransition,
-    TTIFoldTransition,
-    TTIHangInTransition,
-    TTISpinnTransition,
-    TTIScaleTransition
+typedef NS_ENUM(NSInteger, TTITransitionType) {
+    TTITransitionTypeFull,
+    TTITransitionTypeOverlay,
+    TTITransitionTypeSlide,
+    TTITransitionTypeFold,
+    TTITransitionTypeHangIn,
+    TTITransitionTypeSpinn,
+    TTITransitionTypeScale
 };
 
 
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, TransitionType) {
 /*
  The type of transition: overlay or transition that covers entire screen
  */
-@property (nonatomic, assign) TransitionType transitionType;
+@property (nonatomic, assign) TTITransitionType transitionType;
 
 /*
  Whether the transition can be dismissed by a interactive gesture or rather not.
