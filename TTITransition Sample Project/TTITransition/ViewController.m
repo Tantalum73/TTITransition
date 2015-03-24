@@ -69,6 +69,8 @@
     else if([segue.identifier isEqualToString:@"ShowScale"]) {
         
         _transitionDelegate.transitionType = TTIScaleTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     destination.transitioningDelegate = _transitionDelegate;
 }
