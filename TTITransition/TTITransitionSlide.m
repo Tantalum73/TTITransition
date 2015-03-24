@@ -48,8 +48,8 @@
 
     
     [inView insertSubview:fromShot aboveSubview:fromView];
-    [fromView removeFromSuperview];//when removed, the Gesture stops!
-//    fromView.alpha = 0;
+//    [fromView removeFromSuperview];//when removed, the Gesture stops!
+    fromView.alpha = 0;
     
     CGFloat slideToRight = -[UIScreen mainScreen].bounds.size.width+self.gapBetweenViewControllers;
     
