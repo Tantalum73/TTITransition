@@ -26,7 +26,7 @@
 
     [inView insertSubview:backgroundView atIndex:0];
     
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+    if(false){//(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         toView = [transitionContext viewForKey:UITransitionContextToViewKey];
         fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     }
@@ -34,86 +34,156 @@
         toView = [toVC view];
         fromView = [fromVC view];
     }
-    
     if(self.scaleDownViewControllers <= 0.7) {
         self.scaleDownViewControllers = 0.8;
     }
     if(self.gapBetweenViewControllers == 0) {
         self.gapBetweenViewControllers = 20;
     }
+    
+    
+    toView.alpha = 1;
     UIView  *fromShot = [fromView snapshotViewAfterScreenUpdates:YES];
     UIView *toShot = [toView snapshotViewAfterScreenUpdates:YES];
-    
-//
-//    UIImageView *fromShot = [[UIImageView alloc] initWithImage:[self imageFromView:fromView]];
-//    [inView addSubview:fromShot];
-//    UIImageView *toShot = [[UIImageView alloc] initWithImage:[self imageFromView:toView]];
-//
+
     
     [inView insertSubview:fromShot aboveSubview:fromView];
-//    [fromView removeFromSuperview];//when removed, the Gesture stops!
-    fromView.alpha = 0;
+    [fromView removeFromSuperview];//when removed, the Gesture stops!
+//    fromView.alpha = 0;
     
     CGFloat slideToRight = -[UIScreen mainScreen].bounds.size.width+self.gapBetweenViewControllers;
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]/3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
-        //making the fromView small
+//    toShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:self.open? (fromShot.frame.size.width + self.gapBetweenViewControllers) : (-fromShot.frame.size.width - self.gapBetweenViewControllers) yOffset:0];
+    
+    [inView addSubview:toShot];
+    [toView removeFromSuperview];
+
+    CGAffineTransform scale = CGAffineTransformMakeScale(0.7, 0.7);
+    CGAffineTransform slideLeft = CGAffineTransformMakeTranslation(slideToRight, 0);
+    CGAffineTransform slideRight = CGAffineTransformMakeTranslation(-slideToRight, 0);
+    
+    toShot.transform = CGAffineTransformConcat(scale, self.open? slideRight : slideLeft);
+    
+    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionCalculationModeCubic animations:^{
         
-        fromShot.frame = CGRectInset(fromShot.frame, (1-self.scaleDownViewControllers) * fromShot.frame.size.width, (1-self.scaleDownViewControllers) * fromShot.frame.size.height);
+        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.1 animations:^{
+            
+            fromShot.transform = scale;
+        }];
         
-    } completion:^(BOOL finished) {
-        [inView addSubview:toShot];
-        
-        toShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:self.open? (fromShot.frame.size.width + self.gapBetweenViewControllers) : (-fromShot.frame.size.width - self.gapBetweenViewControllers) yOffset:0];
-        
-        [UIView animateWithDuration:[self transitionDuration:transitionContext]/3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        [UIView addKeyframeWithRelativeStartTime:0.1 relativeDuration:0.7 animations:^{
             //sliding the views
             
             if(self.open) {
-                fromShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:slideToRight yOffset:0];
-                toShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:[UIScreen mainScreen].bounds.size.width-self.gapBetweenViewControllers yOffset:0];
+                fromShot.transform = CGAffineTransformConcat(fromShot.transform, slideLeft);
+                toShot.transform = CGAffineTransformConcat(toShot.transform, slideLeft);
+                
             }
             else {
-                fromShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:-slideToRight yOffset:0];
-                toShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:-[UIScreen mainScreen].bounds.size.width+self.gapBetweenViewControllers yOffset:0];
+                fromShot.transform = CGAffineTransformConcat(fromShot.transform, slideRight);
+                toShot.transform = CGAffineTransformConcat(toShot.transform, slideRight);
             }
             
-        } completion:^(BOOL finished) {
-            [fromShot removeFromSuperview];
-            
-            [UIView animateWithDuration:[self transitionDuration:transitionContext]/3 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
-                //making  the toView big
-                toShot.frame = [UIScreen mainScreen].bounds;
-                
-            } completion:^(BOOL finished) {
-                if ([transitionContext transitionWasCancelled]) {
-                    fromView.alpha = 1;
-                    
-                    [inView addSubview:toView];
-                    [fromView removeFromSuperview];
-                    
-                    [fromShot removeFromSuperview];
-                    [toShot removeFromSuperview];
-                    
-                    [backgroundView removeFromSuperview];
-                    [transitionContext completeTransition:NO];
-                }
-                else {
-                    [inView addSubview:toView];
-                    [fromView removeFromSuperview];
-                    
-                    [fromShot removeFromSuperview];
-                    [toShot removeFromSuperview];
-                    
-                    [backgroundView removeFromSuperview];
-                    [transitionContext completeTransition:YES];
-                }
-                
-                
-            }];
-            
         }];
+        
+        [UIView addKeyframeWithRelativeStartTime:0.8 relativeDuration:0.2 animations:^{
+            
+            //making  the toView big
+            toShot.transform = CGAffineTransformIdentity;
+        }];
+        
+    } completion:^(BOOL finished) {
+        if ([transitionContext transitionWasCancelled]) {
+            fromView.alpha = 1;
+            
+            //                    [inView addSubview:toView];
+            //                    [fromView removeFromSuperview];
+            
+            [fromShot removeFromSuperview];
+            [toShot removeFromSuperview];
+            
+            [backgroundView removeFromSuperview];
+            [transitionContext completeTransition:NO];
+            
+            
+            self.interactive = NO;
+        }
+        else {
+            [inView addSubview:toView];
+            [fromView removeFromSuperview];
+            
+            [fromShot removeFromSuperview];
+            [toShot removeFromSuperview];
+            
+            [backgroundView removeFromSuperview];
+            [transitionContext completeTransition:YES];
+        }
+
     }];
+    
+    
+//    [UIView animateWithDuration:[self transitionDuration:transitionContext]/3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+//        //making the fromView small
+//        
+//        fromShot.frame = CGRectInset(fromShot.frame, (1-self.scaleDownViewControllers) * fromShot.frame.size.width, (1-self.scaleDownViewControllers) * fromShot.frame.size.height);
+//        
+//    } completion:^(BOOL finished) {
+//        
+//        toShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:self.open? (fromShot.frame.size.width + self.gapBetweenViewControllers) : (-fromShot.frame.size.width - self.gapBetweenViewControllers) yOffset:0];
+//        
+//        [inView addSubview:toShot];
+//        
+//        [UIView animateWithDuration:[self transitionDuration:transitionContext]/3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+//            //sliding the views
+//            
+//            if(self.open) {
+//                fromShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:slideToRight yOffset:0];
+//                toShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:[UIScreen mainScreen].bounds.size.width-self.gapBetweenViewControllers yOffset:0];
+//            }
+//            else {
+//                fromShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:-slideToRight yOffset:0];
+//                toShot.frame = [self rectWithOriginOffsetFromRect:fromShot.frame xOffset:-[UIScreen mainScreen].bounds.size.width+self.gapBetweenViewControllers yOffset:0];
+//            }
+//            
+//        } completion:^(BOOL finished) {
+//            [fromShot removeFromSuperview];
+//            
+//            [UIView animateWithDuration:[self transitionDuration:transitionContext]/3 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+//                //making  the toView big
+//                toShot.frame = [UIScreen mainScreen].bounds;
+//                
+//            } completion:^(BOOL finished) {
+//                if ([transitionContext transitionWasCancelled]) {
+//                    fromView.alpha = 1;
+//                    
+////                    [inView addSubview:toView];
+////                    [fromView removeFromSuperview];
+//                    
+//                    [fromShot removeFromSuperview];
+//                    [toShot removeFromSuperview];
+//                    
+//                    [backgroundView removeFromSuperview];
+//                    [transitionContext completeTransition:NO];
+//                    
+//                    
+//                    self.interactive = NO;
+//                }
+//                else {
+//                    [inView addSubview:toView];
+//                    [fromView removeFromSuperview];
+//                    
+//                    [fromShot removeFromSuperview];
+//                    [toShot removeFromSuperview];
+//                    
+//                    [backgroundView removeFromSuperview];
+//                    [transitionContext completeTransition:YES];
+//                }
+//                
+//                
+//            }];
+//            
+//        }];
+//    }];
   
     
     
@@ -124,7 +194,7 @@
 }
 
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 2;
+    return 1;
 }
 
 -(CGRect)rectWithOriginOffsetFromRect:(CGRect)rect xOffset:(CGFloat)xOffset yOffset:(CGFloat)yOffset {
