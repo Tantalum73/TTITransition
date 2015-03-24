@@ -111,31 +111,25 @@
 		fromView.frame = [transitionContext initialFrameForViewController:fromVC];
 		toView.frame = [transitionContext finalFrameForViewController:toVC];
 
-		UIView *fromShot = [fromView snapshotViewAfterScreenUpdates:NO];
-		fromShot.frame = fromView.frame;
-        [self applyShadowEffectToView:fromShot];
-		
-        [inView addSubview:fromShot];
-//		[fromView removeFromSuperview];
-        fromView.alpha = 0;
-        
 		[inView insertSubview:toView belowSubview:_blurredBackgroundView];
+        
+        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
 		
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:6 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:4 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
             
-			fromShot.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
-			fromShot.layer.opacity = 0.3f;
-			_blurredBackgroundView.layer.opacity = 0.0f;
-			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+            fromView.transform = scale;
+            fromView.alpha = 0;
+            
+			_blurredBackgroundView.alpha = 0.0f;
+            
+//			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             
 		}completion:^(BOOL finished) {
                         
             if ([transitionContext transitionWasCancelled]) {
-                
-                [fromShot removeFromSuperview];
-                
                 fromView.alpha = 1;
+                [toView removeFromSuperview];
             
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
                 self.interactive = NO;
@@ -143,7 +137,6 @@
                 [transitionContext completeTransition:NO];
             }
             else {
-                [fromShot removeFromSuperview];
                 [fromView removeFromSuperview];
                 [_blurredBackgroundView removeFromSuperview];
                 
