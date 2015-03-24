@@ -27,21 +27,32 @@
         fromView = [fromVC view];
     }
 	if(self.open) {
-		UIView *intermediateView = [toView snapshotViewAfterScreenUpdates:YES];
-        [inView addSubview:intermediateView];
-		intermediateView.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
-		intermediateView.layer.opacity = 0.3f;
-		
+//		UIView *intermediateView = [toView snapshotViewAfterScreenUpdates:YES];
+//        [inView addSubview:intermediateView];
+//		intermediateView.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
+//		intermediateView.layer.opacity = 0.3f;
+        
+        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
+        CGAffineTransform translation = CGAffineTransformMakeTranslation(abs(self.fromPoint.x - toView.center.x),abs(self.fromPoint.y - toView.center.y));
+        toView.transform = CGAffineTransformConcat(scale, translation);
+        toView.alpha = 0;
+        
+        [inView addSubview:toView];
+        
+        
 		[UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
 			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-			
-			intermediateView.frame = toView.frame;
-			intermediateView.layer.opacity = 1.0f;
+            
+            toView.transform = CGAffineTransformIdentity;
+            toView.alpha = 1;
+            
+//			intermediateView.frame = toView.frame;
+//			intermediateView.layer.opacity = 1.0f;
 		}completion:^(BOOL finished) {
-			[intermediateView removeFromSuperview];
+//			[intermediateView removeFromSuperview];
+            
 			
-			[inView addSubview:toView];
 			[fromView removeFromSuperview];
 			[transitionContext completeTransition:YES];
         }];
@@ -49,12 +60,16 @@
 	}
     else {
         [inView insertSubview:toView atIndex:0];
-        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
+        toView.alpha = 1;
+        [inView addSubview:fromView];
         
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
+        CGAffineTransform translation = CGAffineTransformMakeTranslation(abs(self.fromPoint.x - fromView.center.x),abs(self.fromPoint.y - fromView.center.y));
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent | UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
 
             
-            fromView.transform = scale;
+            fromView.transform = CGAffineTransformConcat(scale, translation);
             fromView.alpha = 0;
             
 //            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
@@ -62,6 +77,7 @@
         }completion:^(BOOL finished) {
             if ([transitionContext transitionWasCancelled]) {
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+                fromView.transform = CGAffineTransformIdentity;
                 [toView removeFromSuperview];
                 
                 self.interactive = NO;
