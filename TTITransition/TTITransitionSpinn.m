@@ -44,33 +44,33 @@
     
     CGFloat angle = M_PI;
     
-    CGAffineTransform scale = CGAffineTransformMakeScale(1.5, 1.5);
+    CGAffineTransform scale = CGAffineTransformMakeScale(2, 2);
     CGAffineTransform rotation = CGAffineTransformMakeRotation(angle);
     
     CGAffineTransform concatted = CGAffineTransformConcat(scale, rotation);
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        
-        fromView.transform = concatted;
-        fromView.alpha = 0;
-        
-    } completion:^(BOOL finished) {
-//        [fromView removeFromSuperview];
-    }];
+    toView.transform = CGAffineTransformConcat(scale, CGAffineTransformMakeRotation(angle));
     
-    toView.transform = CGAffineTransformConcat(scale, CGAffineTransformMakeRotation(-angle));
-    
-    
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 delay:[self transitionDuration:transitionContext]/2 usingSpringWithDamping:0.6 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionCalculationModePaced animations:^{
         
-        toView.alpha = 1;
-        toView.transform = CGAffineTransformIdentity;
+        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.25 animations:^{
+            fromView.transform = concatted;
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.25 relativeDuration:0.25 animations:^{
+            fromView.transform = rotation;
+            fromView.alpha = 0;
+        }];
         
+        [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
+            
+            toView.alpha = 1;
+            toView.transform = CGAffineTransformIdentity;
+        }];
     } completion:^(BOOL finished) {
         if ([transitionContext transitionWasCancelled]) {
-            toView.transform = CGAffineTransformIdentity;
+//            toView.transform = CGAffineTransformIdentity;
             [toView removeFromSuperview];
-            fromView.transform = CGAffineTransformIdentity;
+//            fromView.transform = CGAffineTransformIdentity;
             [backgroundView removeFromSuperview];
             
             self.interactive = NO;
@@ -83,9 +83,50 @@
             [backgroundView removeFromSuperview];
             [transitionContext completeTransition:YES];
         }
-        
+
     }];
     
+    
+//    slightly newer version:
+//    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//        
+//        fromView.transform = concatted;
+//        fromView.alpha = 0;
+//        
+//    } completion:^(BOOL finished) {
+////        [fromView removeFromSuperview];
+//    }];
+//    
+//    toView.transform = CGAffineTransformConcat(scale, CGAffineTransformMakeRotation(-angle));
+//    
+//    
+//    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 delay:[self transitionDuration:transitionContext]/2 usingSpringWithDamping:0.6 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+//        
+//        toView.alpha = 1;
+//        toView.transform = CGAffineTransformIdentity;
+//        
+//    } completion:^(BOOL finished) {
+//        if ([transitionContext transitionWasCancelled]) {
+//            toView.transform = CGAffineTransformIdentity;
+//            [toView removeFromSuperview];
+//            fromView.transform = CGAffineTransformIdentity;
+//            [backgroundView removeFromSuperview];
+//            
+//            self.interactive = NO;
+//            
+//            [transitionContext completeTransition:NO];
+//        }
+//        else {
+//            toView.transform = CGAffineTransformIdentity;
+//            [fromView removeFromSuperview];
+//            [backgroundView removeFromSuperview];
+//            [transitionContext completeTransition:YES];
+//        }
+//        
+//    }];
+    
+    
+    //old version:
 //    CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
 //    rotation.fromValue = [NSNumber numberWithDouble:0];
 //    rotation.fromValue = [NSNumber numberWithDouble:M_PI*1.5];
@@ -134,7 +175,7 @@
     
 }
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 1.8f;
+    return 1;
 }
 
 @end
