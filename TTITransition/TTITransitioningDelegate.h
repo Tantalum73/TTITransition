@@ -50,6 +50,9 @@ typedef NS_ENUM(NSInteger, TransitionType) {
  */
 @property (nonatomic, getter=isInteractive) BOOL interactive;
 
+/*
+ The GestureRecognizer, being used to dismiss the presented ViewController.
+ */
 @property (nonatomic) GestureRecognizerType gestureType;
 
 @end

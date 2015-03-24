@@ -10,14 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "TTITransitionSuper.h"
 
-//@protocol TTIGestureControllerProtocol <NSObject>
-//
-//-(void)stateOfInteractionChangedToBeInteractive:(BOOL)interactive;
-//-(void)updateInteractiveTransition:(CGFloat) percentComplete;
-//-(void)cancelInteractiveTransition;
-//-(void)finishInteractiveTransition;
-//
-//@end
 
 typedef NS_ENUM(NSInteger, GestureRecognizerType) {
     TTIGestureRecognizerPinch,
@@ -26,9 +18,8 @@ typedef NS_ENUM(NSInteger, GestureRecognizerType) {
 };
 
 @interface TTIGestureController : NSObject
+
 @property (nonatomic, strong) UIViewController *targetViewController;
-//@property (nonatomic, strong) TTITransitionSuper *currentAnimator;
-//@property (nonatomic, strong) id<TTIGestureControllerProtocol> delegate;
 @property (nonatomic, strong) TTITransitionSuper *animator;
 
 
