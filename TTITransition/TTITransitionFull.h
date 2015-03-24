@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
+#import "TTITransitionSuper.h"
 
-@interface TTITransitionFull : NSObject <UIViewControllerAnimatedTransitioning>
-@property (nonatomic) CGPoint fromPoint;
-@property (nonatomic) BOOL open;
+@interface TTITransitionFull : TTITransitionSuper
 @end

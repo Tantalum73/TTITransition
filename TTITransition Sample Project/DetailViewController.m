@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import <UIKit/UIKit.h>
 
 @interface DetailViewController ()
 
@@ -26,7 +27,6 @@
 - (IBAction)backButtonPressed:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 /*
 #pragma mark - Navigation
 

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "TTIGestureController.h"
+
 /*
     Set type of transition: overlay or transition that covers entire screen
 */
-typedef enum TransitionType : NSInteger {
+typedef NS_ENUM(NSInteger, TransitionType) {
     TTIFullTransition,
     TTIOverlayTransition,
     TTISlideTransition,
@@ -19,7 +21,9 @@ typedef enum TransitionType : NSInteger {
     TTIHangInTransition,
     TTISpinnTransition,
     TTIScaleTransition
-} TransitionType;
+};
+
+
 
 @interface TTITransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate, UIStateRestoring>
 
@@ -41,6 +45,12 @@ typedef enum TransitionType : NSInteger {
  */
 @property (nonatomic, assign) TransitionType transitionType;
 
+/*
+ Whether the transition can be dismissed by a interactive gesture or rather not.
+ */
+@property (nonatomic, getter=isInteractive) BOOL interactive;
+
+@property (nonatomic) GestureRecognizerType gestureType;
 
 @end
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)

@@ -14,9 +14,13 @@
 #import "TTIHangIn.h"
 #import "TTITransitionSpinn.h"
 #import "TTITransitionScale.h"
-
+#import "TTIPercentDrivenInteractionTransitionController.h"
+#import "TTITransitionSuper.h"
 
 @interface TTITransitioningDelegate () {
+    TTITransitionSuper *_activePresentationController;
+    UIViewController *_presentedViewController;
+    TTIGestureController *_gestureController;
 }
 
 @end
@@ -25,110 +29,137 @@
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     
+    TTITransitionSuper *transitionController;
+    
     switch (self.transitionType) {
         case TTIOverlayTransition: {
-            TTITransitionOverlay *transitionController = [TTITransitionOverlay new];
-            transitionController.open = YES;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
-            
+            transitionController = [TTITransitionOverlay new];
         }
+            break;
         case TTIFullTransition: {
-            TTITransitionFull *transitionController = [TTITransitionFull new];
-            transitionController.open = YES;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
+            transitionController = [TTITransitionFull new];
         }
+            break;
         case TTISlideTransition: {
-            TTITransitionSlide *transitionController = [TTITransitionSlide new];
-            transitionController.open = YES;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
+            transitionController = [TTITransitionSlide new];
         }
+            break;
         case TTIFoldTransition: {
-            TTITransitionFold *transitionController = [TTITransitionFold new];
-            transitionController.open = YES;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
+            transitionController = [TTITransitionFold new];
         }
+            break;
         case TTIHangInTransition: {
-            TTIHangIn *transitionController = [TTIHangIn new];
-            transitionController.open = YES;
-            transitionController.fromPoint = self.fromPoint;
+            CGSize correctSize;
             if(CGSizeEqualToSize(self.sizeOfPresentedViewController, CGSizeZero)) {
-                
-                transitionController.sizeOfToViewController = CGSizeMake(300, 250);
+                 correctSize = CGSizeMake(300, 250);
             }
-            transitionController.sizeOfToViewController = self.sizeOfPresentedViewController;
-            return transitionController;
+            correctSize = self.sizeOfPresentedViewController;
+            transitionController = [[TTIHangIn alloc] initWithSizeOfToViewController:correctSize];
         }
+            break;
         case TTISpinnTransition: {
-            TTITransitionSpinn *transitionController = [TTITransitionSpinn new];
-            transitionController.open = YES;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
+            transitionController = [TTITransitionSpinn new];
         }
+            break;
         case TTIScaleTransition: {
-            TTITransitionScale *transitionController = [TTITransitionScale new];
-            transitionController.open = YES;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
+            transitionController = [TTITransitionScale new];
         }
+            break;
+    }
+    
+    transitionController.fromPoint = self.fromPoint;
+    transitionController.open = YES;
+    transitionController.interactive = NO;
+    
+    _activePresentationController = transitionController;
+    _presentedViewController = presented;
+    
+    if (self.isInteractive) {
+        transitionController.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
+        _gestureController = [[TTIGestureController alloc] initWithTargeViewController:presented interactiveAnimator:_activePresentationController gestureType:self.gestureType];
+    }
+
+    
+    return transitionController;;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
+    
+    //interactive opening not supported.
+    return nil;
+}
+
+-(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    
+    if ([animator isKindOfClass:[TTITransitionSuper class]]) {
+        TTITransitionSuper *transitionController = (TTITransitionSuper *)animator;
+        
+        if (transitionController.interactive && transitionController.interactiveAnimator) {
+            return transitionController.interactiveAnimator;
+        }
+        else {
+            return nil;
+        }
+        
     }
     
     return nil;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     
+    //do non-custom stuff here
     
-    switch (self.transitionType) {
-        case TTIOverlayTransition: {
-            TTITransitionOverlay *transitionController = [TTITransitionOverlay new];
-            transitionController.open = NO;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
-            
-        }
-        case TTIFullTransition: {
-            TTITransitionFull *transitionController = [TTITransitionFull new];
-            transitionController.open = NO;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
-            
-        }
-        case TTISlideTransition: {
-            TTITransitionSlide *transitionController = [TTITransitionSlide new];
-            transitionController.open = NO;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
-        }
-        case TTIFoldTransition: {
-            /*Works best under UINavigationBar or above UIToolbar*/
-            TTITransitionFold *transitionController = [TTITransitionFold new];
-            transitionController.open = NO;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
-        }
-        case TTIHangInTransition: {
-            TTIHangIn *transitionController = [TTIHangIn new];
-            transitionController.open = NO;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
-        }
-        case TTISpinnTransition: {
-            TTITransitionSpinn *transitionController = [TTITransitionSpinn new];
-            transitionController.open = NO;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
-        }
-        case TTIScaleTransition: {
-            TTITransitionScale *transitionController = [TTITransitionScale new];
-            transitionController.open = NO;
-            transitionController.fromPoint = self.fromPoint;
-            return transitionController;
-        }
-    }
-    return nil;
+    _activePresentationController.open = NO;
+    return _activePresentationController;
+    
+//    switch (self.transitionType) {
+//        case TTIOverlayTransition: {
+//            TTITransitionOverlay *transitionController = (TTITransitionOverlay *)_activePresentationController;//[TTITransitionOverlay new];
+//            transitionController.open = NO;
+//            transitionController.fromPoint = self.fromPoint;
+//            return transitionController;
+//            
+//        }
+//        case TTIFullTransition: {
+//            TTITransitionFull *transitionController = [TTITransitionFull new];
+//            transitionController.open = NO;
+//            transitionController.fromPoint = self.fromPoint;
+//            return transitionController;
+//            
+//        }
+//        case TTISlideTransition: {
+//            TTITransitionSlide *transitionController = [TTITransitionSlide new];
+//            transitionController.open = NO;
+//            transitionController.fromPoint = self.fromPoint;
+//            return transitionController;
+//        }
+//        case TTIFoldTransition: {
+//            /*Works best under UINavigationBar or above UIToolbar*/
+//            TTITransitionFold *transitionController = [TTITransitionFold new];
+//            transitionController.open = NO;
+//            transitionController.fromPoint = self.fromPoint;
+//            return transitionController;
+//        }
+//        case TTIHangInTransition: {
+//            TTIHangIn *transitionController = [TTIHangIn new];
+//            transitionController.open = NO;
+//            transitionController.fromPoint = self.fromPoint;
+//            return transitionController;
+//        }
+//        case TTISpinnTransition: {
+//            TTITransitionSpinn *transitionController = [TTITransitionSpinn new];
+//            transitionController.open = NO;
+//            transitionController.fromPoint = self.fromPoint;
+//            return transitionController;
+//        }
+//        case TTIScaleTransition: {
+//            TTITransitionScale *transitionController = [TTITransitionScale new];
+//            transitionController.open = NO;
+//            transitionController.fromPoint = self.fromPoint;
+//            return transitionController;
+//        }
+//    }
+//    return nil;
 }
 
 -(void)encodeRestorableStateWithCoder:(NSCoder *)coder {

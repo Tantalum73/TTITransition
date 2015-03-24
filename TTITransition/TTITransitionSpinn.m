@@ -38,44 +38,94 @@
     }
 
     [inView addSubview:fromView];
+    fromView.alpha = 1;
+    toView.alpha = 0;
+    [inView insertSubview:toView aboveSubview:backgroundView];
     
-    CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotation.fromValue = [NSNumber numberWithDouble:0];
-    rotation.fromValue = [NSNumber numberWithDouble:M_PI*1.5];
+    CGFloat angle = M_PI;
     
-    rotation.fillMode = kCAFillModeForwards;
-    rotation.additive = YES;
+    CGAffineTransform scale = CGAffineTransformMakeScale(1.5, 1.5);
+    CGAffineTransform rotation = CGAffineTransformMakeRotation(angle);
     
-    //    rotation.duration = 1;
-    rotation.repeatCount = 3;
+    CGAffineTransform concatted = CGAffineTransformConcat(scale, rotation);
     
-    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    scale.fromValue = [NSNumber numberWithDouble:0];
-    scale.toValue = [NSNumber numberWithDouble:-1];
-    scale.additive = YES;
-    
-    CAAnimationGroup *fromViewAnimationGroup = [CAAnimationGroup animation];
-    fromViewAnimationGroup.duration = [self transitionDuration:transitionContext]/2;
-    fromViewAnimationGroup.animations = @[rotation, scale];
-    
-    [CATransaction begin];
-    [CATransaction setCompletionBlock:^{
-        [fromView removeFromSuperview];
+    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         
-        scale.fromValue = [NSNumber numberWithDouble:-1];
-        scale.toValue = [NSNumber numberWithDouble:0];
-        //        scale.additive = YES;
+        fromView.transform = concatted;
+        fromView.alpha = 0;
         
-        [inView addSubview:toView];
-        
-        [CATransaction begin];
-        [CATransaction setCompletionBlock:^{
-            [transitionContext completeTransition:YES];
-        }];
-        [toView.layer addAnimation:fromViewAnimationGroup forKey:@"animationGrooup"];
+    } completion:^(BOOL finished) {
+//        [fromView removeFromSuperview];
     }];
-    [fromView.layer addAnimation:fromViewAnimationGroup forKey:@"animationGroup"];
-    [CATransaction commit];
+    
+    toView.transform = CGAffineTransformConcat(scale, CGAffineTransformMakeRotation(-angle));
+    
+    
+    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 delay:[self transitionDuration:transitionContext]/2 usingSpringWithDamping:0.6 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        
+        toView.alpha = 1;
+        toView.transform = CGAffineTransformIdentity;
+        
+    } completion:^(BOOL finished) {
+        if ([transitionContext transitionWasCancelled]) {
+            toView.transform = CGAffineTransformIdentity;
+            [toView removeFromSuperview];
+            fromView.transform = CGAffineTransformIdentity;
+            [backgroundView removeFromSuperview];
+            
+            self.interactive = NO;
+            
+            [transitionContext completeTransition:NO];
+        }
+        else {
+            toView.transform = CGAffineTransformIdentity;
+            [fromView removeFromSuperview];
+            [backgroundView removeFromSuperview];
+            [transitionContext completeTransition:YES];
+        }
+        
+    }];
+    
+//    CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//    rotation.fromValue = [NSNumber numberWithDouble:0];
+//    rotation.fromValue = [NSNumber numberWithDouble:M_PI*1.5];
+//    
+//    rotation.fillMode = kCAFillModeForwards;
+//    rotation.additive = YES;
+//    
+//    //    rotation.duration = 1;
+//    rotation.repeatCount = 3;
+//    
+//    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    scale.fromValue = [NSNumber numberWithDouble:0];
+//    scale.toValue = [NSNumber numberWithDouble:-1];
+//    scale.additive = YES;
+//    
+//    CAAnimationGroup *fromViewAnimationGroup = [CAAnimationGroup animation];
+//    fromViewAnimationGroup.duration = [self transitionDuration:transitionContext]/2;
+//    fromViewAnimationGroup.animations = @[rotation, scale];
+//   
+//    
+//    CAAnimationGroup *secondStep = [CAAnimationGroup animation];
+//    
+//    
+//    [CATransaction setCompletionBlock:^{
+//        [fromView removeFromSuperview];
+//        
+//        scale.fromValue = [NSNumber numberWithDouble:-1];
+//        scale.toValue = [NSNumber numberWithDouble:0];
+//        //        scale.additive = YES;
+//        
+//        [inView addSubview:toView];
+//        
+//        [CATransaction begin];
+//        [CATransaction setCompletionBlock:^{
+//            [transitionContext completeTransition:YES];
+//        }];
+//        [toView.layer addAnimation:fromViewAnimationGroup forKey:@"animationGrooup"];
+//    }];
+//    [fromView.layer addAnimation:fromViewAnimationGroup forKey:@"animationGroup"];
+//    [CATransaction commit];
     
 }
 
@@ -84,7 +134,7 @@
     
 }
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.8f;
+    return 1.8f;
 }
 
 @end

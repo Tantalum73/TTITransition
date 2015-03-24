@@ -35,18 +35,26 @@
     
     if([segue.identifier isEqualToString:@"ShowFull"]) {
         _transitionDelegate.transitionType = TTIFullTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
         
         _transitionDelegate.transitionType = TTIOverlayTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowSlide"]) {
         
         _transitionDelegate.transitionType = TTISlideTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerLeftEdge;
     }
     else if([segue.identifier isEqualToString:@"ShowFold"]) {
         /*Works best under UINavigationBar or above UIToolbar*/
         _transitionDelegate.transitionType = TTIFoldTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerLeftEdge;
     }
     else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
         
@@ -55,10 +63,14 @@
     else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
         
         _transitionDelegate.transitionType = TTISpinnTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     else if([segue.identifier isEqualToString:@"ShowScale"]) {
         
         _transitionDelegate.transitionType = TTIScaleTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
     destination.transitioningDelegate = _transitionDelegate;
 }

@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
+#import "TTITransitionSuper.h"
 
-@interface TTITransitionSlide : NSObject <UIViewControllerAnimatedTransitioning>
-@property (nonatomic) CGPoint fromPoint;
-@property (nonatomic) BOOL open;
+@interface TTITransitionSlide : TTITransitionSuper
+
 @property (nonatomic) CGFloat scaleDownViewControllers;
 @property (nonatomic) CGFloat gapBetweenViewControllers;
 /*
