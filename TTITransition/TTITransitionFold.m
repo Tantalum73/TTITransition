@@ -112,18 +112,32 @@
             
             blurredFrom.layer.opacity = 1.0f;
             
-            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+//            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
             toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
         }completion:^(BOOL finished) {
             
-//            toView.frame = fromView.frame;
-            toView.layer.transform = CATransform3DIdentity;
             
+            
+            if ([transitionContext transitionWasCancelled]) {
+                [toView removeFromSuperview];
+                //[fromView removeFromSuperview];
+                [blurredFrom removeFromSuperview];
+                fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+                fromView.transform = CGAffineTransformIdentity;
+                [transitionContext completeTransition:NO];
+                self.interactive = NO;
+
+            }
+            else {
+                toView.layer.transform = CATransform3DIdentity;
                 [fromView removeFromSuperview];
                 [inView addSubview:toView];
                 [blurredFrom removeFromSuperview];
                 
                 [transitionContext completeTransition:YES];
+                
+            }
+
             
                 
         }];

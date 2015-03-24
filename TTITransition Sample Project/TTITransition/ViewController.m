@@ -53,6 +53,8 @@
     else if([segue.identifier isEqualToString:@"ShowFold"]) {
         /*Works best under UINavigationBar or above UIToolbar*/
         _transitionDelegate.transitionType = TTIFoldTransition;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerLeftEdge;
     }
     else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
         
