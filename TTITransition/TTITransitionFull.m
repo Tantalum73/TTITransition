@@ -63,6 +63,7 @@
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
 		}completion:^(BOOL finished) {
             if ([transitionContext transitionWasCancelled]) {
+                fromView.alpha = 1;
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
                 [toView removeFromSuperview];
                 [intermediateView removeFromSuperview];

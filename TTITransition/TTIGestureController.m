@@ -77,7 +77,7 @@
             self.animator.interactive = YES;
             
             [self.targetViewController dismissViewControllerAnimated:true completion:^{
-                [self.targetViewController.view removeGestureRecognizer:self.screenEdgePanGestureRecognizer];
+                [self.targetViewController.view removeGestureRecognizer:self.pinchGestureRecognizer];
             }];
         }
             break;
