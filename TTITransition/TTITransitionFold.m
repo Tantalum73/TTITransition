@@ -86,29 +86,10 @@
         [inView addSubview:toView];
         
         toView.layer.opacity = 1.0f;
-        
-        CATransform3D transform = CATransform3DMakeRotation(M_PI/2, 0, 1, 0);
-        transform.m34 = 0.2/180.0;
-        CATransform3D inverseTransformation = CATransform3DInvert(transform);
-        
-        if(!CATransform3DEqualToTransform(toView.layer.transform, inverseTransformation)) {
-            
-            toView.layer.anchorPoint = CGPointMake(0, 0);
-            toView.frame = [transitionContext initialFrameForViewController:fromVC];
-            
-            
-            toView.layer.transform = inverseTransformation;
-        }
-        
-       
-//        toView.frame = fromView.frame;
-//        toView.layer.transform = CATransform3DIdentity;
+
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:0  animations:^{
-            
-            CATransform3D transform = CATransform3DMakeRotation(0, 0, 1, 0);
-            transform.m43 = 0.2/180.0;
-            toView.layer.transform = transform;
+            toView.layer.transform = CATransform3DIdentity;//transform;
             
             blurredFrom.layer.opacity = 1.0f;
             
