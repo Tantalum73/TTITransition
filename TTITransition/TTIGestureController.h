@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, TTIGestureRecognizerType) {
 @property (nonatomic, strong) UIViewController *targetViewController;
 @property (nonatomic, strong) TTITransitionSuper *animator;
 
-@property (nonatomic) CGRect rectForPullDownToStart;
+@property (nonatomic) CGRect rectForPullPanGestureToStart;
 
 -(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(TTIGestureRecognizerType)gestureType rectForPullDownToStart:(CGRect)rectToStart;
 @end

@@ -42,7 +42,7 @@
         _transitionDelegate.transitionType = TTITransitionTypeOverlay;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
-        _transitionDelegate.rectForPullDownGestureToStart = CGRectMake(0, 0, 100, 100);
+        _transitionDelegate.rectForPanGestureToStart = CGRectMake(0, 0, 100, 100);
     }
     else if([segue.identifier isEqualToString:@"ShowSlide"]) {
         _transitionDelegate.transitionType = TTITransitionTypeSlide;

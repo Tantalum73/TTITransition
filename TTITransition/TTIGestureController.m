@@ -52,7 +52,7 @@
     if (self) {
         self.targetViewController = target;
         self.animator = animator;
-        self.rectForPullDownToStart = rectToStart;
+        self.rectForPullPanGestureToStart = rectToStart;
         
         switch (gestureType) {
             case TTIGestureRecognizerPinch: {
@@ -307,7 +307,7 @@
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     CGPoint touch = [gestureRecognizer locationInView:self.targetViewController.view.window];
     
-    if (!CGRectContainsPoint(self.rectForPullDownToStart, touch)) {
+    if (!CGRectContainsPoint(self.rectForPullPanGestureToStart, touch)) {
         NSLog(@"RECT NOT CONTAINS POINT OF TOUCH");
         return NO;
     }

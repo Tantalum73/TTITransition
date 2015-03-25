@@ -27,6 +27,13 @@
 
 @implementation TTITransitioningDelegate
 
+- (void)setRectForPanGestureToStart:(CGRect)rectForPullDownGestureToStart {
+    _rectForPanGestureToStart = rectForPullDownGestureToStart;
+    if (_gestureController) {
+        _gestureController.rectForPullPanGestureToStart = rectForPullDownGestureToStart;
+    }
+}
+
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     
     TTITransitionSuper *transitionController;
@@ -76,7 +83,7 @@
     
     if (self.isInteractive) {
         transitionController.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
-        _gestureController = [[TTIGestureController alloc] initWithTargeViewController:presented interactiveAnimator:_activePresentationController gestureType:self.gestureType rectForPullDownToStart:self.rectForPullDownGestureToStart];
+        _gestureController = [[TTIGestureController alloc] initWithTargeViewController:presented interactiveAnimator:_activePresentationController gestureType:self.gestureType rectForPullDownToStart:self.rectForPanGestureToStart];
     }
 
     

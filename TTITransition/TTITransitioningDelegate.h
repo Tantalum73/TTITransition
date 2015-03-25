@@ -55,7 +55,10 @@ typedef NS_ENUM(NSInteger, TTITransitionType) {
  */
 @property (nonatomic) TTIGestureRecognizerType gestureType;
 
-@property (nonatomic) CGRect rectForPullDownGestureToStart;
+/*
+ CGRect in which the PanGesture can be started. If the user grabs the presented ViewController inside this rect, he can dismiss the ViewController. Every interaction outside of this rect will be ignores when using the TTIGestureRecognizerPullUpDown or TTIGestureRecognizerPullLeftRight gesture type.
+ */
+@property (nonatomic) CGRect rectForPanGestureToStart;
 
 @end
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
