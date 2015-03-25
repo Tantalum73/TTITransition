@@ -113,7 +113,7 @@
 
 		[inView insertSubview:toView belowSubview:_blurredBackgroundView];
         
-        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
+        CGAffineTransform scale = CGAffineTransformMakeScale(0.5, 0.5);
         CGAffineTransform translation = CGAffineTransformMakeTranslation((self.fromPoint.x < fromView.center.x)?
                                                                          -abs(self.fromPoint.x - fromView.center.x) : abs(self.fromPoint.x - fromView.center.x)
                                                                          

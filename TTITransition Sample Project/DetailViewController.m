@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //touches inside of this rect will be able to start a TTIGestureRecognizerPullUpDown or TTIGestureRecognizerPullLeftRight gesture to dismiss the ViewController.
+    //just a color to mark the spot.
     UIView *targetRectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     [targetRectView setBackgroundColor:UIColor.redColor];
     

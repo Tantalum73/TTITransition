@@ -15,8 +15,8 @@ typedef NS_ENUM(NSInteger, TTIGestureRecognizerType) {
     TTIGestureRecognizerPinch,
     TTIGestureRecognizerLeftEdge,
     TTIGestureRecognizerRightEdge,
-    TTIGestureRecognizerPullDown,
-    TTIGestureRecognizerPullUp
+    TTIGestureRecognizerPullUpDown,
+    TTIGestureRecognizerPullLeftRight
 };
 
 @interface TTIGestureController : NSObject <UIGestureRecognizerDelegate>
