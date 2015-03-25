@@ -44,6 +44,7 @@ You can chose between the following gestures:
 * ```TTIGestureRecognizerPinch``` a pinch gesture
 * ```TTIGestureRecognizerLeftEdge``` a swipe gesture form the left edge of the screen (might sound familiar if you think about a UINavigationController)
 * ```TTIGestureRecognizerRightEdge``` the same as the previous one, from the right edge
+* ```TTIGestureRecognizerPullUpDown``` and ```TTIGestureRecognizerPullLeftRight``` a pan gesture – When you have specified the ```rectForPanGestureToStart``` property, the user can dismiss the new ViewController by using a pan gesture starting in the specified ```CGRect```.
 
 That is all you have to do. Just set the two properties and you are good to go. Your ViewController will be dismissable by the gesture of your choice.
 
@@ -69,9 +70,11 @@ You can do so, by using a property or an local instance variable.
     }
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
     
-        _transitionDelegate.transitionType = TTIOverlayTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeOverlay;
         _transitionDelegate.interactive = YES;
-        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
+        _transitionDelegate.rectForPanGestureToStart = CGRectMake(0, 0, 100, 100);
+        
         
     }
     else if([segue.identifier isEqualToString:@"ShowSlide"]) {
@@ -101,8 +104,8 @@ Please take a look at [TourTime](https://anerma.de/TourTime/), the app that meas
 
 ##Credits##
 ###Please read through the next passage as well###
-Please feel free to use and have fun with **TTITransition**. If you do so, I would appreciate if you send me s short message.
-Also please be so kind and leave a short 
+Please feel free to use and have fun with **TTITransition**. If you do so, I would appreciate if you send me some kind of notification.
+Also please be so kind and leave a short link in your app.
 
 ##License##
 TTITransition is published under MIT License
