@@ -55,6 +55,8 @@ typedef NS_ENUM(NSInteger, TTITransitionType) {
  */
 @property (nonatomic) TTIGestureRecognizerType gestureType;
 
+@property (nonatomic) CGRect rectForPullDownGestureToStart;
+
 @end
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 

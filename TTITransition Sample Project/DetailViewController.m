@@ -7,7 +7,6 @@
 //
 
 #import "DetailViewController.h"
-#import <UIKit/UIKit.h>
 
 @interface DetailViewController ()
 
@@ -18,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIView *targetRectView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [targetRectView setBackgroundColor:UIColor.redColor];
+    
+    [self.view addSubview:targetRectView];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -63,10 +63,10 @@
         toView.alpha = 1;
         [inView addSubview:fromView];
         
-        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
+        CGAffineTransform scale = CGAffineTransformMakeScale(0.3, 0.3);
         CGAffineTransform translation = CGAffineTransformMakeTranslation(abs(self.fromPoint.x - fromView.center.x),abs(self.fromPoint.y - fromView.center.y));
         
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent | UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:10 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent | UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
 
             
             fromView.transform = CGAffineTransformConcat(scale, translation);

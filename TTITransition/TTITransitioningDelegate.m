@@ -76,7 +76,7 @@
     
     if (self.isInteractive) {
         transitionController.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
-        _gestureController = [[TTIGestureController alloc] initWithTargeViewController:presented interactiveAnimator:_activePresentationController gestureType:self.gestureType];
+        _gestureController = [[TTIGestureController alloc] initWithTargeViewController:presented interactiveAnimator:_activePresentationController gestureType:self.gestureType rectForPullDownToStart:self.rectForPullDownGestureToStart];
     }
 
     

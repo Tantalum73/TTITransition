@@ -7,11 +7,13 @@
 //
 
 #import "TTIGestureController.h"
-@interface TTIGestureController()
+@interface TTIGestureController() {
+    CGPoint _pointOfFirstInteraction;
+}
 
 @property (nonatomic, strong) UIScreenEdgePanGestureRecognizer * screenEdgePanGestureRecognizer;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
-
+@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @end
 
 @implementation TTIGestureController
@@ -30,13 +32,20 @@
     }
     return _pinchGestureRecognizer;
 }
+- (UIPanGestureRecognizer *)panGestureRecognizer {
+    if(!_panGestureRecognizer) {
+        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+        _panGestureRecognizer.delegate = self;
+    }
+    return _panGestureRecognizer;
+}
 
--(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(TTIGestureRecognizerType)gestureType {
+-(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(TTIGestureRecognizerType)gestureType rectForPullDownToStart:(CGRect)rectToStart{
     self = [super init];
     if (self) {
         self.targetViewController = target;
         self.animator = animator;
-        
+        self.rectForPullDownToStart = rectToStart;
         
         switch (gestureType) {
             case TTIGestureRecognizerPinch: {
@@ -53,6 +62,14 @@
                 [self.targetViewController.view addGestureRecognizer:self.screenEdgePanGestureRecognizer];
             }
                 break;
+            case TTIGestureRecognizerPullDown: {
+                [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizer];
+            }
+                break;
+            case TTIGestureRecognizerPullUp: {
+                
+            }
+                break;
             default:
                 break;
         }
@@ -62,6 +79,73 @@
     return self;
 }
 
+- (CGFloat) distanceBetweenPoint1:(CGPoint)pt1 andPoint2:(CGPoint) pt2 {
+    return hypotf(fabs( pt1.x - pt2.x ), fabs( pt1.y - pt2.y));
+}
+- (void) panAction:(UIPanGestureRecognizer *)gr {
+    CGPoint touch = [gr locationInView:self.targetViewController.view.window];
+
+    
+    CGFloat distanceBetweenInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.fromPoint andPoint2:touch];
+    
+//    NSLog(@"Point of interaction: x: %f, y: %f", touch.x, touch.y);
+//    NSLog(@"Translation: x %f, y %f", translation.x, translation.y);
+//    NSLog(@"distanceBetweenInteractionAndFromPoint %f", distanceBetweenInteractionAndFromPoint);
+
+    switch (gr.state) {
+        case UIGestureRecognizerStateBegan: {
+            self.animator.interactive = YES;
+            
+            _pointOfFirstInteraction = touch;
+            
+            [self.targetViewController dismissViewControllerAnimated:true completion:^{
+                
+            }];
+        }
+            break;
+        case UIGestureRecognizerStateChanged: {
+            CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.fromPoint andPoint2:_pointOfFirstInteraction];
+            CGFloat animationRatio = fabsf( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndFromPoint));
+//            NSLog(@"Animation Ratio: %f", animationRatio);
+            [self.animator.interactiveAnimator updateInteractiveTransition:animationRatio];
+        }
+            break;
+        case UIGestureRecognizerStateEnded: {
+            CGPoint velocity = [gr velocityInView:self.targetViewController.view.window];
+            
+            switch (touch.y > self.animator.fromPoint.y) {
+                case true: {
+                    if(velocity.y > 0) {
+                        [self.animator.interactiveAnimator cancelInteractiveTransition];
+                    }
+                    else {
+                        [self.animator.interactiveAnimator finishInteractiveTransition];
+                    }
+                }
+                    break;
+                    
+                case false: {
+                    if (velocity.y > 0) {
+                        [self.animator.interactiveAnimator finishInteractiveTransition];
+                    }
+                    else {
+                        [self.animator.interactiveAnimator cancelInteractiveTransition];
+                    }
+                }
+                    break;
+                default:
+                    break;
+            }
+           
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
 - (void) pinchAction:(UIPinchGestureRecognizer *)gr {
     
    
@@ -142,6 +226,19 @@
         default:
             break;
     }
+}
+
+
+#pragma mark - UIGestureRecognizerDelegate
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    CGPoint touch = [gestureRecognizer locationInView:self.targetViewController.view.window];
+    
+    if (!CGRectContainsPoint(self.rectForPullDownToStart, touch)) {
+        NSLog(@"RECT NOT CONTAINS POINT OF TOUCH");
+        return NO;
+    }
+    return YES;
 }
 
 @end
