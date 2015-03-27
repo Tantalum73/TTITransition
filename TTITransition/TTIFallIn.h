@@ -12,7 +12,7 @@
 
 #import "TTITransitionSuper.h"
 
-@interface TTIFallIn : TTITransitionSuper
+@interface TTIFallIn : TTITransitionSuper <UIViewControllerInteractiveTransitioning>
 
 /*
  Defines the size of the ViewController, that should be shown.

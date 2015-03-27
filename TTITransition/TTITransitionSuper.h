@@ -17,5 +17,10 @@
 @property (nonatomic) BOOL interactive;//set, when gesture begins, before calling dismissVC...()
 @property (nonatomic, strong) TTIPercentDrivenInteractionTransitionController *interactiveAnimator;
 
-//@property (nonatomic, strong) TTIGestureController *gestureController;
+//@property (nonatomic) CGRect targetRect;
+@property (nonatomic) CGPoint offscreenPoint;
+@property (nonatomic, strong) id<UIViewControllerContextTransitioning> context;
+-(CGPoint)centerOfRect:(CGRect)rect;
+@property (nonatomic) CGPoint toPoint;
+
 @end

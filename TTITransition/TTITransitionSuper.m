@@ -30,4 +30,12 @@
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return 0.5;
 }
+
+-(CGPoint)centerOfRect:(CGRect)rect {
+    return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+}
+
+-(void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    
+}
 @end

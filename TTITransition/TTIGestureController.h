@@ -16,7 +16,8 @@ typedef NS_ENUM(NSInteger, TTIGestureRecognizerType) {
     TTIGestureRecognizerLeftEdge,
     TTIGestureRecognizerRightEdge,
     TTIGestureRecognizerPullUpDown,
-    TTIGestureRecognizerPullLeftRight
+    TTIGestureRecognizerPullLeftRight,
+    TTIGestureRecognizerPanToEdge
 };
 
 @interface TTIGestureController : NSObject <UIGestureRecognizerDelegate>
@@ -25,6 +26,8 @@ typedef NS_ENUM(NSInteger, TTIGestureRecognizerType) {
 @property (nonatomic, strong) TTITransitionSuper *animator;
 
 @property (nonatomic) CGRect rectForPullPanGestureToStart;
+
+//@property (nonatomic) CGRect rectToStop;
 
 -(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(TTIGestureRecognizerType)gestureType rectForPullDownToStart:(CGRect)rectToStart;
 @end

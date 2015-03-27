@@ -41,7 +41,9 @@
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
         _transitionDelegate.transitionType = TTITransitionTypeOverlay;
         _transitionDelegate.interactive = YES;
-        _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPanToEdge;
+        //Example for a toPoint
+        _transitionDelegate.toPoint = CGPointMake(200, 200);
         
         //Set it here or in the presented UIViewController
         _transitionDelegate.rectForPanGestureToStart = CGRectMake(0, 0, 100, 100);
@@ -56,10 +58,11 @@
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerLeftEdge;
     }
-    else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
+    else if([segue.identifier isEqualToString:@"ShowFallIn"]) {
         _transitionDelegate.transitionType = TTITransitionTypeFallIn;
         _transitionDelegate.interactive = YES;
-        _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPanToEdge;
+        _transitionDelegate.toPoint = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, 0);
     }
     else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
         _transitionDelegate.transitionType = TTITransitionTypeSpinn;

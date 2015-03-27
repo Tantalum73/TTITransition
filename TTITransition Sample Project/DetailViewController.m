@@ -9,7 +9,9 @@
 #import "DetailViewController.h"
 #import "TTITransitioningDelegate.h"
 
-@interface DetailViewController ()
+@interface DetailViewController () {
+    CGRect _rectForDismissGesture;
+}
 
 @end
 
@@ -21,16 +23,22 @@
     
     //touches inside of this rect will be able to start a TTIGestureRecognizerPullUpDown or TTIGestureRecognizerPullLeftRight gesture to dismiss the ViewController.
     //just a color to mark the spot.
-    CGRect rectForDismissGesture = CGRectMake(0, 0, 100, 100);
-    UIView *targetRectView = [[UIView alloc] initWithFrame:rectForDismissGesture];
+    _rectForDismissGesture = CGRectMake(0, 0, 100, 100);
+    UIView *targetRectView = [[UIView alloc] initWithFrame:_rectForDismissGesture];
     [targetRectView setBackgroundColor:UIColor.redColor];
     
     [self.view addSubview:targetRectView];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+
+    //setting the rectForPanGestureToStart when everything is layed out
     if ([self.transitioningDelegate isKindOfClass:[TTITransitioningDelegate class]]) {
         TTITransitioningDelegate *delegate = (TTITransitioningDelegate *)self.transitioningDelegate;
-        delegate.rectForPanGestureToStart = rectForDismissGesture;
+        delegate.rectForPanGestureToStart = _rectForDismissGesture;
+//        delegate.toPoint = CGPointMake([UIScreen mainScreen].bounds.size.width / 2.0, 0);
     }
+
 }
 
 - (void)didReceiveMemoryWarning {

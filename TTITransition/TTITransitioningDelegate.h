@@ -61,6 +61,12 @@ typedef NS_ENUM(NSInteger, TTITransitionType) {
  */
 @property (nonatomic) CGRect rectForPanGestureToStart;
 
+/*
+ The point to which the presented ViewController will animate out.
+ This animation may be a slide or a zoom, depending on what you set the gestureType to.
+ */
+@property (nonatomic) CGPoint toPoint;
+
 @end
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 

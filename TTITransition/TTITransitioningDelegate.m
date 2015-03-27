@@ -35,6 +35,8 @@
     }
 }
 
+
+
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     
     TTITransitionSuper *transitionController;
@@ -88,6 +90,11 @@
     transitionController.open = YES;
     transitionController.interactive = NO;
     
+    if (CGPointEqualToPoint(self.toPoint, CGPointZero)) {
+        self.toPoint = self.fromPoint;
+    }
+    transitionController.toPoint = self.toPoint;
+    
     _activePresentationController = transitionController;
     _presentedViewController = presented;
     
@@ -110,8 +117,16 @@
     
     if ([animator isKindOfClass:[TTITransitionSuper class]]) {
         TTITransitionSuper *transitionController = (TTITransitionSuper *)animator;
+        transitionController.open = NO;
         
         if (transitionController.interactive && transitionController.interactiveAnimator) {
+            
+            if (self.gestureType == TTIGestureRecognizerPanToEdge) {
+                //Work is done by the gestureRecognizer, not by the animator.
+                //return nil, when gesture does all the work.
+                return nil;
+            }
+            
             return transitionController.interactiveAnimator;
         }
         else {

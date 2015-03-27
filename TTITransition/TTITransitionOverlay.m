@@ -21,6 +21,8 @@
     return self = [super init];
 }
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    self.context = transitionContext;
+    
 	UIView *inView = [transitionContext containerView];
 	UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 	UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
@@ -114,11 +116,11 @@
 		[inView insertSubview:toView belowSubview:_blurredBackgroundView];
         
         CGAffineTransform scale = CGAffineTransformMakeScale(0.5, 0.5);
-        CGAffineTransform translation = CGAffineTransformMakeTranslation((self.fromPoint.x < fromView.center.x)?
-                                                                         -abs(self.fromPoint.x - fromView.center.x) : abs(self.fromPoint.x - fromView.center.x)
+        CGAffineTransform translation = CGAffineTransformMakeTranslation((self.toPoint.x < fromView.center.x)?
+                                                                         -abs(self.toPoint.x - fromView.center.x) : abs(self.toPoint.x - fromView.center.x)
                                                                          
-                                                                         ,(self.fromPoint.y < fromView.center.y)?
-                                                                         -abs(self.fromPoint.y - fromView.center.y) : abs(self.fromPoint.y - fromView.center.y));
+                                                                         ,(self.toPoint.y < fromView.center.y)?
+                                                                         -abs(self.toPoint.y - fromView.center.y) : abs(self.toPoint.y - fromView.center.y));
 		
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:4 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
             

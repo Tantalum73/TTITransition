@@ -9,12 +9,16 @@
 #import "TTIGestureController.h"
 @interface TTIGestureController() {
     CGPoint _pointOfFirstInteraction;
+    UIDynamicAnimator *_dynamicAnimator;
+    UIAttachmentBehavior *_pan;
+    UIDynamicItemBehavior *_dynamicItemBehavior;
 }
 
 @property (nonatomic, strong) UIScreenEdgePanGestureRecognizer * screenEdgePanGestureRecognizer;
 @property (nonatomic, strong) UIPinchGestureRecognizer *pinchGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizerUpDown;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizerLeftRight;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizerEdge;
 @end
 
 @implementation TTIGestureController
@@ -47,12 +51,36 @@
     }
     return _panGestureRecognizerLeftRight;
 }
+- (UIPanGestureRecognizer *)panGestureRecognizerEdge {
+    if(!_panGestureRecognizerEdge) {
+        _panGestureRecognizerEdge = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToEdgeAction:)];
+        _panGestureRecognizerEdge.delegate = self;
+        
+        
+        [self resetAnimator];
+        
+    }
+    return _panGestureRecognizerEdge;
+}
+
+- (void)resetAnimator {
+    if (!_dynamicAnimator) {
+        _dynamicAnimator= [[UIDynamicAnimator alloc] initWithReferenceView:self.targetViewController.view.window];
+    }
+    
+    [_dynamicAnimator removeAllBehaviors];
+    
+    _dynamicItemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.targetViewController.view]];
+    _dynamicItemBehavior.allowsRotation = NO;
+    
+    
+    [_dynamicAnimator addBehavior:_dynamicItemBehavior];
+}
 -(instancetype) initWithTargeViewController:(UIViewController *)target interactiveAnimator:(TTITransitionSuper *)animator gestureType:(TTIGestureRecognizerType)gestureType rectForPullDownToStart:(CGRect)rectToStart{
     self = [super init];
     if (self) {
         self.targetViewController = target;
         self.animator = animator;
-        self.rectForPullPanGestureToStart = rectToStart;
         
         switch (gestureType) {
             case TTIGestureRecognizerPinch: {
@@ -77,6 +105,10 @@
                 [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizerLeftRight];
             }
                 break;
+            case TTIGestureRecognizerPanToEdge: {
+                [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizerEdge];
+            }
+                break;
             default:
                 break;
         }
@@ -89,6 +121,116 @@
 - (CGFloat) distanceBetweenPoint1:(CGPoint)pt1 andPoint2:(CGPoint) pt2 {
     return hypotf(fabs( pt1.x - pt2.x ), fabs( pt1.y - pt2.y));
 }
+-(CGPoint)centerOfRect:(CGRect)rect {
+    return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+}
+
+- (void) panToEdgeAction:(UIPanGestureRecognizer *)gr {
+    CGPoint touch = [gr locationInView:self.targetViewController.view.window];
+    CGPoint centerOfTargetRect = self.animator.toPoint;
+    
+    CGFloat distanceBetweenInteractionAndEdge = [self distanceBetweenPoint1:centerOfTargetRect andPoint2:touch];
+    
+    //    NSLog(@"Point of interaction: x: %f, y: %f", touch.x, touch.y);
+    //    NSLog(@"Translation: x %f, y %f", translation.x, translation.y);
+    //    NSLog(@"distanceBetweenInteractionAndFromPoint %f", distanceBetweenInteractionAndFromPoint);
+    
+    switch (gr.state) {
+        case UIGestureRecognizerStateBegan: {
+            self.animator.interactive = YES;
+            
+            _pointOfFirstInteraction = touch;
+            
+            [self resetAnimator];
+            
+            
+            CGPoint pointinsideAnimatedView = [gr locationInView:gr.view];
+            
+            UIOffset offset = UIOffsetMake(pointinsideAnimatedView.x - CGRectGetMidX(gr.view.bounds), pointinsideAnimatedView.y - CGRectGetMidY(gr.view.bounds));
+            
+            CGPoint anchor = [gr locationInView:gr.view.superview];
+            
+            _pan = [[UIAttachmentBehavior alloc] initWithItem:self.targetViewController.view offsetFromCenter:offset attachedToAnchor:anchor];
+            
+            [_dynamicAnimator addBehavior:_pan];
+            
+//            [self.targetViewController dismissViewControllerAnimated:YES completion:nil];
+            [self.targetViewController.view.layer removeAllAnimations];
+            
+            
+        }
+            break;
+        case UIGestureRecognizerStateChanged: {
+            
+            //panning...
+            _pan.anchorPoint = touch;
+            
+            CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.toPoint andPoint2:_pointOfFirstInteraction];
+            CGFloat animationRatio = fabsf( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndEdge));
+                        NSLog(@"Animation Ratio: %f", animationRatio);
+            [self.animator.interactiveAnimator updateInteractiveTransition:animationRatio];
+            
+        }
+            break;
+        case UIGestureRecognizerStateEnded: {
+            CGPoint velocity = [gr velocityInView:self.targetViewController.view.window];
+//            return;
+            
+            [_dynamicAnimator removeAllBehaviors];
+            
+            BOOL dismiss = false;
+            
+            if (fabs(velocity.y > 250)) {
+                dismiss = velocity.y < 0; //schnell nach oben gezogen
+            }
+            else {
+                dismiss = touch.y < ([UIScreen mainScreen].bounds.size.height / 3); //nach oben gezogen
+            }
+            
+            
+
+            if(dismiss) {
+                CGFloat distance = [self distanceBetweenPoint1:self.targetViewController.view.center andPoint2:CGPointMake(centerOfTargetRect.x, centerOfTargetRect.y - (self.targetViewController.view.frame.size.height / 1.5))];
+                CGFloat velocityOfGesture = sqrtf(velocity.x * velocity.x + velocity.y * velocity.y);
+                
+                [UIView animateWithDuration:[self.animator transitionDuration:self.animator.context] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:velocityOfGesture / distance options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent animations:^{
+                    
+                    CGPoint newCenter  = CGPointMake(centerOfTargetRect.x, centerOfTargetRect.y - (self.targetViewController.view.frame.size.height / 1.5));
+
+                    self.targetViewController.view.center = newCenter;
+                    
+                } completion:^(BOOL finished) {
+                    [self.animator.context finishInteractiveTransition];
+//                    [self.animator.context completeTransition:YES];
+                    [self.targetViewController dismissViewControllerAnimated:YES completion:nil];
+                }];
+            }
+            else {
+                //snap to centre.
+                //TODO position specified in animator
+                CGFloat distance = [self distanceBetweenPoint1:self.targetViewController.view.center andPoint2:self.animator.fromPoint];
+                CGFloat velocityOfGesture = sqrtf(velocity.x * velocity.x + velocity.y * velocity.y);
+                
+                [UIView animateWithDuration:[self.animator transitionDuration:self.animator.context] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:velocityOfGesture / distance options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent animations:^{
+                    
+                    self.targetViewController.view.center = self.animator.fromPoint;//newCenter;
+                    
+                } completion:^(BOOL finished) {
+                    [self.animator.context cancelInteractiveTransition];
+//                    [self.animator.context completeTransition:NO];
+                }];
+
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+
 - (void) panUpDownAction:(UIPanGestureRecognizer *)gr {
     CGPoint touch = [gr locationInView:self.targetViewController.view.window];
 
@@ -305,7 +447,8 @@
 #pragma mark - UIGestureRecognizerDelegate
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    CGPoint touch = [gestureRecognizer locationInView:self.targetViewController.view.window];
+    CGPoint touch = [self.targetViewController.view convertPoint:[gestureRecognizer locationInView:self.targetViewController.view.window] fromView:self.targetViewController.view.window];
+    
     
     if (!CGRectContainsPoint(self.rectForPullPanGestureToStart, touch)) {
         NSLog(@"RECT NOT CONTAINS POINT OF TOUCH");

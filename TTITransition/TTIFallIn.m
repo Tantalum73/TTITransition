@@ -12,7 +12,9 @@
 @property (nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 @end
 
-@implementation TTIFallIn
+@implementation TTIFallIn {
+    UIView *_backgroundView;
+}
 
 -(instancetype)initWithSizeOfToViewController:(CGSize)size {
     if (self = [super init]) {
@@ -23,9 +25,12 @@
 }
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+
     UIView *inView = [transitionContext containerView];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    
+    self.context = transitionContext;
     
     UIView *toView;
     UIView *fromView;
@@ -42,77 +47,202 @@
     
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:inView];
     
+    
+    
     if(self.open) {
-        UIView  *fromShot = [fromView snapshotViewAfterScreenUpdates:YES];
         
-        [inView insertSubview:fromShot aboveSubview:fromView];
+        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
+        [inView insertSubview:_backgroundView aboveSubview:fromView];
         [fromView removeFromSuperview];
         
-        
-        //        [inView addSubview:fromView];
         
         if(CGSizeEqualToSize(self.sizeOfToViewController, CGSizeZero)) {
             self.sizeOfToViewController = CGSizeMake(300, 200);
         }
-        toView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.origin.y- self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
+        toView.frame = CGRectMake(inView.bounds.origin.x + (inView.bounds.size.width - self.sizeOfToViewController.width) / 2, -self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);//CGRectMake(0, [UIScreen mainScreen].bounds.origin.y- self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
+        
+        CATransform3D perspective = CATransform3DIdentity;
+        perspective.m34 = - 1.0 / 500.0 ;
+        //        inView.layer.sublayerTransform = perspective;
+        
         
         [inView addSubview:toView];
+        [inView insertSubview:fromView atIndex:0];
         
+        toView.layer.zPosition = 400;
+        CATransform3D rotation =CATransform3DMakeRotation(M_PI/2.7, 1.0, 0, 0);
+        rotation.m34 = -1.0/500.0;
+        toView.layer.transform = rotation;
+        //        toView.layer.transform.m34 = -1.0 / 500.0;
+        //        toView.layer.anchorPoint = CGPointMake(0.5, 0);
+        CGPoint newCenter = _backgroundView.center;//[inView convertPoint:_backgroundView.center fromView:toView];
         
-        UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[toView]];
-        [self.animator addBehavior:gravity];
-        
-        self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:inView];
-        //        self.animator.delegate = self;
-        
-        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:toView snapToPoint:inView.center];
-        snap.damping = 0.5;
-        
-        snap.action = ^{
-            if (toView.center.x == inView.center.x && toView.center.y == inView.center.y) {
-                [self.animator removeAllBehaviors];
-                self.animator.delegate = nil;
-                [transitionContext completeTransition:YES];
-            }
-        };
-        
-        [self.animator addBehavior:snap];
-        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            
+            toView.layer.transform = CATransform3DIdentity;
+            toView.transform = CGAffineTransformIdentity;
+            
+            toView.layer.position = newCenter;
+            //            toView.layer
+            toView.frame = CGRectMake(toView.frame.origin.x, toView.frame.origin.y - 100, toView.frame.size.width, toView.frame.size.height);
+            //            toView.center = newCenter;
+            
+        } completion:^(BOOL finished) {
+            toView.layer.transform = CATransform3DIdentity;
+            toView.layer.anchorPoint = CGPointMake(0.5, 0.5);
+            toView.layer.position = newCenter;// inView.layer.position;
+            [transitionContext completeTransition:YES];
+            
+        }];
     }
     else {
-        //        [inView insertSubview:toView atIndex:0];
-        UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[fromView]];
-        gravity.magnitude = 1.5;
-        [self.animator addBehavior:gravity];
+        [inView insertSubview:toView atIndex:0];
+        [inView addSubview:fromView];
+        fromView.alpha = 1;
         
-        UIDynamicItemBehavior *dynamic = [[UIDynamicItemBehavior alloc] initWithItems:@[fromView]];
-        //        [dynamic addLinearVelocity:CGPointMake(0, 0) forItem:fromView];
-        [dynamic addAngularVelocity:1 forItem:fromView];
-        [dynamic setAngularResistance:3];
-        
-        // when the view no longer intersects with its superview, go ahead and remove it
-        
-        dynamic.action = ^{
-            if (!CGRectIntersectsRect(inView.bounds,fromView.frame)) {
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
+            
+            fromView.center = CGPointMake(self.toPoint.x, self.toPoint.y - fromView.frame.size.height / 1.5 );
+            
+            _backgroundView.alpha =0;
+        } completion:^(BOOL finished) {
+            
+            //            NSLog(@"Completion with finished %d", finished);
+            
+            if ([transitionContext transitionWasCancelled]) {
+                fromView.layer.transform = CATransform3DIdentity;
+                //                NSLog(@"was cancelled");
                 
-                [self.animator removeAllBehaviors];
-                self.animator.delegate = nil;
+                [transitionContext completeTransition:NO];
+            }
+            else {
+                [fromView removeFromSuperview];
+                fromView.layer.transform = CATransform3DIdentity;
+                [_backgroundView removeFromSuperview];
+                
+                [transitionContext finishInteractiveTransition];
                 [transitionContext completeTransition:YES];
             }
-        };
-        [self.animator addBehavior:dynamic];
+            
+            
+        }];
     }
     
 }
 
+-(void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    UIView *inView = [transitionContext containerView];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    
+    self.context = transitionContext;
+    
+    UIView *toView;
+    UIView *fromView;
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
+    }
+    else {
+        toView = [toVC view];
+        fromView = [fromVC view];
+    }
+    self.transitionContext = transitionContext;
+    self.animator.delegate = self;
+    
+    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:inView];
+    
+    
+    
+    if(self.open) {
+        
+        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
+        [inView insertSubview:_backgroundView aboveSubview:fromView];
+        [fromView removeFromSuperview];
+        
+        
+        if(CGSizeEqualToSize(self.sizeOfToViewController, CGSizeZero)) {
+            self.sizeOfToViewController = CGSizeMake(300, 200);
+        }
+        toView.frame = CGRectMake(inView.bounds.origin.x + (inView.bounds.size.width - self.sizeOfToViewController.width) / 2, -self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);//CGRectMake(0, [UIScreen mainScreen].bounds.origin.y- self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
+        
+        CATransform3D perspective = CATransform3DIdentity;
+        perspective.m34 = - 1.0 / 500.0 ;
+//        inView.layer.sublayerTransform = perspective;
+        
+        
+        [inView addSubview:toView];
+        [inView insertSubview:fromView atIndex:0];
+        
+        toView.layer.zPosition = 400;
+        CATransform3D rotation =CATransform3DMakeRotation(M_PI/2.7, 1.0, 0, 0);
+        rotation.m34 = -1.0/500.0;
+        toView.layer.transform = rotation;
+//        toView.layer.transform.m34 = -1.0 / 500.0;
+//        toView.layer.anchorPoint = CGPointMake(0.5, 0);
+        CGPoint newCenter = _backgroundView.center;//[inView convertPoint:_backgroundView.center fromView:toView];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            
+            toView.layer.transform = CATransform3DIdentity;
+            toView.transform = CGAffineTransformIdentity;
+            
+            toView.layer.position = newCenter;
+            //            toView.layer
+            toView.frame = CGRectMake(toView.frame.origin.x, toView.frame.origin.y - 100, toView.frame.size.width, toView.frame.size.height);
+            //            toView.center = newCenter;
+            
+        } completion:^(BOOL finished) {
+            toView.layer.transform = CATransform3DIdentity;
+            toView.layer.anchorPoint = CGPointMake(0.5, 0.5);
+            toView.layer.position = newCenter;// inView.layer.position;
+            [transitionContext completeTransition:YES];
+            
+        }];
+    }
+    else {
+        [inView insertSubview:toView atIndex:0];
+        [inView addSubview:fromView];
+        fromView.alpha = 1;
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
+            
+            fromView.center = CGPointMake(self.toPoint.x, self.toPoint.y - fromView.frame.size.height / 1.5 );
+            
+            _backgroundView.alpha =0;
+        } completion:^(BOOL finished) {
+            
+//            NSLog(@"Completion with finished %d", finished);
+            
+            if ([transitionContext transitionWasCancelled]) {
+                fromView.layer.transform = CATransform3DIdentity;
+//                NSLog(@"was cancelled");
+                
+                [transitionContext completeTransition:NO];
+            }
+            else {
+                [fromView removeFromSuperview];
+                fromView.layer.transform = CATransform3DIdentity;
+                [_backgroundView removeFromSuperview];
+                
+                [transitionContext finishInteractiveTransition];
+                [transitionContext completeTransition:YES];
+            }
+            
+            
+        }];
+    }
+}
 
 -(void)animationEnded:(BOOL)transitionCompleted {
     
 }
 
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 1;
+    return 1;//0.45;
 }
+
+
 
 //-(void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator {
 //    

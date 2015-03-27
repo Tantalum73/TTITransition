@@ -20,5 +20,6 @@
  */
 @property (nonatomic) CGSize sizeOfToViewController;
 
+
 -(instancetype) initWithSizeOfToViewController:(CGSize)size;
 @end
