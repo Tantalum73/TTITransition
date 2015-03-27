@@ -74,6 +74,11 @@
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
     }
+    else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
+        _transitionDelegate.transitionType = TTITransitionTypeHangIn;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
+    }
     destination.transitioningDelegate = _transitionDelegate;
 }
 
