@@ -42,6 +42,8 @@
         _transitionDelegate.transitionType = TTITransitionTypeOverlay;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
+        
+        //Set it here or in the presented UIViewController
         _transitionDelegate.rectForPanGestureToStart = CGRectMake(0, 0, 100, 100);
     }
     else if([segue.identifier isEqualToString:@"ShowSlide"]) {
@@ -56,6 +58,8 @@
     }
     else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
         _transitionDelegate.transitionType = TTITransitionTypeFallIn;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
     }
     else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
         _transitionDelegate.transitionType = TTITransitionTypeSpinn;
