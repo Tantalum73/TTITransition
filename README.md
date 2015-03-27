@@ -25,7 +25,7 @@ Following transitions are implemented: "slide", "overlay", "full", "fold", "spin
 ![Hang In Transition Screencast](/Images/TTITransitionHangInto.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 200px)
 
 ##Fall Into Transition:##
-![Fall In Transition Screencast](/Images/TTITransition Fall Into.gif?raw=true "Fall Into Transition Screencast" loop=infinite  = 250px)
+![Fall In Transition Screencast](/Images/TTITransitionFallInto.gif?raw=true "Fall Into Transition Screencast" loop=infinite  = 250px)
 
 ##Full Transition:##
 ![Full Transition Screencast](/Images/TTITransitionFull.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
@@ -50,6 +50,7 @@ You can chose between the following gestures:
 * ```TTIGestureRecognizerLeftEdge``` a swipe gesture form the left edge of the screen (might sound familiar if you think about a UINavigationController)
 * ```TTIGestureRecognizerRightEdge``` the same as the previous one, from the right edge
 * ```TTIGestureRecognizerPullUpDown``` and ```TTIGestureRecognizerPullLeftRight``` a pan gesture – When you have specified the ```rectForPanGestureToStart``` property, the user can dismiss the new ViewController by using a pan gesture starting in the specified ```CGRect```.
+* ```TTIGestureRecognizerPanToEdge``` a pan gesture that slides the ViewController to the ```toPoint``` that you have specified.
 
 That is all you have to do. Just set the two properties and you are good to go. Your ViewController will be dismissable by the gesture of your choice.
 
@@ -67,24 +68,25 @@ You can do so, by using a property or an local instance variable.
     _transitionDelegate.fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
     
     if([segue.identifier isEqualToString:@"ShowFull"]) {
-    
-        _transitionDelegate.transitionType = TTIFullTransition;
+        _transitionDelegate.transitionType = TTITransitionTypeFull;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
-        
     }
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
-    
         _transitionDelegate.transitionType = TTITransitionTypeOverlay;
         _transitionDelegate.interactive = YES;
         _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
+        //Example for a toPoint
+        _transitionDelegate.toPoint = CGPointMake(200, 200);
+        
+        //Set it here or in the presented UIViewController
         _transitionDelegate.rectForPanGestureToStart = CGRectMake(0, 0, 100, 100);
-        
-        
     }
-    else if([segue.identifier isEqualToString:@"ShowSlide"]) {
-        
-        _transitionDelegate.transitionType = TTISlideTransition;
+     else if([segue.identifier isEqualToString:@"ShowFallIn"]) {
+        _transitionDelegate.transitionType = TTITransitionTypeFallIn;
+        _transitionDelegate.interactive = YES;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPanToEdge;
+        _transitionDelegate.toPoint = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, 0);
     }
     //... just set the transition and gesture type you want
 }
@@ -97,8 +99,8 @@ If you want to see the actual ```tintColor``` in the performing transition, you 
 ##Customization##
 You can change the point from which the new ViewController fades in by setting the `_transitionDelegate.fromPoint` property to the CGPoint you like.
 
-This point also specified where the presented ViewController will fade out to. 
-if you want them to fade into a different direction just change the `_transitionDelegate.fromPoint` property before the ViewController is dismissed.
+The ```_transitionDelegate.toPoint``` specified where the presented ViewController will fade out to. 
+If you want them to fade into a different direction just change the `_transitionDelegate.toPoint` property before the ViewController is dismissed.
 
 You can also change the ```UIGestureRecognizer```type by setting the desired ```gestureType```
 ##Related##
