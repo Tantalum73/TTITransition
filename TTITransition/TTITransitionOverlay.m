@@ -134,6 +134,7 @@
                         
             if ([transitionContext transitionWasCancelled]) {
                 fromView.alpha = 1;
+                fromView.transform = CGAffineTransformIdentity;
                 [toView removeFromSuperview];
             
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
