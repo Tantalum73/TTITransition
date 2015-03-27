@@ -28,6 +28,19 @@
 
 @implementation TTITransitioningDelegate
 
+-(void)setFromPoint:(CGPoint)fromPoint {
+    _fromPoint = fromPoint;
+    if (_activePresentationController) {
+        _activePresentationController.fromPoint = fromPoint;
+    }
+}
+-(void)setToPoint:(CGPoint)toPoint {
+    _toPoint = toPoint;
+    if (_activePresentationController) {
+        _activePresentationController.toPoint = toPoint;
+    }
+}
+
 - (void)setRectForPanGestureToStart:(CGRect)rectForPullDownGestureToStart {
     _rectForPanGestureToStart = rectForPullDownGestureToStart;
     if (_gestureController) {
