@@ -12,26 +12,31 @@ See below for details.
 Following transitions are implemented: "slide", "overlay", "full", "fold", "spinn", "scale" and "hang into", perfect for AlertViewish views – more are about to come.
 
 ##Slide Transition:##
-![Slide Transition Screencast](/Images/Slide_Transition.gif?raw=true "Slide Transition Screencast" = 250px)
+![Slide Transition Screencast](/Images/TTITransitionSlide.gif?raw=true "Slide Transition Screencast" = 200px)
 
 ##Overlay Transition:##
-![Overlay Transition Screencast](/Images/Overlay_Transition.gif?raw=true "Overlay Transition Screencast"  = 250px) 
+![Overlay Transition Screencast](/Images/TTITransitionOverlay.gif?raw=true "Overlay Transition Screencast"  = 200px) 
 
 
 ##Fold Transition:##
-![Fold Transition Screencast](/Images/Fold_Transition.gif?raw=true "Fold Transition Screencast" loop=infinite  = 250px)
+![Fold Transition Screencast](/Images/TTITransitionFold.gif?raw=true "Fold Transition Screencast" loop=infinite  = 200px)
 
 ##Hang Into Transition:##
-![Hang In Transition Screencast](/Images/Hang_In_Transition.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 250px)
+![Hang In Transition Screencast](/Images/TTITransitionHangInto.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 200px)
 
-##Scale Transition:##
-![Scale Transition Screencast](/Images/Scale_Transition.gif?raw=true "Scale Transition Screencast" loop=infinite  = 250px)
-
-##Spinn Transition:##
-![Spinn Transition Screencast](/Images/Spinn_Transition.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 250px)
+##Fall Into Transition:##
+![Fall In Transition Screencast](/Images/TTITransition Fall Into.gif?raw=true "Fall Into Transition Screencast" loop=infinite  = 250px)
 
 ##Full Transition:##
-![Full Transition Screencast](/Images/Full_Transition.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
+![Full Transition Screencast](/Images/TTITransitionFull.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
+
+##Scale Transition:##
+![Scale Transition Screencast](/Images/TTITransitionScale.gif?raw=true "Scale Transition Screencast" loop=infinite  = 220px)
+
+##Spinn Transition:##
+![Spinn Transition Screencast](/Images/TTITransitionSpinn.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 220px)
+
+
 
 
 ##How to use##
