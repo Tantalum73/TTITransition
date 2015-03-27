@@ -18,6 +18,7 @@
 		A16CCC4D19E86E4C00717793 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC4C19E86E4C00717793 /* DetailViewController.m */; };
 		A18F854E1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18F854D1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m */; };
 		A18F85511AC012C300E14857 /* TTIGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18F85501AC012C300E14857 /* TTIGestureController.m */; };
+		A1E17CC91AC52E1500A4E116 /* TTIFallIn.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */; };
 		A1F241741AA991E20046268B /* TTIHangIn.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F241631AA991E20046268B /* TTIHangIn.m */; };
 		A1F241751AA991E20046268B /* TTITransitionFold.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F241651AA991E20046268B /* TTITransitionFold.m */; };
 		A1F241761AA991E20046268B /* TTITransitionFull.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F241671AA991E20046268B /* TTITransitionFull.m */; };
@@ -61,6 +62,8 @@
 		A18F854D1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIPercentDrivenInteractionTransitionController.m; sourceTree = "<group>"; };
 		A18F854F1AC012C300E14857 /* TTIGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIGestureController.h; sourceTree = "<group>"; };
 		A18F85501AC012C300E14857 /* TTIGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIGestureController.m; sourceTree = "<group>"; };
+		A1E17CC71AC52E1500A4E116 /* TTIFallIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIFallIn.h; sourceTree = "<group>"; };
+		A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIFallIn.m; sourceTree = "<group>"; };
 		A1F241621AA991E20046268B /* TTIHangIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIHangIn.h; sourceTree = "<group>"; };
 		A1F241631AA991E20046268B /* TTIHangIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIHangIn.m; sourceTree = "<group>"; };
 		A1F241641AA991E20046268B /* TTITransitionFold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITransitionFold.h; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 			children = (
 				A1F241621AA991E20046268B /* TTIHangIn.h */,
 				A1F241631AA991E20046268B /* TTIHangIn.m */,
+				A1E17CC71AC52E1500A4E116 /* TTIFallIn.h */,
+				A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */,
 				A1F241641AA991E20046268B /* TTITransitionFold.h */,
 				A1F241651AA991E20046268B /* TTITransitionFold.m */,
 				A1F241661AA991E20046268B /* TTITransitionFull.h */,
@@ -305,6 +310,7 @@
 				A1F241741AA991E20046268B /* TTIHangIn.m in Sources */,
 				A13209C71AC01A6D00D054AD /* TTITransitionSuper.m in Sources */,
 				A18F854E1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m in Sources */,
+				A1E17CC91AC52E1500A4E116 /* TTIFallIn.m in Sources */,
 				A1F241751AA991E20046268B /* TTITransitionFold.m in Sources */,
 				A1F2417A1AA991E20046268B /* TTITransitionSlide.m in Sources */,
 				A1F241791AA991E20046268B /* TTITransitionScale.m in Sources */,

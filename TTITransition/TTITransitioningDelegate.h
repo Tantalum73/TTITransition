@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, TTITransitionType) {
     TTITransitionTypeSlide,
     TTITransitionTypeFold,
     TTITransitionTypeHangIn,
+    TTITransitionTypeFallIn,
     TTITransitionTypeSpinn,
     TTITransitionTypeScale
 };

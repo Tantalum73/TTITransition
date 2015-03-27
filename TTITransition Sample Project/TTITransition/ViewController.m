@@ -55,7 +55,7 @@
         _transitionDelegate.gestureType = TTIGestureRecognizerLeftEdge;
     }
     else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
-        _transitionDelegate.transitionType = TTITransitionTypeHangIn;
+        _transitionDelegate.transitionType = TTITransitionTypeFallIn;
     }
     else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
         _transitionDelegate.transitionType = TTITransitionTypeSpinn;

@@ -12,6 +12,7 @@
 #import "TTITransitionSlide.h"
 #import "TTITransitionFold.h"
 #import "TTIHangIn.h"
+#import "TTIFallIn.h"
 #import "TTITransitionSpinn.h"
 #import "TTITransitionScale.h"
 #import "TTIPercentDrivenInteractionTransitionController.h"
@@ -62,6 +63,15 @@
             }
             correctSize = self.sizeOfPresentedViewController;
             transitionController = [[TTIHangIn alloc] initWithSizeOfToViewController:correctSize];
+        }
+            break;
+        case TTITransitionTypeFallIn: {
+            CGSize correctSize;
+            if(CGSizeEqualToSize(self.sizeOfPresentedViewController, CGSizeZero)) {
+                correctSize = CGSizeMake(300, 250);
+            }
+            correctSize = self.sizeOfPresentedViewController;
+            transitionController = [[TTIFallIn alloc] initWithSizeOfToViewController:correctSize];
         }
             break;
         case TTITransitionTypeSpinn: {
