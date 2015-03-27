@@ -27,7 +27,29 @@
     UIView *targetRectView = [[UIView alloc] initWithFrame:_rectForDismissGesture];
     [targetRectView setBackgroundColor:UIColor.redColor];
     
+    
+    targetRectView.layer.cornerRadius = 10;
+    
+    CAGradientLayer *gradientForTargetRect = [[CAGradientLayer alloc] init];
+    gradientForTargetRect.frame = targetRectView.frame;
+    
+    gradientForTargetRect.colors = @[(id)[UIColor colorWithRed:255.0/255.0 green:81.0/255.0 blue:47.0/255.0 alpha:1].CGColor, (id)[UIColor colorWithRed:221.0/255.0 green:36.0/255.0 blue:118.0/255.0 alpha:1].CGColor];
+    [targetRectView.layer insertSublayer:gradientForTargetRect atIndex:0];
+    
+    targetRectView.clipsToBounds = YES;
     [self.view addSubview:targetRectView];
+
+    
+    
+    CAGradientLayer *gradient = [[CAGradientLayer alloc] init];
+    gradient.frame = self.view.frame;
+    gradient.colors = @[(id)[UIColor colorWithRed:236.0/255.0 green:111.0/255.0 blue:102.0/255.0 alpha:1].CGColor, (id)[UIColor colorWithRed:243.0/255.0 green:161.0/255.0 blue:131.0/255.0 alpha:1].CGColor];
+    
+    [self.view.layer insertSublayer:gradient atIndex:0];
+    self.view.clipsToBounds = YES;
+    
+    //just a question of taste...
+//    self.view.layer.cornerRadius = 10;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

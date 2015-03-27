@@ -41,7 +41,7 @@
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
         _transitionDelegate.transitionType = TTITransitionTypeOverlay;
         _transitionDelegate.interactive = YES;
-        _transitionDelegate.gestureType = TTIGestureRecognizerPanToEdge;
+        _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
         //Example for a toPoint
         _transitionDelegate.toPoint = CGPointMake(200, 200);
         
