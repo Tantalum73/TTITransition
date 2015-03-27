@@ -207,7 +207,6 @@
             }
             else {
                 //snap to centre.
-                //TODO position specified in animator
                 CGFloat distance = [self distanceBetweenPoint1:self.targetViewController.view.center andPoint2:self.animator.fromPoint];
                 CGFloat velocityOfGesture = sqrtf(velocity.x * velocity.x + velocity.y * velocity.y);
                 
