@@ -253,9 +253,12 @@
             break;
         case UIGestureRecognizerStateChanged: {
             CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.fromPoint andPoint2:_pointOfFirstInteraction];
-            CGFloat animationRatio = fabsf( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndFromPoint));
+            CGFloat animationRatio = 1 - (distanceBetweenInteractionAndFromPoint / distanceBetweenStartOfInteractionAndFromPoint);
+            
+            CGFloat normalizedRatio = MIN(MAX(0, animationRatio), 1);
 //            NSLog(@"Animation Ratio: %f", animationRatio);
-            [self.animator.interactiveAnimator updateInteractiveTransition:animationRatio];
+//            NSLog(@"normalized Animation Ratio: %f", normalizedRatio);
+            [self.animator.interactiveAnimator updateInteractiveTransition:normalizedRatio];
         }
             break;
         case UIGestureRecognizerStateEnded: {
