@@ -40,7 +40,7 @@ Following transitions are implemented: "slide", "overlay", "full", "fold", "spin
 
 
 ##How to use##
-Just set the transitioningDelegate of the presented ViewController to an instance of TTITransitioningDelegate and let the segue-magic happen (or present the ViewController manually using ```presentViewController:animated:```).
+Just set the transitioningDelegate of the presented ViewController to an instance of TTITransitioningDelegate (import it with `#import "TTITransitioningDelegate.h"`) and let the segue-magic happen (or present the ViewController manually using ```presentViewController:animated:```).
 
 ###Interaction###
 If you want you presented ViewController to be dismissable by a gesture, just set the ```interactive``` property of your ```TTITransitioningDelegate``` to ```YES``` and chose the ```UIGestureRecognizer```of your convenience just by setting the ```gestureType``` property.
