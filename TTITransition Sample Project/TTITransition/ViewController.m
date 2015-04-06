@@ -80,6 +80,7 @@
         _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
     }
     destination.transitioningDelegate = _transitionDelegate;
+//    destination.modalPresentationStyle = UIModalPresentationCustom;//when set, the Slide transition will no longer work. I guess it's a bug 😕
 }
 
 @end

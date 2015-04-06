@@ -89,6 +89,7 @@ You can do so, by using a property or an local instance variable.
         _transitionDelegate.toPoint = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, 0);
     }
     //... just set the transition and gesture type you want
+    destination.transitioningDelegate = _transitionDelegate;
 }
 
 ```
