@@ -23,4 +23,6 @@
 -(CGPoint)centerOfRect:(CGRect)rect;
 @property (nonatomic) CGPoint toPoint;
 
+-(void)applyBorderToView:(UIView *)view;
+-(void)applyShadowEffectToView:(UIView *)view;
 @end

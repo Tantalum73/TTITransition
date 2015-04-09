@@ -38,4 +38,16 @@
 -(void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     
 }
+
+-(void)applyBorderToView:(UIView *)view {
+    view.layer.borderWidth = 4.0f;
+    view.layer.borderColor = [UIColor lightTextColor].CGColor;
+}
+
+-(void)applyShadowEffectToView:(UIView *)view {
+    view.layer.shadowRadius = 4.0f;
+    view.layer.shadowOpacity = 0.6f;
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+    view.layer.shadowOffset = CGSizeMake(3, 3);
+}
 @end

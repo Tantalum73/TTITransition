@@ -64,9 +64,8 @@
         }
         toView.frame = CGRectMake(inView.bounds.origin.x + (inView.bounds.size.width - self.sizeOfToViewController.width) / 2, -self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
         
-        CATransform3D perspective = CATransform3DIdentity;
-        perspective.m34 = - 1.0 / 500.0 ;
-        
+       
+        [self applyShadowEffectToView:toView];
         
         [inView addSubview:toView];
         
@@ -101,25 +100,27 @@
             fromView.center = CGPointMake(self.toPoint.x, self.toPoint.y - fromView.frame.size.height / 1.5 );
             
             _backgroundView.alpha =0;
+             
         } completion:^(BOOL finished) {
             
-            //            NSLog(@"Completion with finished %d", finished);
             
             if ([transitionContext transitionWasCancelled]) {
                 fromView.layer.transform = CATransform3DIdentity;
-                //                NSLog(@"was cancelled");
                 
                 [transitionContext completeTransition:NO];
             }
             else {
                 [fromView removeFromSuperview];
                 fromView.layer.transform = CATransform3DIdentity;
+                
+                //resets the frame of the presenting ViewController
+                toView.frame = _backgroundView.frame;
+                
                 [_backgroundView removeFromSuperview];
                 
                 [transitionContext finishInteractiveTransition];
                 [transitionContext completeTransition:YES];
                 
-                toView.frame = _backgroundView.frame;
             }
             
             
