@@ -113,14 +113,14 @@
                 [fromView removeFromSuperview];
                 fromView.layer.transform = CATransform3DIdentity;
                 
-                //resets the frame of the presenting ViewController
-                toView.frame = _backgroundView.frame;
-                
                 [_backgroundView removeFromSuperview];
                 
                 [transitionContext finishInteractiveTransition];
                 [transitionContext completeTransition:YES];
                 
+                
+                //resets the frame of the presenting ViewController
+                toView.frame = _backgroundView.frame;
             }
             
             
