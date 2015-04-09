@@ -117,10 +117,10 @@
         
         CGAffineTransform scale = CGAffineTransformMakeScale(0.5, 0.5);
         CGAffineTransform translation = CGAffineTransformMakeTranslation((self.toPoint.x < fromView.center.x)?
-                                                                         -abs(self.toPoint.x - fromView.center.x) : abs(self.toPoint.x - fromView.center.x)
+                                                                         -fabs(self.toPoint.x - fromView.center.x) : fabs(self.toPoint.x - fromView.center.x)
                                                                          
                                                                          ,(self.toPoint.y < fromView.center.y)?
-                                                                         -abs(self.toPoint.y - fromView.center.y) : abs(self.toPoint.y - fromView.center.y));
+                                                                         -fabs(self.toPoint.y - fromView.center.y) : fabs(self.toPoint.y - fromView.center.y));
 		
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:4 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
             

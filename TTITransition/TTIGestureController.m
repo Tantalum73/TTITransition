@@ -166,7 +166,7 @@
             _pan.anchorPoint = touch;
             
             CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.toPoint andPoint2:_pointOfFirstInteraction];
-            CGFloat animationRatio = fabsf( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndEdge));
+            CGFloat animationRatio = fabs( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndEdge));
                         NSLog(@"Animation Ratio: %f", animationRatio);
             [self.animator.interactiveAnimator updateInteractiveTransition:animationRatio];
             
@@ -180,7 +180,7 @@
             
             BOOL dismiss = false;
             
-            if (fabs(velocity.y > 250)) {
+            if (abs(velocity.y > 250.0)) {
                 dismiss = velocity.y < 0; //schnell nach oben gezogen
             }
             else {
@@ -321,7 +321,7 @@
             break;
         case UIGestureRecognizerStateChanged: {
             CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.fromPoint andPoint2:_pointOfFirstInteraction];
-            CGFloat animationRatio = fabsf( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndFromPoint));
+            CGFloat animationRatio = fabs( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndFromPoint));
             //            NSLog(@"Animation Ratio: %f", animationRatio);
             [self.animator.interactiveAnimator updateInteractiveTransition:animationRatio];
         }

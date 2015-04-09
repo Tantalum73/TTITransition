@@ -13,6 +13,7 @@
 @end
 
 @implementation TTIFallIn {
+    /// Snapshot of the presenting ViewController, can be blurred or darkened.
     UIView *_backgroundView;
 }
 
@@ -50,8 +51,10 @@
     
     
     if(self.open) {
+//        fromView.frame = [transitionContext finalFrameForViewController:fromVC];
         
         _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
+        _backgroundView.frame = fromView.frame;
         [inView insertSubview:_backgroundView aboveSubview:fromView];
         [fromView removeFromSuperview];
         
@@ -59,23 +62,19 @@
         if(CGSizeEqualToSize(self.sizeOfToViewController, CGSizeZero)) {
             self.sizeOfToViewController = CGSizeMake(300, 200);
         }
-        toView.frame = CGRectMake(inView.bounds.origin.x + (inView.bounds.size.width - self.sizeOfToViewController.width) / 2, -self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);//CGRectMake(0, [UIScreen mainScreen].bounds.origin.y- self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
+        toView.frame = CGRectMake(inView.bounds.origin.x + (inView.bounds.size.width - self.sizeOfToViewController.width) / 2, -self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
         
         CATransform3D perspective = CATransform3DIdentity;
         perspective.m34 = - 1.0 / 500.0 ;
-        //        inView.layer.sublayerTransform = perspective;
         
         
         [inView addSubview:toView];
-        [inView insertSubview:fromView atIndex:0];
         
-        toView.layer.zPosition = 400;
+        toView.layer.zPosition = self.sizeOfToViewController.height / 1.7;//must be grater than sizeOfToViewController.height / 2
         CATransform3D rotation =CATransform3DMakeRotation(M_PI/2.7, 1.0, 0, 0);
         rotation.m34 = -1.0/500.0;
         toView.layer.transform = rotation;
-        //        toView.layer.transform.m34 = -1.0 / 500.0;
-        //        toView.layer.anchorPoint = CGPointMake(0.5, 0);
-        CGPoint newCenter = _backgroundView.center;//[inView convertPoint:_backgroundView.center fromView:toView];
+        CGPoint newCenter = _backgroundView.center;
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1.5 initialSpringVelocity:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent animations:^{
             
@@ -83,9 +82,6 @@
             toView.transform = CGAffineTransformIdentity;
             
             toView.layer.position = newCenter;
-            //            toView.layer
-            toView.frame = CGRectMake(toView.frame.origin.x, toView.frame.origin.y - 100, toView.frame.size.width, toView.frame.size.height);
-            //            toView.center = newCenter;
             
         } completion:^(BOOL finished) {
             toView.layer.transform = CATransform3DIdentity;
@@ -122,6 +118,8 @@
                 
                 [transitionContext finishInteractiveTransition];
                 [transitionContext completeTransition:YES];
+                
+                toView.frame = _backgroundView.frame;
             }
             
             

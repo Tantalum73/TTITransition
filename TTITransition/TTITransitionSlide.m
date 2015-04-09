@@ -25,17 +25,15 @@
     backgroundView.backgroundColor = self.colorForBackgroundView;
 
     [inView insertSubview:backgroundView atIndex:0];
-    toView = [toVC view];
-    fromView = [fromVC view];
     
-//    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-//        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-//        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
-//    }
-//    else {
-//        toView = [toVC view];
-//        fromView = [fromVC view];
-//    }
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
+    }
+    else {
+        toView = [toVC view];
+        fromView = [fromVC view];
+    }
     if(self.scaleDownViewControllers <= 0.7) {
         self.scaleDownViewControllers = 0.8;
     }
@@ -105,9 +103,7 @@
             self.interactive = NO;
         }
         else {
-            toView.alpha = 1;
             [inView addSubview:toView];
-            
             [fromView removeFromSuperview];
             
             [fromShot removeFromSuperview];

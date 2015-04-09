@@ -33,7 +33,7 @@
 //		intermediateView.layer.opacity = 0.3f;
         
         CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
-        CGAffineTransform translation = CGAffineTransformMakeTranslation(abs(self.fromPoint.x - toView.center.x),abs(self.fromPoint.y - toView.center.y));
+        CGAffineTransform translation = CGAffineTransformMakeTranslation(fabs(self.fromPoint.x - toView.center.x), fabs(self.fromPoint.y - toView.center.y));
         toView.transform = CGAffineTransformConcat(scale, translation);
         toView.alpha = 0;
         
@@ -64,7 +64,7 @@
         [inView addSubview:fromView];
         
         CGAffineTransform scale = CGAffineTransformMakeScale(0.3, 0.3);
-        CGAffineTransform translation = CGAffineTransformMakeTranslation(abs(self.toPoint.x - fromView.center.x),abs(self.toPoint.y - fromView.center.y));
+        CGAffineTransform translation = CGAffineTransformMakeTranslation(fabs(self.toPoint.x - fromView.center.x),fabs(self.toPoint.y - fromView.center.y));
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:10 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent | UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
 
