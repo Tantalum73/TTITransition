@@ -41,13 +41,24 @@
     }
 }
 
-- (void)setRectForPanGestureToStart:(CGRect)rectForPullDownGestureToStart {
-    _rectForPanGestureToStart = rectForPullDownGestureToStart;
+- (void)setRectForPanGestureToStart:(CGRect)newRect {
+    CGRect convertedRect = [_presentedViewController.view.window convertRect:newRect fromView:_presentedViewController.view];
+    _rectForPanGestureToStart = convertedRect;
     if (_gestureController) {
-        _gestureController.rectForPullPanGestureToStart = rectForPullDownGestureToStart;
+        _gestureController.rectForPullPanGestureToStart = convertedRect;
     }
 }
 
+-(void)setGestureType:(TTIGestureRecognizerType)gestureType {
+    _gestureType = gestureType;
+    
+    if (self.isInteractive) {
+        _gestureController.targetViewController = _presentedViewController;
+        _gestureController.interactiveAnimator = _activePresentationController;
+        
+        _gestureController.rectForPullPanGestureToStart = self.rectForPanGestureToStart;
+    }
+}
 
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {

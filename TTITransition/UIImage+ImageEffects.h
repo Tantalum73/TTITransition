@@ -103,6 +103,8 @@
 - (UIImage *)applyDarkEffect;
 - (UIImage *)applyTintEffectWithColor:(UIColor *)tintColor;
 
+-(UIImage *)applyLightEffectWithColor:(UIColor *)color;
+
 - (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
 
 

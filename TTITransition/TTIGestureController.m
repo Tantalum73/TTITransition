@@ -9,9 +9,12 @@
 #import "TTIGestureController.h"
 @interface TTIGestureController() {
     CGPoint _pointOfFirstInteraction;
+    CGPoint _initialCenter;
     UIDynamicAnimator *_dynamicAnimator;
     UIAttachmentBehavior *_pan;
     UIDynamicItemBehavior *_dynamicItemBehavior;
+    UISnapBehavior *_snapBevavior;
+    UIGestureRecognizer *_activeGestureRecognizer;
 }
 
 @property (nonatomic, strong) UIScreenEdgePanGestureRecognizer * screenEdgePanGestureRecognizer;
@@ -63,12 +66,58 @@
     return _panGestureRecognizerEdge;
 }
 
+-(void)setGestureType:(TTIGestureRecognizerType)gestureType {
+    _gestureType = gestureType;
+    [self.targetViewController.view removeGestureRecognizer:_activeGestureRecognizer];
+    
+    switch (gestureType) {
+        case TTIGestureRecognizerPinch: {
+            //                [self.targetViewController.view addGestureRecognizer:self.pinchGestureRecognizer];
+            _activeGestureRecognizer = self.pinchGestureRecognizer;
+        }
+            break;
+        case TTIGestureRecognizerLeftEdge: {
+            self.screenEdgePanGestureRecognizer.edges = UIRectEdgeLeft;
+            //                [self.targetViewController.view addGestureRecognizer:self.screenEdgePanGestureRecognizer];
+            _activeGestureRecognizer = self.screenEdgePanGestureRecognizer;
+        }
+            break;
+        case TTIGestureRecognizerRightEdge: {
+            self.screenEdgePanGestureRecognizer.edges = UIRectEdgeRight;
+            //                [self.targetViewController.view addGestureRecognizer:self.screenEdgePanGestureRecognizer];
+            _activeGestureRecognizer = self.screenEdgePanGestureRecognizer;
+        }
+            break;
+        case TTIGestureRecognizerPullUpDown: {
+            //                [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizerUpDown];
+            _activeGestureRecognizer = self.panGestureRecognizerUpDown;
+        }
+            break;
+        case TTIGestureRecognizerPullLeftRight: {
+            //                [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizerLeftRight];
+            _activeGestureRecognizer = self.panGestureRecognizerLeftRight;
+        }
+            break;
+        case TTIGestureRecognizerPanToEdge: {
+            //                [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizerEdge];
+            _activeGestureRecognizer = self.panGestureRecognizerEdge;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    [self.targetViewController.view addGestureRecognizer:_activeGestureRecognizer];
+}
+
+
 - (void)resetAnimator {
     if (!_dynamicAnimator) {
         _dynamicAnimator= [[UIDynamicAnimator alloc] initWithReferenceView:self.targetViewController.view.window];
     }
     
     [_dynamicAnimator removeAllBehaviors];
+    _dynamicAnimator.delegate = nil;
     
     _dynamicItemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.targetViewController.view]];
     _dynamicItemBehavior.allowsRotation = NO;
@@ -80,39 +129,11 @@
     self = [super init];
     if (self) {
         self.targetViewController = target;
-        self.animator = animator;
+        self.interactiveAnimator = animator;
+        self.gestureType = gestureType;
         
-        switch (gestureType) {
-            case TTIGestureRecognizerPinch: {
-                [self.targetViewController.view addGestureRecognizer:self.pinchGestureRecognizer];
-            }
-                break;
-            case TTIGestureRecognizerLeftEdge: {
-                self.screenEdgePanGestureRecognizer.edges = UIRectEdgeLeft;
-                [self.targetViewController.view addGestureRecognizer:self.screenEdgePanGestureRecognizer];
-            }
-                break;
-            case TTIGestureRecognizerRightEdge: {
-                self.screenEdgePanGestureRecognizer.edges = UIRectEdgeRight;
-                [self.targetViewController.view addGestureRecognizer:self.screenEdgePanGestureRecognizer];
-            }
-                break;
-            case TTIGestureRecognizerPullUpDown: {
-                [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizerUpDown];
-            }
-                break;
-            case TTIGestureRecognizerPullLeftRight: {
-                [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizerLeftRight];
-            }
-                break;
-            case TTIGestureRecognizerPanToEdge: {
-                [self.targetViewController.view addGestureRecognizer:self.panGestureRecognizerEdge];
-            }
-                break;
-            default:
-                break;
-        }
         
+       
     }
     
     return self;
@@ -127,7 +148,7 @@
 
 - (void) panToEdgeAction:(UIPanGestureRecognizer *)gr {
     CGPoint touch = [gr locationInView:self.targetViewController.view.window];
-    CGPoint centerOfTargetRect = self.animator.toPoint;
+    CGPoint centerOfTargetRect = self.interactiveAnimator.toPoint;
     
     CGFloat distanceBetweenInteractionAndEdge = [self distanceBetweenPoint1:centerOfTargetRect andPoint2:touch];
     
@@ -137,9 +158,10 @@
     
     switch (gr.state) {
         case UIGestureRecognizerStateBegan: {
-            self.animator.interactive = YES;
+            self.interactiveAnimator.interactive = YES;
             
             _pointOfFirstInteraction = touch;
+            _initialCenter = gr.view.center;
             
             [self resetAnimator];
             
@@ -165,10 +187,12 @@
             //panning...
             _pan.anchorPoint = touch;
             
-            CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.toPoint andPoint2:_pointOfFirstInteraction];
-            CGFloat animationRatio = fabs( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndEdge));
-                        NSLog(@"Animation Ratio: %f", animationRatio);
-            [self.animator.interactiveAnimator updateInteractiveTransition:animationRatio];
+            CGFloat distanceBetweenStartOfInteractionAndDestination = [self distanceBetweenPoint1:self.interactiveAnimator.toPoint andPoint2:_pointOfFirstInteraction];
+            
+            CGFloat animationRatio = MIN(distanceBetweenInteractionAndEdge / distanceBetweenStartOfInteractionAndDestination, 1.0);
+            
+//            NSLog(@"Normalized Animation Ratio: %f", animationRatio);
+            [self.interactiveAnimator.interactiveAnimator updateInteractiveTransition:animationRatio];
             
         }
             break;
@@ -176,50 +200,38 @@
             CGPoint velocity = [gr velocityInView:self.targetViewController.view.window];
 //            return;
             
-            [_dynamicAnimator removeAllBehaviors];
+            [_dynamicAnimator removeBehavior:_pan];
             
             BOOL dismiss = false;
             
-            if (abs(velocity.y > 250.0)) {
+            if (fabs(velocity.y) > 250.0) {
                 dismiss = velocity.y < 0; //schnell nach oben gezogen
             }
             else {
-                dismiss = touch.y < ([UIScreen mainScreen].bounds.size.height / 3); //nach oben gezogen
+                dismiss = touch.y < ([UIScreen mainScreen].bounds.size.height / 10.0); //pulled to top
             }
             
             
-
+            CGPoint pointToSnapTo;
+            id<UIDynamicAnimatorDelegate> dynamicsDelegate;
+            
             if(dismiss) {
-                CGFloat distance = [self distanceBetweenPoint1:self.targetViewController.view.center andPoint2:CGPointMake(centerOfTargetRect.x, centerOfTargetRect.y - (self.targetViewController.view.frame.size.height / 1.5))];
-                CGFloat velocityOfGesture = sqrtf(velocity.x * velocity.x + velocity.y * velocity.y);
-                
-                [UIView animateWithDuration:[self.animator transitionDuration:self.animator.context] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:velocityOfGesture / distance options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent animations:^{
-                    
-                    CGPoint newCenter  = CGPointMake(centerOfTargetRect.x, centerOfTargetRect.y - (self.targetViewController.view.frame.size.height / 1.5));
+                pointToSnapTo = CGPointMake(centerOfTargetRect.x, centerOfTargetRect.y - (self.targetViewController.view.frame.size.height / 1.8));
 
-                    self.targetViewController.view.center = newCenter;
-                    
-                } completion:^(BOOL finished) {
-                    [self.animator.context finishInteractiveTransition];
-//                    [self.animator.context completeTransition:YES];
-                    [self.targetViewController dismissViewControllerAnimated:YES completion:nil];
-                }];
+                dynamicsDelegate = self;
+                _dynamicItemBehavior.resistance = 300;
             }
             else {
-                //snap to centre.
-                CGFloat distance = [self distanceBetweenPoint1:self.targetViewController.view.center andPoint2:self.animator.fromPoint];
-                CGFloat velocityOfGesture = sqrtf(velocity.x * velocity.x + velocity.y * velocity.y);
-                
-                [UIView animateWithDuration:[self.animator transitionDuration:self.animator.context] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:velocityOfGesture / distance options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent animations:^{
-                    
-                    self.targetViewController.view.center = self.animator.fromPoint;//newCenter;
-                    
-                } completion:^(BOOL finished) {
-                    [self.animator.context cancelInteractiveTransition];
-//                    [self.animator.context completeTransition:NO];
-                }];
-
+                pointToSnapTo = _initialCenter;
             }
+            
+            _snapBevavior = [[UISnapBehavior alloc] initWithItem:self.targetViewController.view snapToPoint:pointToSnapTo];
+            _snapBevavior.damping = 0.1;
+            [_dynamicItemBehavior addLinearVelocity:velocity forItem:self.targetViewController.view];
+            _dynamicAnimator.delegate = dynamicsDelegate;
+            
+            [_dynamicAnimator addBehavior:_snapBevavior];
+
         }
             break;
             
@@ -228,13 +240,20 @@
     }
     
 }
+-(void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator {
+    [self.targetViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.interactiveAnimator.context finishInteractiveTransition];
+    //                    [self.animator.context completeTransition:YES];
+    
+    [self.targetViewController.view removeGestureRecognizer:_activeGestureRecognizer];
+}
 
 
 - (void) panUpDownAction:(UIPanGestureRecognizer *)gr {
     CGPoint touch = [gr locationInView:self.targetViewController.view.window];
 
     
-    CGFloat distanceBetweenInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.fromPoint andPoint2:touch];
+    CGFloat distanceBetweenInteractionAndFromPoint = [self distanceBetweenPoint1:self.interactiveAnimator.fromPoint andPoint2:touch];
     
 //    NSLog(@"Point of interaction: x: %f, y: %f", touch.x, touch.y);
 //    NSLog(@"Translation: x %f, y %f", translation.x, translation.y);
@@ -242,7 +261,7 @@
 
     switch (gr.state) {
         case UIGestureRecognizerStateBegan: {
-            self.animator.interactive = YES;
+            self.interactiveAnimator.interactive = YES;
             
             _pointOfFirstInteraction = touch;
             
@@ -252,35 +271,37 @@
         }
             break;
         case UIGestureRecognizerStateChanged: {
-            CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.fromPoint andPoint2:_pointOfFirstInteraction];
+            CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.interactiveAnimator.fromPoint andPoint2:_pointOfFirstInteraction];
             CGFloat animationRatio = 1 - (distanceBetweenInteractionAndFromPoint / distanceBetweenStartOfInteractionAndFromPoint);
             
             CGFloat normalizedRatio = MIN(MAX(0, animationRatio), 1);
 //            NSLog(@"Animation Ratio: %f", animationRatio);
 //            NSLog(@"normalized Animation Ratio: %f", normalizedRatio);
-            [self.animator.interactiveAnimator updateInteractiveTransition:normalizedRatio];
+            [self.interactiveAnimator.interactiveAnimator updateInteractiveTransition:normalizedRatio];
         }
             break;
         case UIGestureRecognizerStateEnded: {
             CGPoint velocity = [gr velocityInView:self.targetViewController.view.window];
             
-            switch (touch.y > self.animator.fromPoint.y) {
+            switch (touch.y > self.interactiveAnimator.fromPoint.y) {
                 case true: {
                     if(velocity.y > 0) {
-                        [self.animator.interactiveAnimator cancelInteractiveTransition];
+                        [self.interactiveAnimator.interactiveAnimator cancelInteractiveTransition];
                     }
                     else {
-                        [self.animator.interactiveAnimator finishInteractiveTransition];
+                        [self.interactiveAnimator.interactiveAnimator finishInteractiveTransition];
+                        [gr.view removeGestureRecognizer:gr];
                     }
                 }
                     break;
                     
                 case false: {
                     if (velocity.y > 0) {
-                        [self.animator.interactiveAnimator finishInteractiveTransition];
+                        [self.interactiveAnimator.interactiveAnimator finishInteractiveTransition];
+                        [gr.view removeGestureRecognizer:gr];
                     }
                     else {
-                        [self.animator.interactiveAnimator cancelInteractiveTransition];
+                        [self.interactiveAnimator.interactiveAnimator cancelInteractiveTransition];
                     }
                 }
                     break;
@@ -302,7 +323,7 @@
     CGPoint touch = [gr locationInView:self.targetViewController.view.window];
     
     
-    CGFloat distanceBetweenInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.fromPoint andPoint2:touch];
+    CGFloat distanceBetweenInteractionAndFromPoint = [self distanceBetweenPoint1:self.interactiveAnimator.fromPoint andPoint2:touch];
     
     //    NSLog(@"Point of interaction: x: %f, y: %f", touch.x, touch.y);
     //    NSLog(@"Translation: x %f, y %f", translation.x, translation.y);
@@ -310,7 +331,7 @@
     
     switch (gr.state) {
         case UIGestureRecognizerStateBegan: {
-            self.animator.interactive = YES;
+            self.interactiveAnimator.interactive = YES;
             
             _pointOfFirstInteraction = touch;
             
@@ -320,32 +341,34 @@
         }
             break;
         case UIGestureRecognizerStateChanged: {
-            CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.animator.fromPoint andPoint2:_pointOfFirstInteraction];
+            CGFloat distanceBetweenStartOfInteractionAndFromPoint = [self distanceBetweenPoint1:self.interactiveAnimator.fromPoint andPoint2:_pointOfFirstInteraction];
             CGFloat animationRatio = fabs( 1-( distanceBetweenStartOfInteractionAndFromPoint / distanceBetweenInteractionAndFromPoint));
             //            NSLog(@"Animation Ratio: %f", animationRatio);
-            [self.animator.interactiveAnimator updateInteractiveTransition:animationRatio];
+            [self.interactiveAnimator.interactiveAnimator updateInteractiveTransition:animationRatio];
         }
             break;
         case UIGestureRecognizerStateEnded: {
             CGPoint velocity = [gr velocityInView:self.targetViewController.view.window];
             
-            switch (touch.x > self.animator.fromPoint.x) {
+            switch (touch.x > self.interactiveAnimator.fromPoint.x) {
                 case true: {
                     if(velocity.x > 0) {
-                        [self.animator.interactiveAnimator cancelInteractiveTransition];
+                        [self.interactiveAnimator.interactiveAnimator cancelInteractiveTransition];
                     }
                     else {
-                        [self.animator.interactiveAnimator finishInteractiveTransition];
+                        [self.interactiveAnimator.interactiveAnimator finishInteractiveTransition];
+                        [gr.view removeGestureRecognizer:gr];
                     }
                 }
                     break;
                     
                 case false: {
                     if (velocity.x > 0) {
-                        [self.animator.interactiveAnimator finishInteractiveTransition];
+                        [self.interactiveAnimator.interactiveAnimator finishInteractiveTransition];
+                        [gr.view removeGestureRecognizer:gr];
                     }
                     else {
-                        [self.animator.interactiveAnimator cancelInteractiveTransition];
+                        [self.interactiveAnimator.interactiveAnimator cancelInteractiveTransition];
                     }
                 }
                     break;
@@ -375,7 +398,7 @@
 //    NSLog(@"Normalized Ratio: %f", normalizedRatio);
     switch (gr.state) {
         case UIGestureRecognizerStateBegan: {
-            self.animator.interactive = YES;
+            self.interactiveAnimator.interactive = YES;
             
             [self.targetViewController dismissViewControllerAnimated:true completion:^{
                 
@@ -384,15 +407,16 @@
             break;
         case UIGestureRecognizerStateChanged: {
             
-            [self.animator.interactiveAnimator updateInteractiveTransition:normalizedRatio];
+            [self.interactiveAnimator.interactiveAnimator updateInteractiveTransition:normalizedRatio];
         }
             break;
         case UIGestureRecognizerStateEnded: {
             if (gr.velocity < 0) {//(normalizedRatio > 0.05) {
-                [self.animator.interactiveAnimator finishInteractiveTransition];
+                [self.interactiveAnimator.interactiveAnimator finishInteractiveTransition];
+                [gr.view removeGestureRecognizer:gr];
             }
             else {
-                [self.animator.interactiveAnimator cancelInteractiveTransition];
+                [self.interactiveAnimator.interactiveAnimator cancelInteractiveTransition];
             }
         }
             break;
@@ -414,7 +438,7 @@
     switch (gr.state) {
         case UIGestureRecognizerStateBegan: {
 //            [self.delegate stateOfInteractionChangedToBeInteractive:YES];
-            self.animator.interactive = YES;
+            self.interactiveAnimator.interactive = YES;
             
             [self.targetViewController dismissViewControllerAnimated:true completion:^{
                 
@@ -427,15 +451,16 @@
             // Moving to the right, the animation proceed, while moving to the right it is reverse played
             CGFloat animationRatio = (location.x-10) / CGRectGetWidth([self.targetViewController.view window].bounds);
 //            NSLog(@"Ratio : %f", animationRatio);
-            [self.animator.interactiveAnimator updateInteractiveTransition:MAX(0, animationRatio)];
+            [self.interactiveAnimator.interactiveAnimator updateInteractiveTransition:MAX(0, animationRatio)];
         }
             break;
         case UIGestureRecognizerStateEnded: {
             if (velocity.x > 0) {
-                [self.animator.interactiveAnimator finishInteractiveTransition];
+                [self.interactiveAnimator.interactiveAnimator finishInteractiveTransition];
+                [gr.view removeGestureRecognizer:gr];
             }
             else {
-                [self.animator.interactiveAnimator cancelInteractiveTransition];
+                [self.interactiveAnimator.interactiveAnimator cancelInteractiveTransition];
             }
             
         }
@@ -449,7 +474,7 @@
 #pragma mark - UIGestureRecognizerDelegate
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    CGPoint touch = [self.targetViewController.view convertPoint:[gestureRecognizer locationInView:self.targetViewController.view.window] fromView:self.targetViewController.view.window];
+    CGPoint touch = [self.targetViewController.view convertPoint:[gestureRecognizer locationInView:self.targetViewController.view.window] fromView:self.targetViewController.view];
     
     
     if (!CGRectContainsPoint(self.rectForPullPanGestureToStart, touch)) {

@@ -281,4 +281,14 @@
     return outputImage;
 }
 
+
+
+-(UIImage *)applyLightEffectWithColor:(UIColor *)color
+{
+    
+    return [self applyBlurWithRadius:30 tintColor:color saturationDeltaFactor:1.8 maskImage:nil];
+}
+
+
+
 @end
