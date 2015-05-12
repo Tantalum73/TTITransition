@@ -1,7 +1,7 @@
 TTITransition
 =============
 
-Modal (interactive) transition between ViewControllers – Easy and beautifull.
+Modal and interactive transition between ViewControllers – Easy to integrate and aesthetic.
 
 ###NEW: Interactive Transitioning###
 See below for details.
