@@ -55,6 +55,10 @@
 
 -(void)viewDidLayoutSubviews {
     _backgroundGradient.frame = self.view.bounds;
+    
+    TTITransitioningDelegate *transDelegate = (TTITransitioningDelegate *)self.transitioningDelegate;
+    
+    transDelegate.rectForPanGestureToStart = CGRectMake(0, 0, 100, 100);
 }
 - (void)viewDidAppear:(BOOL)animated {
 

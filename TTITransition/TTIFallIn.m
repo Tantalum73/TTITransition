@@ -58,16 +58,23 @@
         [inView insertSubview:_backgroundView aboveSubview:fromView];
         [fromView removeFromSuperview];
         
+        [_backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [inView addConstraints:[super constraintsForBackgroundView:_backgroundView]];
         
         if(CGSizeEqualToSize(self.sizeOfToViewController, CGSizeZero)) {
             self.sizeOfToViewController = CGSizeMake(300, 200);
         }
-        toView.frame = CGRectMake(inView.bounds.origin.x + (inView.bounds.size.width - self.sizeOfToViewController.width) / 2, -self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
+//        toView.frame = CGRectMake(inView.bounds.origin.x + (inView.bounds.size.width - self.sizeOfToViewController.width) / 2, -self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
         
-       
+        
         [self applyShadowEffectToView:toView];
         
         [inView addSubview:toView];
+        
+        [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [inView addConstraints:[self constraintsForPresentedView:toView inView:inView withSize:self.sizeOfToViewController]];
+        
+        toView.center = CGPointMake(toView.center.x, inView.center.y - (inView.bounds.size.height / 2) - self.sizeOfToViewController.height);
         
         toView.layer.zPosition = self.sizeOfToViewController.height / 1.7;//must be grater than sizeOfToViewController.height / 2
         CATransform3D rotation =CATransform3DMakeRotation(M_PI/2.7, 1.0, 0, 0);
@@ -93,11 +100,12 @@
     else {
         [inView insertSubview:toView atIndex:0];
         [inView addSubview:fromView];
-        fromView.alpha = 1;
+//        fromView.alpha = 1;
         
          [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
             
-            fromView.center = CGPointMake(self.toPoint.x, self.toPoint.y - fromView.frame.size.height / 1.5 );
+             fromView.transform = CGAffineTransformMakeTranslation(0, -inView.bounds.size.height / 2 - fromView.frame.size.height / 2);
+//             fromView.center = CGPointMake(self.toPoint.x, self.toPoint.y);//CGPointMake(self.toPoint.x, self.toPoint.y - fromView.frame.size.height / 1.5 );
             
             _backgroundView.alpha =0;
              
@@ -241,6 +249,17 @@
     return 0.45;
 }
 
+-(NSArray *)constraintsForPresentedView:(UIView *)presented inView:(UIView *)inView withSize:(CGSize) size {
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:inView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+    
+    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:inView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+    
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:size.width];
+    
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:size.height];
+    
+    return @[centerX, centerY, height, width];
+}
 
 
 //-(void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator {

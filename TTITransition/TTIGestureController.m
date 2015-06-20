@@ -242,6 +242,7 @@
 }
 -(void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator {
     [self.targetViewController dismissViewControllerAnimated:YES completion:nil];
+    self.targetViewController.view.alpha = 0;
     [self.interactiveAnimator.context finishInteractiveTransition];
     //                    [self.animator.context completeTransition:YES];
     
