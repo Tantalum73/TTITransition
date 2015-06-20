@@ -11,6 +11,7 @@
 
 @interface DetailViewController () {
     CGRect _rectForDismissGesture;
+    CAGradientLayer *_backgroundGradient;
 }
 
 @end
@@ -41,17 +42,20 @@
 
     
     
-    CAGradientLayer *gradient = [[CAGradientLayer alloc] init];
-    gradient.frame = self.view.frame;
-    gradient.colors = @[(id)[UIColor colorWithRed:236.0/255.0 green:111.0/255.0 blue:102.0/255.0 alpha:1].CGColor, (id)[UIColor colorWithRed:243.0/255.0 green:161.0/255.0 blue:131.0/255.0 alpha:1].CGColor];
+    _backgroundGradient = [[CAGradientLayer alloc] init];
+    _backgroundGradient.frame = self.view.frame;
+    _backgroundGradient.colors = @[(id)[UIColor colorWithRed:236.0/255.0 green:111.0/255.0 blue:102.0/255.0 alpha:1].CGColor, (id)[UIColor colorWithRed:243.0/255.0 green:161.0/255.0 blue:131.0/255.0 alpha:1].CGColor];
     
-    [self.view.layer insertSublayer:gradient atIndex:0];
+    [self.view.layer insertSublayer:_backgroundGradient atIndex:0];
     self.view.clipsToBounds = YES;
     
     //just a question of taste...
 //    self.view.layer.cornerRadius = 10;
 }
 
+-(void)viewDidLayoutSubviews {
+    _backgroundGradient.frame = self.view.bounds;
+}
 - (void)viewDidAppear:(BOOL)animated {
 
     //setting the rectForPanGestureToStart when everything is layed out

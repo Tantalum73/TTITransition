@@ -25,4 +25,6 @@
 
 -(void)applyBorderToView:(UIView *)view;
 -(void)applyShadowEffectToView:(UIView *)view;
+
+-(NSArray *)constraintsForBackgroundView:(UIView *)view;
 @end

@@ -27,6 +27,8 @@
 	UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 	UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 	
+    
+    
     UIView *toView;
     UIView *fromView;
     if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
@@ -65,6 +67,8 @@
         
         [inView insertSubview:_blurredBackgroundView belowSubview:toView];
 
+        [_blurredBackgroundView setTranslatesAutoresizingMaskIntoConstraints:false];
+        [inView addConstraints:[super constraintsForBackgroundView:_blurredBackgroundView]];
 
          UIView *toShot = [toView snapshotViewAfterScreenUpdates:YES];
 

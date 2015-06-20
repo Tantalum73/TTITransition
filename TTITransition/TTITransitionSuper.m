@@ -50,4 +50,15 @@
     view.layer.shadowColor = [UIColor blackColor].CGColor;
     view.layer.shadowOffset = CGSizeMake(3, 3);
 }
+
+-(NSArray *)constraintsForBackgroundView:(UIView *)view {
+    NSDictionary *views = @{@"view": view};
+    
+    NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:0 metrics:nil views:views];
+    NSArray *horizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:0 metrics:nil views:views];
+    
+    NSArray *entireConstraints = [vertical arrayByAddingObjectsFromArray:horizontal];
+    return entireConstraints;
+    
+}
 @end
