@@ -27,4 +27,5 @@
 -(void)applyShadowEffectToView:(UIView *)view;
 
 -(NSArray *)constraintsForBackgroundView:(UIView *)view;
+-(NSArray *)constraintsForPresentedView:(UIView *)presented inView:(UIView *)inView withSize:(CGSize) size;
 @end

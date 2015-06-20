@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A13209C71AC01A6D00D054AD /* TTITransitionSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = A13209C61AC01A6D00D054AD /* TTITransitionSuper.m */; };
+		A13B5D401B35B62C008DC5CA /* TTITransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */; };
 		A16CCC1919E86D4E00717793 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC1819E86D4E00717793 /* main.m */; };
 		A16CCC1C19E86D4E00717793 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC1B19E86D4E00717793 /* AppDelegate.m */; };
 		A16CCC1F19E86D4E00717793 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC1E19E86D4E00717793 /* ViewController.m */; };
@@ -43,6 +44,8 @@
 /* Begin PBXFileReference section */
 		A13209C51AC01A6D00D054AD /* TTITransitionSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITransitionSuper.h; sourceTree = "<group>"; };
 		A13209C61AC01A6D00D054AD /* TTITransitionSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITransitionSuper.m; sourceTree = "<group>"; };
+		A13B5D3E1B35B62C008DC5CA /* TTITransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITransitionController.h; sourceTree = "<group>"; };
+		A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITransitionController.m; sourceTree = "<group>"; };
 		A16CCC1319E86D4E00717793 /* TTITransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTITransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16CCC1719E86D4E00717793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A16CCC1819E86D4E00717793 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 		A1F241611AA991E20046268B /* TTITransition */ = {
 			isa = PBXGroup;
 			children = (
+				A13B5D3E1B35B62C008DC5CA /* TTITransitionController.h */,
+				A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */,
 				A1F241621AA991E20046268B /* TTIHangIn.h */,
 				A1F241631AA991E20046268B /* TTIHangIn.m */,
 				A1E17CC71AC52E1500A4E116 /* TTIFallIn.h */,
@@ -312,6 +317,7 @@
 				A18F854E1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m in Sources */,
 				A1E17CC91AC52E1500A4E116 /* TTIFallIn.m in Sources */,
 				A1F241751AA991E20046268B /* TTITransitionFold.m in Sources */,
+				A13B5D401B35B62C008DC5CA /* TTITransitionController.m in Sources */,
 				A1F2417A1AA991E20046268B /* TTITransitionSlide.m in Sources */,
 				A1F241791AA991E20046268B /* TTITransitionScale.m in Sources */,
 				A1F2417B1AA991E20046268B /* TTITransitionSpinn.m in Sources */,

@@ -61,4 +61,17 @@
     return entireConstraints;
     
 }
+
+-(NSArray *)constraintsForPresentedView:(UIView *)presented inView:(UIView *)inView withSize:(CGSize) size {
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:inView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+    
+    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:inView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+    
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:size.width];
+    
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:size.height];
+    
+    return @[centerX, centerY, height, width];
+}
+
 @end

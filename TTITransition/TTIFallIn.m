@@ -55,12 +55,6 @@
         
         _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
         _backgroundView.frame = fromView.frame;
-        [inView insertSubview:_backgroundView aboveSubview:fromView];
-        [fromView removeFromSuperview];
-        
-        [_backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [inView addConstraints:[super constraintsForBackgroundView:_backgroundView]];
-        
         if(CGSizeEqualToSize(self.sizeOfToViewController, CGSizeZero)) {
             self.sizeOfToViewController = CGSizeMake(300, 200);
         }
@@ -74,7 +68,7 @@
         [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [inView addConstraints:[self constraintsForPresentedView:toView inView:inView withSize:self.sizeOfToViewController]];
         
-        toView.center = CGPointMake(toView.center.x, inView.center.y - (inView.bounds.size.height / 2) - self.sizeOfToViewController.height);
+        toView.center = CGPointMake(fromView.center.x, inView.frame.origin.y - self.sizeOfToViewController.height);
         
         toView.layer.zPosition = self.sizeOfToViewController.height / 1.7;//must be grater than sizeOfToViewController.height / 2
         CATransform3D rotation =CATransform3DMakeRotation(M_PI/2.7, 1.0, 0, 0);
@@ -92,7 +86,7 @@
         } completion:^(BOOL finished) {
             toView.layer.transform = CATransform3DIdentity;
             toView.layer.anchorPoint = CGPointMake(0.5, 0.5);
-            toView.layer.position = newCenter;// inView.layer.position;
+//            toView.layer.position = newCenter;// inView.layer.position;
             [transitionContext completeTransition:YES];
             
         }];
@@ -249,17 +243,6 @@
     return 0.45;
 }
 
--(NSArray *)constraintsForPresentedView:(UIView *)presented inView:(UIView *)inView withSize:(CGSize) size {
-    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:inView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
-    
-    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:inView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
-    
-    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:size.width];
-    
-    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:presented attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1 constant:size.height];
-    
-    return @[centerX, centerY, height, width];
-}
 
 
 //-(void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator {

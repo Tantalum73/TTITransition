@@ -11,7 +11,7 @@
 #import "TTIGestureController.h"
 
 /*
-    Set type of transition: overlay or transition that covers entire screen
+    Set type of transition.
 */
 typedef NS_ENUM(NSInteger, TTITransitionType) {
     TTITransitionTypeFull,

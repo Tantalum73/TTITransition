@@ -13,7 +13,10 @@
 @property (nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 @end
 
-@implementation TTIHangIn
+@implementation TTIHangIn {
+    /// Snapshot of the presenting ViewController, can be blurred or darkened.
+    UIView *_backgroundView;
+}
 
 -(instancetype)initWithSizeOfToViewController:(CGSize)size {
     if (self = [super init]) {
@@ -44,20 +47,26 @@
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:inView];
     
     if(self.open) {
-        UIView  *fromShot = [fromView snapshotViewAfterScreenUpdates:YES];
+        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
 
-        [inView insertSubview:fromShot aboveSubview:fromView];
-        [fromView removeFromSuperview];
+//        [inView insertSubview:_backgroundView aboveSubview:fromView];
+//        
+//        [_backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//        [inView addConstraints:[self constraintsForBackgroundView:_backgroundView]];
         
-        
-//        [inView addSubview:fromView];
+
 
         if(CGSizeEqualToSize(self.sizeOfToViewController, CGSizeZero)) {
             self.sizeOfToViewController = CGSizeMake(300, 200);
         }
-        toView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.origin.y- self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
+//        toView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.origin.y- self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
         
         [inView addSubview:toView];
+        [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        
+        [inView addConstraints:[self constraintsForPresentedView:toView inView:inView withSize:self.sizeOfToViewController]];
+        
+        toView.center = CGPointMake(toView.center.x, inView.frame.origin.y - self.sizeOfToViewController.height/2);
         
         
         UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[toView]];
@@ -72,7 +81,6 @@
         snap.action = ^{
             if (toView.center.x == inView.center.x && toView.center.y == inView.center.y) {
                 [self.animator removeAllBehaviors];
-                self.animator.delegate = nil;
                 [transitionContext completeTransition:YES];
             }
         };
@@ -91,13 +99,17 @@
         [dynamic addAngularVelocity:1 forItem:fromView];
         [dynamic setAngularResistance:3];
         
+        [inView insertSubview:toView atIndex:0];
+        
         // when the view no longer intersects with its superview, go ahead and remove it
         
         dynamic.action = ^{
             if (!CGRectIntersectsRect(inView.bounds,fromView.frame)) {
  
                 [self.animator removeAllBehaviors];
-                self.animator.delegate = nil;
+                
+                [_backgroundView removeFromSuperview];
+                
                 [transitionContext completeTransition:YES];
             }
         };

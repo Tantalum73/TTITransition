@@ -23,29 +23,32 @@
     }
     backgroundView.backgroundColor = self.colorForBackgroundView;
     
-    [inView insertSubview:backgroundView atIndex:0];
-    
     
     UIView *toView;
     UIView *fromView;
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
-    }
-    else {
+
         toView = [toVC view];
         fromView = [fromVC view];
-    }
     
-    [inView addSubview:fromView];
+    
+    [inView insertSubview:backgroundView atIndex:0];
+
+    [backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [inView addConstraints:[self constraintsForBackgroundView:backgroundView]];
+    
+    
     fromView.alpha = 1;
     toView.alpha = 0;
-    [inView insertSubview:toView aboveSubview:backgroundView];
     
+    [inView insertSubview:fromView aboveSubview:backgroundView];
+    [inView insertSubview:toView aboveSubview:fromView];
     
     CGAffineTransform scale = CGAffineTransformMakeScale(1.5, 1.5);
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
+    
+    toView.transform = scale;
+    
+    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
         
         fromView.transform = scale;
         fromView.alpha = 0;
@@ -53,9 +56,8 @@
         
     }];
     
-    toView.transform = scale;
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2 delay:[self transitionDuration:transitionContext]/2 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
+    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:[self transitionDuration:transitionContext]/2.0 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
         
         toView.alpha = 1;
         toView.transform = CGAffineTransformIdentity;
@@ -73,7 +75,8 @@
         }
         else {
             toView.transform = CGAffineTransformIdentity;
-            [fromView removeFromSuperview];
+            toView.alpha = 1;
+//            [fromView removeFromSuperview];
             [backgroundView removeFromSuperview];
             [transitionContext completeTransition:YES];
         }
