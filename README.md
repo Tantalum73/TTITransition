@@ -3,7 +3,7 @@ TTITransition
 
 Modal and interactive transition between ViewControllers – Easy to integrate and aesthetic.
 
-###NEW: Interactive Transitioning###
+###NEW: Interactive Transitioning
 See below for details.
 
 
@@ -11,83 +11,109 @@ See below for details.
 
 Following transitions are implemented: "slide", "overlay", "full", "fold", "spinn", "scale" and "hang into", perfect for AlertViewish views – more are about to come.
 
-##Slide Transition:##
+##Slide Transition:
 ![Slide Transition Screencast](/Images/TTITransitionSlide.gif?raw=true "Slide Transition Screencast" = 200px)
 
-##Overlay Transition:##
+##Overlay Transition:
 ![Overlay Transition Screencast](/Images/TTITransitionOverlay.gif?raw=true "Overlay Transition Screencast"  = 200px) 
 
 
-##Fold Transition:##
+##Fold Transition:
 ![Fold Transition Screencast](/Images/TTITransitionFold.gif?raw=true "Fold Transition Screencast" loop=infinite  = 200px)
 
-##Hang Into Transition:##
+##Hang Into Transition:
 ![Hang In Transition Screencast](/Images/TTITransitionHangInto.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 200px)
 
-##Fall Into Transition:##
+##Fall Into Transition:
 ![Fall In Transition Screencast](/Images/TTITransitionFallInto.gif?raw=true "Fall Into Transition Screencast" loop=infinite  = 250px)
 
-##Full Transition:##
+##Full Transition:
 ![Full Transition Screencast](/Images/TTITransitionFull.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 
-##Scale Transition:##
+##Scale Transition:
 ![Scale Transition Screencast](/Images/TTITransitionScale.gif?raw=true "Scale Transition Screencast" loop=infinite  = 220px)
 
-##Spinn Transition:##
+##Spinn Transition:
 ![Spinn Transition Screencast](/Images/TTITransitionSpinn.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 220px)
 
 
 
 
-##How to use##
+##How to use
+**NEW way to interacti with TTITranition!** <br>
+First of all, you want to ```#import "TTITransitionController.h"```.<br>
+The class you will interact with is called ```TTITransitionController```.
+It handels the configuration process of ```TTITransitioningDelegate``` for you.
+<br>Your job is to create and hold (**during the entire presentation**) an instance of ```TTITransitionController``` by calling its designated initializer<br>
+
+```Objective-C
+-initWithPresentedViewController:(UIViewController *) presentedViewController
+transitionType:(TTITransitionType) transitionType
+fromPoint:(CGPoint) fromPoint 
+toPoint:(CGPoint) toPoint 
+withSize:(CGSize) sizeOfPresentedViewController
+interactive:(BOOL)interactive
+gestureType:(TTIGestureRecognizerType) gestureType
+rectToStartGesture:(CGRect) rectForPanGestureToStart
+```
+
+
+Every ```CGPoint``` that you not want to use, can be ```CGPointZero```, a not needed```CGRect``` can be ```CGRectZero``` and of course if you do not want to set a custom size, you can also pass ```CGSizeZero```.
+
+During the init-process, ```TTITransitionController``` will set the ```transitioningDelegate``` of the presented ```UIViewController``` for you.
+
+<br>
+
+**OLD:**<br>
 Just set the transitioningDelegate of the presented ViewController to an instance of TTITransitioningDelegate (import it with `#import "TTITransitioningDelegate.h"`) and let the segue-magic happen (or present the ViewController manually using ```presentViewController:animated:```).
 
-###Interaction###
-If you want you presented ViewController to be dismissable by a gesture, just set the ```interactive``` property of your ```TTITransitioningDelegate``` to ```YES``` and chose the ```UIGestureRecognizer```of your convenience just by setting the ```gestureType``` property.
+###Interaction
+If you want you presented ViewController to be dismissable by a gesture, just set the ```interactive``` argument when instanciating the ```TTITransitionController``` to ```YES``` and chose the ```UIGestureRecognizer```of your convenience just by setting the ```gestureType``` argument.
 
 You can chose between the following gestures:
 * ```TTIGestureRecognizerPinch``` a pinch gesture
 * ```TTIGestureRecognizerLeftEdge``` a swipe gesture form the left edge of the screen (might sound familiar if you think about a UINavigationController)
 * ```TTIGestureRecognizerRightEdge``` the same as the previous one, from the right edge
-* ```TTIGestureRecognizerPullUpDown``` and ```TTIGestureRecognizerPullLeftRight``` a pan gesture – When you have specified the ```rectForPanGestureToStart``` property, the user can dismiss the new ViewController by using a pan gesture starting in the specified ```CGRect```.
+* ```TTIGestureRecognizerPullUpDown``` and ```TTIGestureRecognizerPullLeftRight``` a pan gesture – When you have specified the ```rectForPanGestureToStart``` argument, the user can dismiss the new ViewController by using a pan gesture starting in the specified ```CGRect```.
 * ```TTIGestureRecognizerPanToEdge``` a pan gesture that slides the ViewController to the ```toPoint``` that you have specified.
 
 That is all you have to do. Just set the two properties and you are good to go. Your ViewController will be dismissable by the gesture of your choice.
 
-Also make sure that the property, holding the TTITransitioningDelegate instance, is **not released** as long as the new ViewController is presented!
+Also make sure that the property, holding the ```TTITransitionController``` instance, is **not released** as long as the new ViewController is presented!
 You can do so, by using a property or an local instance variable.
 
 
 ```Objective-C
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *destination = segue.destinationViewController;
+     UINavigationController *destination = segue.destinationViewController;
     
-    //Make sure this property is not released immediately!
-    //For example use a property or instance variable!
-    _transitionDelegate = [TTITransitioningDelegate new];
-    _transitionDelegate.fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
+    
+    CGPoint fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
+    
+    
     
     if([segue.identifier isEqualToString:@"ShowFull"]) {
-        _transitionDelegate.transitionType = TTITransitionTypeFull;
-        _transitionDelegate.interactive = YES;
-        _transitionDelegate.gestureType = TTIGestureRecognizerPinch;
+        _transitionController = [[TTITransitionController alloc]
+                                 initWithPresentedViewController:destination
+                                 transitionType:TTITransitionTypeFull
+                                 fromPoint:fromPoint
+                                 toPoint:CGPointZero
+                                 withSize:CGSizeZero
+                                 interactive:YES
+                                 gestureType:TTIGestureRecognizerPinch
+                                 rectToStartGesture:CGRectZero];
     }
-    else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
-        _transitionDelegate.transitionType = TTITransitionTypeOverlay;
-        _transitionDelegate.interactive = YES;
-        _transitionDelegate.gestureType = TTIGestureRecognizerPullUpDown;
-        //Example for a toPoint
-        _transitionDelegate.toPoint = CGPointMake(200, 200);
-        
-        //Set it here or in the presented UIViewController
-        _transitionDelegate.rectForPanGestureToStart = CGRectMake(0, 0, 100, 100);
-    }
-     else if([segue.identifier isEqualToString:@"ShowFallIn"]) {
-        _transitionDelegate.transitionType = TTITransitionTypeFallIn;
-        _transitionDelegate.interactive = YES;
-        _transitionDelegate.gestureType = TTIGestureRecognizerPanToEdge;
-        _transitionDelegate.toPoint = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, 0);
-    }
+    else if([segue.identifier isEqualToString:@"ShowFallIn"]) {
+        _transitionController = [[TTITransitionController alloc]
+                                 initWithPresentedViewController:destination
+                                 transitionType:TTITransitionTypeFallIn
+                                 fromPoint:fromPoint
+                                 toPoint:CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, 0)
+                                 withSize:CGSizeZero
+                                 interactive:YES
+                                 gestureType:TTIGestureRecognizerPanToEdge
+                                 rectToStartGesture:CGRectZero];
+    }   
     //... just set the transition and gesture type you want
     destination.transitioningDelegate = _transitionDelegate;
 }
@@ -95,13 +121,13 @@ You can do so, by using a property or an local instance variable.
 ```
 
 **Tip:**
-If you want to see the actual ```tintColor``` in the performing transition, you can set this property in the ```viewDidLoad()``` of the newly presented ViewController.
+If you want to see the actual ```tintColor``` in the performing transition, you can set this property in the ```viewDidLoad()``` of the newly presented ViewController *(see the sample project for further details)*
 
 ##Customization##
-You can change the point from which the new ViewController fades in by setting the `_transitionDelegate.fromPoint` property to the CGPoint you like.
+You can change the point from which the new ViewController fades in by setting the `fromPoint` property to the CGPoint you like.
 
-The ```_transitionDelegate.toPoint``` specified where the presented ViewController will fade out to. 
-If you want them to fade into a different direction just change the `_transitionDelegate.toPoint` property before the ViewController is dismissed.
+The ```toPoint``` specified where the presented ViewController will fade out to. 
+If you want them to fade into a different direction just change the `toPoint` argument before the ViewController is dismissed.
 
 You can also change the ```UIGestureRecognizer```type by setting the desired ```gestureType```
 ##Related##
