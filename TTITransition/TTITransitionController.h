@@ -19,8 +19,8 @@
                                      fromPoint:(CGPoint) fromPoint toPoint:(CGPoint) toPoint withSize:(CGSize) sizeOfPresentedViewController
                                    interactive:(BOOL)interactive
                                    gestureType:(TTIGestureRecognizerType) gestureType
-                            rectToStartGesture:(CGRect) rectForPanGestureToStart;
-
+                            rectToStartGesture:(CGRect) rectForPanGestureToStart
+NS_DESIGNATED_INITIALIZER;
 
 
 
