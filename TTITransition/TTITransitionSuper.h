@@ -23,9 +23,13 @@
 -(CGPoint)centerOfRect:(CGRect)rect;
 @property (nonatomic) CGPoint toPoint;
 
+
+@property (nonatomic, readwrite) CGFloat widthProportionOfSuperView;
+@property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
+
 -(void)applyBorderToView:(UIView *)view;
 -(void)applyShadowEffectToView:(UIView *)view;
 
 -(NSArray *)constraintsForBackgroundView:(UIView *)view;
--(NSArray *)constraintsForPresentedView:(UIView *)presented inView:(UIView *)inView withSize:(CGSize) size;
+-(NSArray *)constraintsForPresentedView:(UIView *)presented inView:(UIView *)inView widthProportion:(CGFloat) widthRatio heightProportion:(CGFloat) heightRatio;
 @end

@@ -14,12 +14,4 @@
 
 @interface TTIHangIn : TTITransitionSuper
 
-/*
- Defines the size of the ViewController, that should be shown.
- Default size: 200x300.
- */
-@property (nonatomic) CGSize sizeOfToViewController;
-
-
--(instancetype) initWithSizeOfToViewController:(CGSize)size;
 @end

@@ -16,7 +16,10 @@
 -(instancetype)initWithPresentedViewController:(UIViewController *) presentedViewController
 
                                 transitionType:(TTITransitionType) transitionType
-                                     fromPoint:(CGPoint) fromPoint toPoint:(CGPoint) toPoint withSize:(CGSize) sizeOfPresentedViewController
+                                     fromPoint:(CGPoint) fromPoint
+                                       toPoint:(CGPoint) toPoint
+                    widthProportionOfSuperView:(CGFloat) widthProportionOfSuperView
+                   heightProportionOfSuperView:(CGFloat) heightProportionOfSuperView
                                    interactive:(BOOL)interactive
                                    gestureType:(TTIGestureRecognizerType) gestureType
                             rectToStartGesture:(CGRect) rectForPanGestureToStart
@@ -36,7 +39,9 @@ NS_DESIGNATED_INITIALIZER;
  The size, that the new ViewController should have.
  Only works in TTIHangInTransition!
  */
-@property (nonatomic, assign, readonly) CGSize sizeOfPresentedViewController;
+//@property (nonatomic, assign, readonly) CGSize sizeOfPresentedViewController;
+@property (nonatomic, readonly) CGFloat widthProportionOfSuperView;
+@property (nonatomic, readonly) CGFloat heightProportionOfSuperView;
 
 /*
  The type of transition: overlay or transition that covers entire screen

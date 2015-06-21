@@ -83,21 +83,23 @@
         }
             break;
         case TTITransitionTypeHangIn: {
-            CGSize correctSize;
-            if(CGSizeEqualToSize(self.sizeOfPresentedViewController, CGSizeZero)) {
-                 correctSize = CGSizeMake(300, 250);
-            }
-            correctSize = self.sizeOfPresentedViewController;
-            transitionController = [[TTIHangIn alloc] initWithSizeOfToViewController:correctSize];
+//            CGSize correctSize;
+//            if(CGSizeEqualToSize(self.sizeOfPresentedViewController, CGSizeZero)) {
+//                 correctSize = CGSizeMake(300, 250);
+//            }
+//            correctSize = self.sizeOfPresentedViewController;
+//            transitionController = [[TTIHangIn alloc] initWithSizeOfToViewController:correctSize];
+            transitionController = [[TTIHangIn alloc] init];
         }
             break;
         case TTITransitionTypeFallIn: {
             CGSize correctSize;
-            if(CGSizeEqualToSize(self.sizeOfPresentedViewController, CGSizeZero)) {
-                correctSize = CGSizeMake(300, 250);
-            }
-            correctSize = self.sizeOfPresentedViewController;
-            transitionController = [[TTIFallIn alloc] initWithSizeOfToViewController:correctSize];
+//            if(CGSizeEqualToSize(self.sizeOfPresentedViewController, CGSizeZero)) {
+//                correctSize = CGSizeMake(300, 250);
+//            }
+//            correctSize = self.sizeOfPresentedViewController;
+//            transitionController = [[TTIFallIn alloc] initWithSizeOfToViewController:correctSize];
+            transitionController = [[TTIFallIn alloc] init];
         }
             break;
         case TTITransitionTypeSpinn: {
@@ -109,6 +111,17 @@
         }
             break;
     }
+    
+    if (self.widthProportionOfSuperView == 0) {
+        self.widthProportionOfSuperView = 1;
+    }
+    if (self.heightProportionOfSuperView == 0) {
+        self.heightProportionOfSuperView = 1;
+    }
+    transitionController.widthProportionOfSuperView = self.widthProportionOfSuperView;
+    transitionController.heightProportionOfSuperView = self.heightProportionOfSuperView;
+    
+    
     
     transitionController.fromPoint = self.fromPoint;
     transitionController.open = YES;

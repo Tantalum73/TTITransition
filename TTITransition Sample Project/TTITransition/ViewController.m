@@ -42,7 +42,8 @@
                                  transitionType:TTITransitionTypeFull
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
-                                 withSize:CGSizeZero
+                                 widthProportionOfSuperView:1
+                                 heightProportionOfSuperView:1
                                  interactive:YES
                                  gestureType:TTIGestureRecognizerPinch
                                  rectToStartGesture:CGRectZero];
@@ -52,8 +53,9 @@
                                  initWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeOverlay
                                  fromPoint:fromPoint
-                                 toPoint:CGPointMake(200, 200)
-                                 withSize:CGSizeZero
+                                 toPoint:CGPointZero
+                                 widthProportionOfSuperView:0.2
+                                 heightProportionOfSuperView:0.5
                                  interactive:YES gestureType:TTIGestureRecognizerPullUpDown
                                  rectToStartGesture:CGRectMake(0, 0, 100, 100)];
         
@@ -64,7 +66,8 @@
                                  transitionType:TTITransitionTypeSlide
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
-                                 withSize:CGSizeZero
+                                 widthProportionOfSuperView:1
+                                 heightProportionOfSuperView:1
                                  interactive:YES
                                  gestureType:TTIGestureRecognizerLeftEdge
                                  rectToStartGesture:CGRectZero];
@@ -76,7 +79,8 @@
                                  transitionType:TTITransitionTypeFold
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
-                                 withSize:CGSizeZero
+                                 widthProportionOfSuperView:1
+                                 heightProportionOfSuperView:1
                                  interactive:YES
                                  gestureType:TTIGestureRecognizerLeftEdge
                                  rectToStartGesture:CGRectZero];
@@ -88,7 +92,8 @@
                                  transitionType:TTITransitionTypeFallIn
                                  fromPoint:fromPoint
                                  toPoint:CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, 0)
-                                 withSize:CGSizeZero
+                                 widthProportionOfSuperView:0.5
+                                 heightProportionOfSuperView:0.7
                                  interactive:YES
                                  gestureType:TTIGestureRecognizerPanToEdge
                                  rectToStartGesture:CGRectZero];
@@ -100,7 +105,8 @@
                                  transitionType:TTITransitionTypeSpinn
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
-                                 withSize:CGSizeZero
+                                 widthProportionOfSuperView:1
+                                 heightProportionOfSuperView:1
                                  interactive:YES
                                  gestureType:TTIGestureRecognizerPinch
                                  rectToStartGesture:CGRectZero];
@@ -113,7 +119,8 @@
                                  transitionType:TTITransitionTypeScale
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
-                                 withSize:CGSizeZero
+                                 widthProportionOfSuperView:1
+                                 heightProportionOfSuperView:1
                                  interactive:YES
                                  gestureType:TTIGestureRecognizerPinch
                                  rectToStartGesture:CGRectZero];
@@ -126,7 +133,8 @@
                                  transitionType:TTITransitionTypeHangIn
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
-                                 withSize:CGSizeZero
+                                 widthProportionOfSuperView:0.7
+                                 heightProportionOfSuperView:0.5
                                  interactive:YES
                                  gestureType:TTIGestureRecognizerPullUpDown
                                  rectToStartGesture:CGRectZero];

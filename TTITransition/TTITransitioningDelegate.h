@@ -39,7 +39,13 @@ typedef NS_ENUM(NSInteger, TTITransitionType) {
  The size, that the new ViewController should have.
  Only works in TTIHangInTransition!
  */
-@property (nonatomic, assign) CGSize sizeOfPresentedViewController;
+//@property (nonatomic, assign) CGSize sizeOfPresentedViewController;
+
+
+@property (nonatomic, readwrite) CGFloat widthProportionOfSuperView;
+@property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
+
+
 
 /*
  The type of transition: overlay or transition that covers entire screen

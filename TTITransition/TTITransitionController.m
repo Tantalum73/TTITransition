@@ -27,6 +27,9 @@
 
 @property (nonatomic, strong, readwrite) UIViewController *presentedViewController;
 
+@property (nonatomic, readwrite) CGFloat widthProportionOfSuperView;
+@property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
+
 @end
 
 
@@ -37,7 +40,10 @@
 -(instancetype)initWithPresentedViewController:(UIViewController *) presentedViewController
 
                                 transitionType:(TTITransitionType) transitionType
-                                     fromPoint:(CGPoint) fromPoint toPoint:(CGPoint) toPoint withSize:(CGSize) sizeOfPresentedViewController
+                                     fromPoint:(CGPoint) fromPoint
+                                       toPoint:(CGPoint) toPoint
+                    widthProportionOfSuperView:(CGFloat) widthProportionOfSuperView
+                   heightProportionOfSuperView:(CGFloat) heightProportionOfSuperView
                                    interactive:(BOOL)interactive
                                    gestureType:(TTIGestureRecognizerType) gestureType
                             rectToStartGesture:(CGRect) rectForPanGestureToStart {
@@ -47,12 +53,14 @@
         //setting up the internal TTITransitioningDdelegate
         self.ttiTransitioningDelegate = [[TTITransitioningDelegate alloc] init];
         self.ttiTransitioningDelegate.fromPoint = fromPoint;
-        self.ttiTransitioningDelegate.sizeOfPresentedViewController = sizeOfPresentedViewController;
+
         self.ttiTransitioningDelegate.transitionType = transitionType;
         self.ttiTransitioningDelegate.interactive = interactive;
         self.ttiTransitioningDelegate.gestureType = gestureType;
         self.ttiTransitioningDelegate.rectForPanGestureToStart = rectForPanGestureToStart;
         self.ttiTransitioningDelegate.toPoint = toPoint;
+        self.ttiTransitioningDelegate.widthProportionOfSuperView = widthProportionOfSuperView;
+        self.ttiTransitioningDelegate.heightProportionOfSuperView = heightProportionOfSuperView;
         
         //setting the internal TTITransitioningDelagte as transitioningDelegate of the presented ViewController
         presentedViewController.transitioningDelegate = self.ttiTransitioningDelegate;
@@ -61,19 +69,21 @@
         
         if (transitionType == TTITransitionTypeFold || transitionType == TTITransitionTypeSlide || transitionType == TTITransitionTypeScale || transitionType == TTITransitionTypeOverlay) {
             
-            presentedViewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            presentedViewController.modalPresentationStyle = UIModalPresentationFullScreen;
         }
+        
+        NSLog(@"Width Ratio: %f, HeightRatio: %f", widthProportionOfSuperView, heightProportionOfSuperView);
         
         //storing the attributes
         self.presentedViewController = presentedViewController;
         self.transitionType = transitionType;
         self.fromPoint = fromPoint;
         self.toPoint = toPoint;
-        self.sizeOfPresentedViewController = sizeOfPresentedViewController;
         self.interactive = interactive;
         self.gestureType = gestureType;
         self.rectForPanGestureToStart = rectForPanGestureToStart;
-        
+        self.widthProportionOfSuperView = widthProportionOfSuperView;
+        self.heightProportionOfSuperView = heightProportionOfSuperView;
         
     
         return self;

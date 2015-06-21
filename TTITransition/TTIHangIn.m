@@ -18,13 +18,6 @@
     UIView *_backgroundView;
 }
 
--(instancetype)initWithSizeOfToViewController:(CGSize)size {
-    if (self = [super init]) {
-        self.sizeOfToViewController = size;
-    }
-    
-    return self;
-}
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *inView = [transitionContext containerView];
@@ -49,24 +42,19 @@
     if(self.open) {
         _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
 
-//        [inView insertSubview:_backgroundView aboveSubview:fromView];
-//        
-//        [_backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
-//        [inView addConstraints:[self constraintsForBackgroundView:_backgroundView]];
         
-
-
-        if(CGSizeEqualToSize(self.sizeOfToViewController, CGSizeZero)) {
-            self.sizeOfToViewController = CGSizeMake(300, 200);
-        }
-//        toView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.origin.y- self.sizeOfToViewController.height, self.sizeOfToViewController.width, self.sizeOfToViewController.height);
         
         [inView addSubview:toView];
         [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
         
-        [inView addConstraints:[self constraintsForPresentedView:toView inView:inView withSize:self.sizeOfToViewController]];
+        [inView addConstraints:[self constraintsForPresentedView:toView inView:inView widthProportion:self.widthProportionOfSuperView heightProportion:self.heightProportionOfSuperView]];
         
-        toView.center = CGPointMake(toView.center.x, inView.frame.origin.y - self.sizeOfToViewController.height/2);
+        [inView layoutIfNeeded];
+        
+        
+        CGSize sizeOfToViewController = toView.frame.size;
+        
+        toView.center = CGPointMake(toView.center.x, inView.frame.origin.y - sizeOfToViewController.height/2);
         
         
         UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[toView]];

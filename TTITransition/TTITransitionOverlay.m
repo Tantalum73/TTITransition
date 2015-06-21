@@ -69,6 +69,12 @@
 
         [_blurredBackgroundView setTranslatesAutoresizingMaskIntoConstraints:false];
         [inView addConstraints:[super constraintsForBackgroundView:_blurredBackgroundView]];
+        
+        
+        [inView layoutIfNeeded];
+        
+        CGSize sizeOfToViewController = toView.frame.size;
+        
 
          UIView *toShot = [toView snapshotViewAfterScreenUpdates:YES];
 
