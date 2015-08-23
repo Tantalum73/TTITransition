@@ -41,20 +41,33 @@
     toView.alpha = 0;
     
     [inView insertSubview:fromView aboveSubview:backgroundView];
-    [inView insertSubview:toView aboveSubview:fromView];
+    [inView insertSubview:toView belowSubview:fromView];
     
-    CGAffineTransform scale = CGAffineTransformMakeScale(1.5, 1.5);
+    toView.alpha = 0;
+    
+    CGAffineTransform scale = CGAffineTransformMakeScale(1.7, 1.7);
     
     
     toView.transform = scale;
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
+    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 options:
+     UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
         
         fromView.transform = scale;
         fromView.alpha = 0;
+        
+        
     } completion:^(BOOL finished) {
         
     }];
+//    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 usingSpringWithDamping:5.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
+//        
+//        fromView.transform = scale;
+//        fromView.alpha = 0.5;
+//    } completion:^(BOOL finished) {
+//        
+//    }];
     
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:[self transitionDuration:transitionContext]/2.0 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
