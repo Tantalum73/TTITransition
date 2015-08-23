@@ -7,7 +7,10 @@
 //
 
 #import "TTITransitionController.h"
+
+
 @interface TTITransitionController () <UIDynamicAnimatorDelegate>
+NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readwrite, strong) TTITransitioningDelegate *ttiTransitioningDelegate;
 
@@ -25,7 +28,7 @@
 
 @property (nonatomic, readwrite) CGPoint toPoint;
 
-@property (nonatomic, strong, readwrite) UIViewController *presentedViewController;
+@property (nonatomic, strong, readwrite) UIViewController* _Nonnull presentedViewController;
 
 @property (nonatomic, readwrite) CGFloat widthProportionOfSuperView;
 @property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
@@ -37,18 +40,22 @@
 }
 
 
--(instancetype)initWithPresentedViewController:(UIViewController *) presentedViewController
+-(instancetype _Nullable)initWithPresentedViewController:(UIViewController* _Nullable) presentedViewController
 
-                                transitionType:(TTITransitionType) transitionType
-                                     fromPoint:(CGPoint) fromPoint
-                                       toPoint:(CGPoint) toPoint
-                    widthProportionOfSuperView:(CGFloat) widthProportionOfSuperView
-                   heightProportionOfSuperView:(CGFloat) heightProportionOfSuperView
-                                   interactive:(BOOL)interactive
-                                   gestureType:(TTIGestureRecognizerType) gestureType
-                            rectToStartGesture:(CGRect) rectForPanGestureToStart {
+                                          transitionType:(TTITransitionType) transitionType
+                                               fromPoint:(CGPoint) fromPoint
+                                                 toPoint:(CGPoint) toPoint
+                              widthProportionOfSuperView: (CGFloat) widthProportionOfSuperView
+                             heightProportionOfSuperView: (CGFloat) heightProportionOfSuperView
+                                             interactive:(BOOL)interactive
+                                             gestureType:(TTIGestureRecognizerType) gestureType
+                                      rectToStartGesture:(CGRect) rectForPanGestureToStart {
     
     if (self = [super init]) {
+        
+        if (!presentedViewController) {
+            return nil;
+        }
         
         //setting up the internal TTITransitioningDdelegate
         self.ttiTransitioningDelegate = [[TTITransitioningDelegate alloc] init];
@@ -67,12 +74,13 @@
         
         presentedViewController.modalPresentationStyle = UIModalPresentationCustom;
         
+        
         if (transitionType == TTITransitionTypeFold || transitionType == TTITransitionTypeSlide || transitionType == TTITransitionTypeScale || transitionType == TTITransitionTypeOverlay) {
             
             presentedViewController.modalPresentationStyle = UIModalPresentationFullScreen;
         }
         
-        NSLog(@"Width Ratio: %f, HeightRatio: %f", widthProportionOfSuperView, heightProportionOfSuperView);
+//        NSLog(@"Width Ratio: %f, HeightRatio: %f", widthProportionOfSuperView, heightProportionOfSuperView);
         
         //storing the attributes
         self.presentedViewController = presentedViewController;
@@ -92,5 +100,5 @@
     return nil;
 }
 
-
+NS_ASSUME_NONNULL_END
 @end

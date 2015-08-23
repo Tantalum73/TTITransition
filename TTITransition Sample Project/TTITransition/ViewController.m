@@ -11,7 +11,6 @@
 
 @interface ViewController () {
     //Important to store this variable as long as the new ViewController is presented.
-//    TTITransitioningDelegate *_transitionDelegate;
     TTITransitionController *_transitionController;
 }
 
@@ -33,7 +32,7 @@
     
     
     CGPoint fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
-    
+
     
     
     if([segue.identifier isEqualToString:@"ShowFull"]) {
@@ -140,7 +139,8 @@
                                  rectToStartGesture:CGRectZero];
         
     }
-    
+
+
 }
 
 @end

@@ -12,14 +12,14 @@
 
 
 @interface TTITransitionController : NSObject 
-
--(instancetype)initWithPresentedViewController:(UIViewController *) presentedViewController
+NS_ASSUME_NONNULL_BEGIN
+-(instancetype _Nullable)initWithPresentedViewController:(UIViewController* _Nullable) presentedViewController
 
                                 transitionType:(TTITransitionType) transitionType
                                      fromPoint:(CGPoint) fromPoint
                                        toPoint:(CGPoint) toPoint
-                    widthProportionOfSuperView:(CGFloat) widthProportionOfSuperView
-                   heightProportionOfSuperView:(CGFloat) heightProportionOfSuperView
+                    widthProportionOfSuperView: (CGFloat) widthProportionOfSuperView
+                   heightProportionOfSuperView: (CGFloat) heightProportionOfSuperView
                                    interactive:(BOOL)interactive
                                    gestureType:(TTIGestureRecognizerType) gestureType
                             rectToStartGesture:(CGRect) rectForPanGestureToStart
@@ -27,9 +27,9 @@ NS_DESIGNATED_INITIALIZER;
 
 
 
-@property (nonatomic, readonly, strong) TTITransitioningDelegate *ttiTransitioningDelegate;
+@property (nonatomic, readonly, strong) TTITransitioningDelegate* _Nullable ttiTransitioningDelegate;
 
-@property (nonatomic, strong) Class<UIObjectRestoration> objectRestorationClass;
+@property (nonatomic, strong) _Nullable Class<UIObjectRestoration> objectRestorationClass;
 
 /*
  A point from where the transition should start. The new ViewController will fly in from that point.
@@ -70,6 +70,6 @@ NS_DESIGNATED_INITIALIZER;
  */
 @property (nonatomic, readonly) CGPoint toPoint;
 
-@property (nonatomic, strong, readonly) UIViewController *presentedViewController;
-
+@property (nonatomic, strong, readonly) UIViewController* _Nonnull presentedViewController;
+NS_ASSUME_NONNULL_END
 @end
