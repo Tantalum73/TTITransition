@@ -23,7 +23,7 @@
     }
     backgroundView.backgroundColor = self.colorForBackgroundView;
     
-    [inView insertSubview:backgroundView atIndex:0];
+//    [inView insertSubview:backgroundView atIndex:0];
 
     
     UIView *toView;
@@ -40,8 +40,8 @@
     [inView addSubview:fromView];
     fromView.alpha = 1;
     toView.alpha = 0;
-    [inView insertSubview:toView aboveSubview:backgroundView];
-    
+   // [inView insertSubview:toView aboveSubview:backgroundView];
+    [inView addSubview:toView];
     CGFloat angle = M_PI;
     
     CGAffineTransform scale = CGAffineTransformMakeScale(2, 2);
@@ -49,7 +49,7 @@
     
     CGAffineTransform concatted = CGAffineTransformConcat(scale, rotation);
     
-    toView.transform = CGAffineTransformConcat(scale, CGAffineTransformMakeRotation(angle));
+    toView.transform = concatted;//CGAffineTransformConcat(scale, rotation);
     
     [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionCalculationModePaced animations:^{
         
@@ -59,6 +59,7 @@
         [UIView addKeyframeWithRelativeStartTime:0.25 relativeDuration:0.25 animations:^{
             fromView.transform = rotation;
             fromView.alpha = 0;
+            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
         }];
         
         [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
