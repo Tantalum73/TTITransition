@@ -19,6 +19,9 @@
 		A16CCC4D19E86E4C00717793 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC4C19E86E4C00717793 /* DetailViewController.m */; };
 		A18F854E1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18F854D1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m */; };
 		A18F85511AC012C300E14857 /* TTIGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = A18F85501AC012C300E14857 /* TTIGestureController.m */; };
+		A194E8E31B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A194E8E21B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m */; };
+		A194E8E61B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A194E8E51B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m */; };
+		A194E8E91B89E9210053B6BF /* TTIInsideNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A194E8E81B89E9210053B6BF /* TTIInsideNavigationViewController.m */; };
 		A1E17CC91AC52E1500A4E116 /* TTIFallIn.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */; };
 		A1F241741AA991E20046268B /* TTIHangIn.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F241631AA991E20046268B /* TTIHangIn.m */; };
 		A1F241751AA991E20046268B /* TTITransitionFold.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F241651AA991E20046268B /* TTITransitionFold.m */; };
@@ -65,6 +68,12 @@
 		A18F854D1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIPercentDrivenInteractionTransitionController.m; sourceTree = "<group>"; };
 		A18F854F1AC012C300E14857 /* TTIGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIGestureController.h; sourceTree = "<group>"; };
 		A18F85501AC012C300E14857 /* TTIGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIGestureController.m; sourceTree = "<group>"; };
+		A194E8E11B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTINavigationControllerTransitioningDelegate.h; sourceTree = "<group>"; };
+		A194E8E21B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTINavigationControllerTransitioningDelegate.m; sourceTree = "<group>"; };
+		A194E8E41B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITransitionNavigationControllerLeftEdgeGestureHandler.h; sourceTree = "<group>"; };
+		A194E8E51B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITransitionNavigationControllerLeftEdgeGestureHandler.m; sourceTree = "<group>"; };
+		A194E8E71B89E9210053B6BF /* TTIInsideNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIInsideNavigationViewController.h; sourceTree = "<group>"; };
+		A194E8E81B89E9210053B6BF /* TTIInsideNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIInsideNavigationViewController.m; sourceTree = "<group>"; };
 		A1E17CC71AC52E1500A4E116 /* TTIFallIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIFallIn.h; sourceTree = "<group>"; };
 		A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIFallIn.m; sourceTree = "<group>"; };
 		A1F241621AA991E20046268B /* TTIHangIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIHangIn.h; sourceTree = "<group>"; };
@@ -131,6 +140,8 @@
 				A16CCC1B19E86D4E00717793 /* AppDelegate.m */,
 				A16CCC1D19E86D4E00717793 /* ViewController.h */,
 				A16CCC1E19E86D4E00717793 /* ViewController.m */,
+				A194E8E71B89E9210053B6BF /* TTIInsideNavigationViewController.h */,
+				A194E8E81B89E9210053B6BF /* TTIInsideNavigationViewController.m */,
 				A16CCC4B19E86E4C00717793 /* DetailViewController.h */,
 				A16CCC4C19E86E4C00717793 /* DetailViewController.m */,
 				A16CCC2019E86D4E00717793 /* Main.storyboard */,
@@ -170,6 +181,10 @@
 		A1F241611AA991E20046268B /* TTITransition */ = {
 			isa = PBXGroup;
 			children = (
+				A194E8E11B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.h */,
+				A194E8E21B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m */,
+				A194E8E41B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.h */,
+				A194E8E51B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m */,
 				A13B5D3E1B35B62C008DC5CA /* TTITransitionController.h */,
 				A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */,
 				A1F241621AA991E20046268B /* TTIHangIn.h */,
@@ -306,6 +321,7 @@
 			files = (
 				A18F85511AC012C300E14857 /* TTIGestureController.m in Sources */,
 				A16CCC4D19E86E4C00717793 /* DetailViewController.m in Sources */,
+				A194E8E91B89E9210053B6BF /* TTIInsideNavigationViewController.m in Sources */,
 				A1F2417C1AA991E20046268B /* UIImage+ImageEffects.m in Sources */,
 				A16CCC1F19E86D4E00717793 /* ViewController.m in Sources */,
 				A1F241771AA991E20046268B /* TTITransitioningDelegate.m in Sources */,
@@ -316,7 +332,9 @@
 				A1F241741AA991E20046268B /* TTIHangIn.m in Sources */,
 				A13209C71AC01A6D00D054AD /* TTITransitionSuper.m in Sources */,
 				A18F854E1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m in Sources */,
+				A194E8E31B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m in Sources */,
 				A1E17CC91AC52E1500A4E116 /* TTIFallIn.m in Sources */,
+				A194E8E61B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m in Sources */,
 				A1F241751AA991E20046268B /* TTITransitionFold.m in Sources */,
 				A13B5D401B35B62C008DC5CA /* TTITransitionController.m in Sources */,
 				A1F2417A1AA991E20046268B /* TTITransitionSlide.m in Sources */,

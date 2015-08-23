@@ -61,7 +61,7 @@
             
             
         }completion:^(BOOL finished) {
-            
+            self.interactiveAnimator = [TTIPercentDrivenInteractionTransitionController new];
             
             [blurredTo removeFromSuperview];
             [fromView removeFromSuperview];
@@ -80,16 +80,17 @@
         fromView.layer.opacity = 1.0f;
         
         [inView insertSubview:fromView belowSubview:blurredFrom];
-        [inView addSubview:fromView];
+//        [inView addSubview:fromView];
         
 //        [inView insertSubview:toView aboveSubview:toVxiew];
         [inView addSubview:toView];
         
         toView.layer.opacity = 1.0f;
-
+        
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:0  animations:^{
             toView.layer.transform = CATransform3DIdentity;//transform;
+            
             
             blurredFrom.layer.opacity = 1.0f;
             
@@ -106,6 +107,8 @@
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
                 fromView.transform = CGAffineTransformIdentity;
                 [transitionContext completeTransition:NO];
+                
+                
                 self.interactive = NO;
 
             }
@@ -117,6 +120,7 @@
                 
                 [transitionContext completeTransition:YES];
                 
+                self.interactiveAnimator = nil;
             }
 
             

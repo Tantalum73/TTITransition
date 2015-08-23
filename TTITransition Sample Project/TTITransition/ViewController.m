@@ -139,6 +139,21 @@
                                  rectToStartGesture:CGRectZero];
         
     }
+    else if([segue.identifier isEqualToString:@"ShowNavigationControllerTransitions"]) {
+        
+        _transitionController = [[TTITransitionController alloc]
+                                 initWithPresentedViewController:destination
+                                 transitionType:TTITransitionTypeFull
+                                 fromPoint:fromPoint
+                                 toPoint:CGPointZero
+                                 widthProportionOfSuperView:1
+                                 heightProportionOfSuperView:1
+                                 interactive:NO
+                                 gestureType:TTIGestureRecognizerNone
+                                 rectToStartGesture:CGRectZero];
+        
+    }
+    
 
 
 }

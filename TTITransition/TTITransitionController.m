@@ -12,7 +12,9 @@
 @interface TTITransitionController () <UIDynamicAnimatorDelegate>
 NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, readwrite, strong) TTITransitioningDelegate *ttiTransitioningDelegate;
+@property (nonatomic, readwrite, strong) TTITransitioningDelegate *_Nullable ttiTransitioningDelegate;
+
+@property (nonatomic, readwrite, strong) TTINavigationControllerTransitioningDelegate *_Nullable ttiNavigationControllerTransitioningDelegate;
 
 @property (nonatomic, readwrite) CGPoint fromPoint;
 
@@ -40,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
--(instancetype _Nullable)initWithPresentedViewController:(UIViewController* _Nullable) presentedViewController
+-(instancetype _Nullable)initWithPresentedViewController:(UIViewController* ) presentedViewController
 
                                           transitionType:(TTITransitionType) transitionType
                                                fromPoint:(CGPoint) fromPoint
@@ -97,6 +99,21 @@ NS_ASSUME_NONNULL_BEGIN
         return self;
     }
     
+    return nil;
+}
+
+-(instancetype _Nullable) initNavigationControllerTransitionWithNavigationController:(UINavigationController *)navigationController transitionType:(TTINavigationControllerTransitionType)transitionType {
+    
+    if (self = [super init]) {
+        
+        self.ttiNavigationControllerTransitioningDelegate = [[TTINavigationControllerTransitioningDelegate alloc] init];
+        
+        self.ttiNavigationControllerTransitioningDelegate.transitionType = transitionType;
+        
+        navigationController.delegate = self.ttiNavigationControllerTransitioningDelegate;
+
+        return self;
+    }
     return nil;
 }
 

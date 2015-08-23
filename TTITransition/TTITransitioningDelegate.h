@@ -28,7 +28,8 @@ typedef NS_ENUM(NSInteger, TTITransitionType) {
 
 @interface TTITransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate, UIStateRestoring>
 
-@property (nonatomic, strong) Class<UIObjectRestoration> objectRestorationClass;
+
+@property (nonatomic, strong) _Nullable Class<UIObjectRestoration> objectRestorationClass;
 
 /*
  A point from where the transition should start. The new ViewController will fly in from that point.

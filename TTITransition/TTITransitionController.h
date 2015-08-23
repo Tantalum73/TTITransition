@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
-
+#import "TTINavigationControllerTransitioningDelegate.h"
 
 @interface TTITransitionController : NSObject 
 NS_ASSUME_NONNULL_BEGIN
--(instancetype _Nullable)initWithPresentedViewController:(UIViewController* _Nullable) presentedViewController
+-(instancetype _Nullable)initWithPresentedViewController:(UIViewController*) presentedViewController
 
                                 transitionType:(TTITransitionType) transitionType
                                      fromPoint:(CGPoint) fromPoint
@@ -22,12 +22,16 @@ NS_ASSUME_NONNULL_BEGIN
                    heightProportionOfSuperView: (CGFloat) heightProportionOfSuperView
                                    interactive:(BOOL)interactive
                                    gestureType:(TTIGestureRecognizerType) gestureType
-                            rectToStartGesture:(CGRect) rectForPanGestureToStart
+                                      rectToStartGesture:(CGRect) rectForPanGestureToStart
+NS_DESIGNATED_INITIALIZER;
+
+-(instancetype _Nullable)initNavigationControllerTransitionWithNavigationController:(UINavigationController*) navigationController transitionType:(TTINavigationControllerTransitionType) transitionType
 NS_DESIGNATED_INITIALIZER;
 
 
 
 @property (nonatomic, readonly, strong) TTITransitioningDelegate* _Nullable ttiTransitioningDelegate;
+@property (nonatomic, readonly, strong) TTINavigationControllerTransitioningDelegate *_Nullable ttiNavigationControllerTransitioningDelegate;
 
 @property (nonatomic, strong) _Nullable Class<UIObjectRestoration> objectRestorationClass;
 
