@@ -157,5 +157,12 @@
 
 
 }
+//- (IBAction)modalFallIntoButtonPressed:(UIButton *)sender {
+//    UIViewController *destination = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+//    
+//    _transitionController = [[TTITransitionController alloc] initWithPresentedViewController:destination transitionType:TTITransitionTypeFallIn fromPoint:sender.center toPoint:sender.center widthProportionOfSuperView:0.6 heightProportionOfSuperView:0.5 interactive:NO gestureType:TTIGestureRecognizerPanToEdge rectToStartGesture:CGRectZero];
+//    
+//    [self presentViewController:destination animated:YES completion:nil];
+//}
 
 @end

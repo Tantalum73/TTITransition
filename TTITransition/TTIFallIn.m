@@ -46,9 +46,21 @@
     if(self.open) {
 //        fromView.frame = [transitionContext finalFrameForViewController:fromVC];
         
-        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
-        _backgroundView.frame = fromView.frame;
-       
+        [inView insertSubview:fromView atIndex:0];
+        
+        if ([UIVisualEffectView class]) {
+            UIVisualEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+            _backgroundView = [[UIVisualEffectView alloc] initWithEffect:blur];
+            _backgroundView.backgroundColor = [UIColor clearColor];
+            _backgroundView.layer.opacity = 0;
+            [_backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
+            [inView insertSubview:_backgroundView atIndex:0];
+            
+            [inView addConstraints:[self constraintsForBackgroundView:_backgroundView]];
+        }
+//        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
+//        _backgroundView.frame = fromView.frame;
+//        [inView insertSubview:_backgroundView atIndex:0];
         
 
         
@@ -65,13 +77,13 @@
         
         CGSize sizeOfToViewController = toView.frame.size;
         
-        toView.center = CGPointMake(fromView.center.x, inView.frame.origin.y - sizeOfToViewController.height);
+        toView.center = CGPointMake(inView.center.x, inView.frame.origin.y - sizeOfToViewController.height);
         
         toView.layer.zPosition = sizeOfToViewController.height / 1.7;//must be grater than sizeOfToViewController.height / 2
         CATransform3D rotation =CATransform3DMakeRotation(M_PI/2.7, 1.0, 0, 0);
         rotation.m34 = -1.0/500.0;
         toView.layer.transform = rotation;
-        CGPoint newCenter = _backgroundView.center;
+        CGPoint newCenter = inView.center;//_backgroundView.center;
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1.5 initialSpringVelocity:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent animations:^{
             
@@ -79,6 +91,7 @@
             toView.transform = CGAffineTransformIdentity;
             
             toView.layer.position = newCenter;
+            _backgroundView.layer.opacity = 1;
             
         } completion:^(BOOL finished) {
             toView.layer.transform = CATransform3DIdentity;
@@ -120,7 +133,7 @@
                 
                 
                 //resets the frame of the presenting ViewController
-                toView.frame = _backgroundView.frame;
+                toView.frame = inView.frame;
             }
             
             
