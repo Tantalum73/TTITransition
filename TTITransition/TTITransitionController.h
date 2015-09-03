@@ -35,40 +35,37 @@ NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, strong) _Nullable Class<UIObjectRestoration> objectRestorationClass;
 
-/*
+/**
  A point from where the transition should start. The new ViewController will fly in from that point.
  */
 @property (nonatomic, readonly) CGPoint fromPoint;
-/*
- The size, that the new ViewController should have.
- Only works in TTIHangInTransition!
- */
-//@property (nonatomic, assign, readonly) CGSize sizeOfPresentedViewController;
+
+
 @property (nonatomic, readonly) CGFloat widthProportionOfSuperView;
 @property (nonatomic, readonly) CGFloat heightProportionOfSuperView;
 
-/*
+/**
  The type of transition: overlay or transition that covers entire screen
  */
 @property (nonatomic, assign, readonly) TTITransitionType transitionType;
 
 
-/*
+/**
  Whether the transition can be dismissed by a interactive gesture or rather not.
  */
 @property (nonatomic, getter=isInteractive, readonly) BOOL interactive;
 
-/*
+/**
  The GestureRecognizer, being used to dismiss the presented ViewController.
  */
 @property (nonatomic, readonly) TTIGestureRecognizerType gestureType;
 
-/*
+/**
  CGRect in which the PanGesture can be started. If the user grabs the presented ViewController inside this rect, he can dismiss the ViewController. Every interaction outside of this rect will be ignores when using the TTIGestureRecognizerPullUpDown or TTIGestureRecognizerPullLeftRight gesture type.
  */
 @property (nonatomic, readonly) CGRect rectForPanGestureToStart;
 
-/*
+/**
  The point to which the presented ViewController will animate out.
  This animation may be a slide or a zoom, depending on what you set the gestureType to.
  */
