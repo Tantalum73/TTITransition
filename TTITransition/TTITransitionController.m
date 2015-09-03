@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite) CGFloat widthProportionOfSuperView;
 @property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
 
+@property (nonatomic, readwrite) TTITakeAlongTransitionController * _Nullable takeAlongTransitionController;
+
 @end
 
 
@@ -117,5 +119,24 @@ NS_ASSUME_NONNULL_BEGIN
     return nil;
 }
 
+-(instancetype _Nullable)initTakeAlongTransitionWithPresentedViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresented> *)presentedViewController presentingViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresenting> *)presentingViewController transitionType:(TTITransitionType)transitionType fromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint widthProportionOfSuperView:(CGFloat)widthProportionOfSuperView heightProportionOfSuperView:(CGFloat)heightProportionOfSuperView interactive:(BOOL)interactive gestureType:(TTIGestureRecognizerType)gestureType rectToStartGesture:(CGRect)rectForPanGestureToStart {
+    
+    self = [self initWithPresentedViewController:presentedViewController transitionType:transitionType fromPoint:fromPoint toPoint:toPoint widthProportionOfSuperView:widthProportionOfSuperView heightProportionOfSuperView:heightProportionOfSuperView interactive:interactive gestureType:gestureType rectToStartGesture:rectForPanGestureToStart];
+    if (!self) {
+        return nil;
+    }
+    
+    
+    self.takeAlongTransitionController = [[TTITakeAlongTransitionController alloc] init];
+    self.takeAlongTransitionController.delegateForPresented = presentedViewController;
+    self.takeAlongTransitionController.delegateForPreseting = presentingViewController;
+    
+    self.ttiTransitioningDelegate.takeAlongCoontroller = self.takeAlongTransitionController;
+    
+//    presentedViewController.transitioningDelegate = self.takeAlongTransitionController;
+    
+    
+    return self;
+}
 NS_ASSUME_NONNULL_END
 @end

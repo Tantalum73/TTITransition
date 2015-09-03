@@ -39,6 +39,9 @@
         
         [inView addSubview:toView];
         
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
         
 		[UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
 			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
@@ -47,14 +50,15 @@
             toView.transform = CGAffineTransformIdentity;
             toView.alpha = 1;
             
+            [self changeTakeAlongViews];
+            
 //			intermediateView.frame = toView.frame;
 //			intermediateView.layer.opacity = 1.0f;
-		}completion:^(BOOL finished) {
-//			[intermediateView removeFromSuperview];
+        }completion:^(BOOL finished) {
+            [fromView removeFromSuperview];
+            [transitionContext completeTransition:YES];
+            [self removeAndCleanUptakeAlongViews];
             
-			
-			[fromView removeFromSuperview];
-			[transitionContext completeTransition:YES];
         }];
 		
 	}
@@ -62,6 +66,12 @@
         [inView insertSubview:toView atIndex:0];
         toView.alpha = 1;
         [inView addSubview:fromView];
+        
+        
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+
         
         CGAffineTransform scale = CGAffineTransformMakeScale(0.3, 0.3);
         CGAffineTransform translation = CGAffineTransformMakeTranslation(fabs(self.toPoint.x - fromView.center.x),fabs(self.toPoint.y - fromView.center.y));
@@ -74,7 +84,12 @@
             
 //            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
             toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+            
+            [self changeTakeAlongViews];
+            
         }completion:^(BOOL finished) {
+            [self removeAndCleanUptakeAlongViews];
+            
             if ([transitionContext transitionWasCancelled]) {
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
                 fromView.transform = CGAffineTransformIdentity;
@@ -84,6 +99,7 @@
                 [transitionContext completeTransition:NO];
             }
             else {
+                
                 [fromView removeFromSuperview];
                 [inView addSubview:toView];
                 [transitionContext completeTransition:YES];
@@ -101,6 +117,12 @@
 	
 }
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-	return 0.5f;
+//    if (self.takeAlongController) {
+//        return 1.5;
+//    }
+//    else {
+//        return 0.5f;
+//    }
+    return 0.5f;
 }
 @end

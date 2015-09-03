@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "TTIPercentDrivenInteractionTransitionController.h"
-
+#import "TTITakeAlongTransitionController.h"
+#import "TTITakeAlongData.h"
 
 @interface TTITransitionSuper : NSObject <UIViewControllerAnimatedTransitioning, UIStateRestoring>
 
@@ -32,9 +33,25 @@
 @property (nonatomic, readwrite) CGFloat widthProportionOfSuperView;
 @property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
 
+
 -(void)applyBorderToView:(UIView *_Nonnull)view;
 -(void)applyShadowEffectToView:(UIView *_Nonnull)view;
 
 -(NSArray *_Nonnull)constraintsForBackgroundView:(UIView *_Nonnull)view;
 -(NSArray *_Nonnull)constraintsForPresentedView:(UIView *_Nonnull)presented inView:(UIView *_Nonnull)inView widthProportion:(CGFloat) widthRatio heightProportion:(CGFloat) heightRatio;
+
+#pragma mark - Take Along Transition
+///The Take Along Transition Controller. Used to store the delegate handling.
+@property (nonatomic, strong) TTITakeAlongTransitionController * _Nullable takeAlongController;
+///Values, that have come from the TTITakeAlongTransitionController.
+@property (nonatomic, strong) NSMutableArray<TTITakeAlongData*> *_Nullable takeAlongDataArray;
+
+///Setting up the take along views for transitioning.
+-(void)insertTakeAlongViewIntoContainerViewForContest:(_Nonnull id<UIViewControllerContextTransitioning>)context;
+
+///Performing the update of the take along views.
+-(void)changeTakeAlongViews;
+///Finishing the transition of the take along views ans doing some cleanup.
+-(void)removeAndCleanUptakeAlongViews;
+
 @end

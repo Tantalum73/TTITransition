@@ -73,8 +73,6 @@
         
         [inView layoutIfNeeded];
         
-        CGSize sizeOfToViewController = toView.frame.size;
-        
 
          UIView *toShot = [toView snapshotViewAfterScreenUpdates:YES];
 

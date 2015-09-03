@@ -1,4 +1,4 @@
-//
+    //
 //  TTITransitioningDelegate.m
 //  TravelTime
 //
@@ -63,39 +63,39 @@
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     
-    TTITransitionSuper *transitionController;
+    TTITransitionSuper *transitionAnimator;
     
     switch (self.transitionType) {
         case TTITransitionTypeOverlay: {
-            transitionController = [TTITransitionOverlay new];
+            transitionAnimator = [TTITransitionOverlay new];
         }
             break;
         case TTITransitionTypeFull: {
-            transitionController = [TTITransitionFull new];
+            transitionAnimator = [TTITransitionFull new];
         }
             break;
         case TTITransitionTypeSlide: {
-            transitionController = [TTITransitionSlide new];
+            transitionAnimator = [TTITransitionSlide new];
         }
             break;
         case TTITransitionTypeFold: {
-            transitionController = [TTITransitionFold new];
+            transitionAnimator = [TTITransitionFold new];
         }
             break;
         case TTITransitionTypeHangIn: {
-            transitionController = [[TTIHangIn alloc] init];
+            transitionAnimator = [[TTIHangIn alloc] init];
         }
             break;
         case TTITransitionTypeFallIn: {
-            transitionController = [[TTIFallIn alloc] init];
+            transitionAnimator = [[TTIFallIn alloc] init];
         }
             break;
         case TTITransitionTypeSpinn: {
-            transitionController = [TTITransitionSpinn new];
+            transitionAnimator = [TTITransitionSpinn new];
         }
             break;
         case TTITransitionTypeScale: {
-            transitionController = [TTITransitionScale new];
+            transitionAnimator = [TTITransitionScale new];
         }
             break;
     }
@@ -106,29 +106,31 @@
     if (self.heightProportionOfSuperView == 0) {
         self.heightProportionOfSuperView = 1;
     }
-    transitionController.widthProportionOfSuperView = self.widthProportionOfSuperView;
-    transitionController.heightProportionOfSuperView = self.heightProportionOfSuperView;
+    transitionAnimator.widthProportionOfSuperView = self.widthProportionOfSuperView;
+    transitionAnimator.heightProportionOfSuperView = self.heightProportionOfSuperView;
     
     
+    transitionAnimator.takeAlongController = self.takeAlongCoontroller;
+    transitionAnimator.takeAlongDataArray = [self.takeAlongCoontroller.delegateForPreseting dataForTakeAlongTransition].mutableCopy;
     
-    transitionController.fromPoint = self.fromPoint;
-    transitionController.open = YES;
-    transitionController.interactive = NO;
+    transitionAnimator.fromPoint = self.fromPoint;
+    transitionAnimator.open = YES;
+    transitionAnimator.interactive = NO;
     
     if (CGPointEqualToPoint(self.toPoint, CGPointZero)) {
         self.toPoint = self.fromPoint;
     }
-    transitionController.toPoint = self.toPoint;
+    transitionAnimator.toPoint = self.toPoint;
     
-    _activePresentationController = transitionController;
+    _activePresentationController = transitionAnimator;
     _presentedViewController = presented;
     
     if (self.isInteractive) {
-        transitionController.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
+        transitionAnimator.interactiveAnimator = TTIPercentDrivenInteractionTransitionController.new;
         _gestureController = [[TTIGestureController alloc] initWithTargeViewController:presented interactiveAnimator:_activePresentationController gestureType:self.gestureType rectForPullDownToStart:self.rectForPanGestureToStart];
     }
     
-    return transitionController;
+    return transitionAnimator;
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {

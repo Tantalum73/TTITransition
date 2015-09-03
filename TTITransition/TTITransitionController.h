@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "TTITransitioningDelegate.h"
 #import "TTINavigationControllerTransitioningDelegate.h"
+#import "TTITakeAlongTransitionController.h"
 
 @interface TTITransitionController : NSObject 
 NS_ASSUME_NONNULL_BEGIN
@@ -28,6 +29,16 @@ NS_DESIGNATED_INITIALIZER;
 -(instancetype _Nullable)initNavigationControllerTransitionWithNavigationController:(UINavigationController*) navigationController transitionType:(TTINavigationControllerTransitionType) transitionType
 NS_DESIGNATED_INITIALIZER;
 
+-(instancetype _Nullable)initTakeAlongTransitionWithPresentedViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresented> *)presentedViewController
+                                                   presentingViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresenting>*)presentingViewController
+                                                             transitionType:(TTITransitionType)transitionType
+                                                                  fromPoint:(CGPoint) fromPoint
+                                                                    toPoint:(CGPoint) toPoint
+                                                 widthProportionOfSuperView: (CGFloat) widthProportionOfSuperView
+                                                heightProportionOfSuperView: (CGFloat) heightProportionOfSuperView
+                                                                interactive:(BOOL)interactive
+                                                                gestureType:(TTIGestureRecognizerType) gestureType
+                                                         rectToStartGesture:(CGRect) rectForPanGestureToStart;
 
 
 @property (nonatomic, readonly, strong) TTITransitioningDelegate* _Nullable ttiTransitioningDelegate;
@@ -70,6 +81,8 @@ NS_DESIGNATED_INITIALIZER;
  This animation may be a slide or a zoom, depending on what you set the gestureType to.
  */
 @property (nonatomic, readonly) CGPoint toPoint;
+
+@property (nonatomic, readonly) TTITakeAlongTransitionController * _Nullable takeAlongTransitionController;
 
 @property (nonatomic, strong, readonly) UIViewController* _Nonnull presentedViewController;
 NS_ASSUME_NONNULL_END

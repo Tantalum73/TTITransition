@@ -78,4 +78,60 @@
     return @[centerX, centerY, height, width];
 }
 
+
+-(void)insertTakeAlongViewIntoContainerViewForContest:(_Nonnull id<UIViewControllerContextTransitioning>)transitionContext {
+    UIView *inView = [transitionContext containerView];
+    
+    UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+    UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
+    
+    
+    [fromView setNeedsLayout];
+    [fromView layoutIfNeeded];
+    
+    [toView setNeedsLayout];
+    [toView layoutIfNeeded];
+
+    
+    for (TTITakeAlongData* data in self.takeAlongDataArray) {
+        
+        if (self.open) {
+            [self.takeAlongController.delegateForPresented takeAlongDataWithPopulatedFinalFramesForTakeAlongData:data];
+            data.finalView.alpha = 0;
+            [inView addSubview:data.initialViewCopy];
+        }
+        else {
+            data.initialView.alpha = 0;
+            [inView addSubview:data.finalViewCopy];
+        }
+        
+    }
+}
+
+
+-(void)changeTakeAlongViews {
+    for (TTITakeAlongData *data in self.takeAlongDataArray) {
+        
+        if (self.open) {
+            data.initialViewCopy.frame = data.finalFrame;
+        }
+        else {
+            data.finalViewCopy.frame = data.initialFrame;
+        }
+    }
+}
+-(void)removeAndCleanUptakeAlongViews {
+    for (TTITakeAlongData* data in self.takeAlongDataArray) {
+        
+        if (self.open) {
+            [data.initialViewCopy removeFromSuperview];
+            data.finalView.alpha = 1;
+        }
+        else {
+            [data.finalViewCopy removeFromSuperview];
+            data.initialView.alpha = 1;
+        }
+        
+    }
+}
 @end

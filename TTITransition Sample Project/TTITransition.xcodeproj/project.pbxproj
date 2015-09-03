@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A12877B81B9863EB00B7EFAF /* TTITakeAlongTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = A12877B71B9863EB00B7EFAF /* TTITakeAlongTransitionController.m */; settings = {ASSET_TAGS = (); }; };
 		A13209C71AC01A6D00D054AD /* TTITransitionSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = A13209C61AC01A6D00D054AD /* TTITransitionSuper.m */; };
 		A13B5D401B35B62C008DC5CA /* TTITransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */; };
 		A16CCC1919E86D4E00717793 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC1819E86D4E00717793 /* main.m */; };
@@ -22,6 +23,9 @@
 		A194E8E31B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A194E8E21B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m */; };
 		A194E8E61B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A194E8E51B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m */; };
 		A194E8E91B89E9210053B6BF /* TTIInsideNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A194E8E81B89E9210053B6BF /* TTIInsideNavigationViewController.m */; };
+		A1DCE7BA1B986CE1001F836E /* TTITakeAlongData.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DCE7B91B986CE1001F836E /* TTITakeAlongData.m */; settings = {ASSET_TAGS = (); }; };
+		A1DCE7BD1B9875FA001F836E /* TakeAlongMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DCE7BC1B9875FA001F836E /* TakeAlongMasterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A1DCE7C01B987604001F836E /* TakeAlongDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DCE7BF1B987604001F836E /* TakeAlongDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A1E17CC91AC52E1500A4E116 /* TTIFallIn.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */; };
 		A1F241741AA991E20046268B /* TTIHangIn.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F241631AA991E20046268B /* TTIHangIn.m */; };
 		A1F241751AA991E20046268B /* TTITransitionFold.m in Sources */ = {isa = PBXBuildFile; fileRef = A1F241651AA991E20046268B /* TTITransitionFold.m */; };
@@ -45,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A12877B61B9863EB00B7EFAF /* TTITakeAlongTransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITakeAlongTransitionController.h; sourceTree = "<group>"; };
+		A12877B71B9863EB00B7EFAF /* TTITakeAlongTransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITakeAlongTransitionController.m; sourceTree = "<group>"; };
 		A13209C51AC01A6D00D054AD /* TTITransitionSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITransitionSuper.h; sourceTree = "<group>"; };
 		A13209C61AC01A6D00D054AD /* TTITransitionSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITransitionSuper.m; sourceTree = "<group>"; };
 		A13B5D3E1B35B62C008DC5CA /* TTITransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITransitionController.h; sourceTree = "<group>"; };
@@ -74,6 +80,12 @@
 		A194E8E51B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITransitionNavigationControllerLeftEdgeGestureHandler.m; sourceTree = "<group>"; };
 		A194E8E71B89E9210053B6BF /* TTIInsideNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIInsideNavigationViewController.h; sourceTree = "<group>"; };
 		A194E8E81B89E9210053B6BF /* TTIInsideNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIInsideNavigationViewController.m; sourceTree = "<group>"; };
+		A1DCE7B81B986CE1001F836E /* TTITakeAlongData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITakeAlongData.h; sourceTree = "<group>"; };
+		A1DCE7B91B986CE1001F836E /* TTITakeAlongData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITakeAlongData.m; sourceTree = "<group>"; };
+		A1DCE7BB1B9875FA001F836E /* TakeAlongMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeAlongMasterViewController.h; sourceTree = "<group>"; };
+		A1DCE7BC1B9875FA001F836E /* TakeAlongMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeAlongMasterViewController.m; sourceTree = "<group>"; };
+		A1DCE7BE1B987604001F836E /* TakeAlongDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeAlongDetailViewController.h; sourceTree = "<group>"; };
+		A1DCE7BF1B987604001F836E /* TakeAlongDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeAlongDetailViewController.m; sourceTree = "<group>"; };
 		A1E17CC71AC52E1500A4E116 /* TTIFallIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIFallIn.h; sourceTree = "<group>"; };
 		A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTIFallIn.m; sourceTree = "<group>"; };
 		A1F241621AA991E20046268B /* TTIHangIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTIHangIn.h; sourceTree = "<group>"; };
@@ -140,6 +152,10 @@
 				A16CCC1B19E86D4E00717793 /* AppDelegate.m */,
 				A16CCC1D19E86D4E00717793 /* ViewController.h */,
 				A16CCC1E19E86D4E00717793 /* ViewController.m */,
+				A1DCE7BB1B9875FA001F836E /* TakeAlongMasterViewController.h */,
+				A1DCE7BC1B9875FA001F836E /* TakeAlongMasterViewController.m */,
+				A1DCE7BE1B987604001F836E /* TakeAlongDetailViewController.h */,
+				A1DCE7BF1B987604001F836E /* TakeAlongDetailViewController.m */,
 				A194E8E71B89E9210053B6BF /* TTIInsideNavigationViewController.h */,
 				A194E8E81B89E9210053B6BF /* TTIInsideNavigationViewController.m */,
 				A16CCC4B19E86E4C00717793 /* DetailViewController.h */,
@@ -181,12 +197,16 @@
 		A1F241611AA991E20046268B /* TTITransition */ = {
 			isa = PBXGroup;
 			children = (
+				A1DCE7B81B986CE1001F836E /* TTITakeAlongData.h */,
+				A1DCE7B91B986CE1001F836E /* TTITakeAlongData.m */,
 				A194E8E11B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.h */,
 				A194E8E21B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m */,
 				A194E8E41B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.h */,
 				A194E8E51B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m */,
 				A13B5D3E1B35B62C008DC5CA /* TTITransitionController.h */,
 				A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */,
+				A12877B61B9863EB00B7EFAF /* TTITakeAlongTransitionController.h */,
+				A12877B71B9863EB00B7EFAF /* TTITakeAlongTransitionController.m */,
 				A1F241621AA991E20046268B /* TTIHangIn.h */,
 				A1F241631AA991E20046268B /* TTIHangIn.m */,
 				A1E17CC71AC52E1500A4E116 /* TTIFallIn.h */,
@@ -324,10 +344,13 @@
 				A194E8E91B89E9210053B6BF /* TTIInsideNavigationViewController.m in Sources */,
 				A1F2417C1AA991E20046268B /* UIImage+ImageEffects.m in Sources */,
 				A16CCC1F19E86D4E00717793 /* ViewController.m in Sources */,
+				A12877B81B9863EB00B7EFAF /* TTITakeAlongTransitionController.m in Sources */,
+				A1DCE7BA1B986CE1001F836E /* TTITakeAlongData.m in Sources */,
 				A1F241771AA991E20046268B /* TTITransitioningDelegate.m in Sources */,
 				A16CCC1C19E86D4E00717793 /* AppDelegate.m in Sources */,
 				A16CCC1919E86D4E00717793 /* main.m in Sources */,
 				A1F241761AA991E20046268B /* TTITransitionFull.m in Sources */,
+				A1DCE7BD1B9875FA001F836E /* TakeAlongMasterViewController.m in Sources */,
 				A1F241781AA991E20046268B /* TTITransitionOverlay.m in Sources */,
 				A1F241741AA991E20046268B /* TTIHangIn.m in Sources */,
 				A13209C71AC01A6D00D054AD /* TTITransitionSuper.m in Sources */,
@@ -339,6 +362,7 @@
 				A13B5D401B35B62C008DC5CA /* TTITransitionController.m in Sources */,
 				A1F2417A1AA991E20046268B /* TTITransitionSlide.m in Sources */,
 				A1F241791AA991E20046268B /* TTITransitionScale.m in Sources */,
+				A1DCE7C01B987604001F836E /* TakeAlongDetailViewController.m in Sources */,
 				A1F2417B1AA991E20046268B /* TTITransitionSpinn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
