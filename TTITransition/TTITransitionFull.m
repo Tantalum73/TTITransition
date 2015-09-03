@@ -56,8 +56,8 @@
 //			intermediateView.layer.opacity = 1.0f;
         }completion:^(BOOL finished) {
             [fromView removeFromSuperview];
-            [transitionContext completeTransition:YES];
             [self removeAndCleanUptakeAlongViews];
+            [transitionContext completeTransition:YES];
             
         }];
 		
