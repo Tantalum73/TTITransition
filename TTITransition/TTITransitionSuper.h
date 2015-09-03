@@ -54,4 +54,6 @@
 ///Finishing the transition of the take along views ans doing some cleanup.
 -(void)removeAndCleanUptakeAlongViews;
 
+-(void)animateTakeAlongViews;
+
 @end

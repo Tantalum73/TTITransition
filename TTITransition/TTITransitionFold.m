@@ -29,6 +29,8 @@
         fromView = [fromVC view];
     }
     
+
+    
     if(self.open) {
         toView.frame = fromView.frame;
         
@@ -44,6 +46,11 @@
         [inView insertSubview:blurredTo belowSubview:fromView];
         [inView insertSubview:toView belowSubview:blurredTo];
         
+        
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseIn  animations:^{
             fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
             toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
@@ -58,6 +65,7 @@
             CATransform3D inverseTransformation = CATransform3DInvert(transform);
             fromView.layer.transform = inverseTransformation;
             
+            [self changeTakeAlongViews];
             
             
         }completion:^(BOOL finished) {
@@ -65,6 +73,8 @@
             
             [blurredTo removeFromSuperview];
             [fromView removeFromSuperview];
+            [self removeAndCleanUptakeAlongViews];
+            
             [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
         }];
         
@@ -88,6 +98,11 @@
         toView.layer.opacity = 1.0f;
         
         
+        
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:0  animations:^{
             toView.layer.transform = CATransform3DIdentity;//transform;
             
@@ -99,6 +114,7 @@
         }completion:^(BOOL finished) {
             
             
+            [self removeAndCleanUptakeAlongViews];
             
             if ([transitionContext transitionWasCancelled]) {
                 [toView removeFromSuperview];

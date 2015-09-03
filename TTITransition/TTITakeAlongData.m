@@ -24,20 +24,20 @@
 
 -(void)setFinalView:(UIView *)newValue {
     
-    self.finalFrame = newValue.frame;
+    self.finalFrame = [newValue.superview convertRect:newValue.frame toView:nil];
     self.finalViewCopy = [newValue snapshotViewAfterScreenUpdates:YES];
-    self.finalViewCopy.frame = newValue.frame;
+    self.finalViewCopy.frame = self.finalFrame;
     
     _finalView = newValue;
-    _finalView.frame = self.finalFrame;
+//    _finalView.frame = self.finalFrame;
 }
 -(void)setInitialView:(UIView *)newValue {
-    self.initialFrame = newValue.frame;
+    self.initialFrame = [newValue.superview convertRect:newValue.frame toView:nil];
     self.initialViewCopy = [newValue snapshotViewAfterScreenUpdates:YES];
-    self.initialViewCopy.frame = newValue.frame;
+    self.initialViewCopy.frame = self.initialFrame;
     
     _initialView = newValue;
-    _initialView.frame = self.initialFrame;
+//    _initialView.frame = self.initialFrame;
 }
 
 -(instancetype)initWithInitialView:(UIView *)view key:(NSString *)key {

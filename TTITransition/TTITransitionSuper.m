@@ -7,6 +7,7 @@
 //
 
 #import "TTITransitionSuper.h"
+#import "QuartzCore/QuartzCore.h"
 
 @implementation TTITransitionSuper
 
@@ -98,10 +99,12 @@
         if (self.open) {
             [self.takeAlongController.delegateForPresented takeAlongDataWithPopulatedFinalFramesForTakeAlongData:data];
             data.finalView.alpha = 0;
+            data.initialViewCopy.layer.zPosition = 1000;
             [inView addSubview:data.initialViewCopy];
         }
         else {
             data.initialView.alpha = 0;
+            data.finalViewCopy.layer.zPosition = 1000;
             [inView addSubview:data.finalViewCopy];
         }
         
@@ -133,5 +136,13 @@
         }
         
     }
+}
+
+-(void)animateTakeAlongViews {
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self changeTakeAlongViews];
+    } completion:^(BOOL finished) {
+        [self removeAndCleanUptakeAlongViews];
+    }];
 }
 @end

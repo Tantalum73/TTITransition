@@ -40,7 +40,7 @@
     
     if([segue.identifier isEqualToString:@"ShowFull"] && [segue.destinationViewController respondsToSelector:@selector(takeAlongDataWithPopulatedFinalFramesForTakeAlongData:)]) {
         
-        _ttitransitionController = [[TTITransitionController alloc] initTakeAlongTransitionWithPresentedViewController:segue.destinationViewController presentingViewController:self transitionType:TTITransitionTypeFull fromPoint:fromPoint toPoint:fromPoint widthProportionOfSuperView:1 heightProportionOfSuperView:1 interactive:YES gestureType:TTIGestureRecognizerLeftEdge rectToStartGesture:CGRectZero];
+        _ttitransitionController = [[TTITransitionController alloc] initTakeAlongTransitionWithPresentedViewController:segue.destinationViewController presentingViewController:self transitionType:TTITransitionTypeHangIn fromPoint:fromPoint toPoint:fromPoint widthProportionOfSuperView:0.5 heightProportionOfSuperView:0.5 interactive:YES gestureType:TTIGestureRecognizerLeftEdge rectToStartGesture:CGRectZero];
     }
 
 }

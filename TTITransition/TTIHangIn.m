@@ -70,9 +70,14 @@
             if (toView.center.x == inView.center.x && toView.center.y == inView.center.y) {
                 [self.animator removeAllBehaviors];
                 [transitionContext completeTransition:YES];
+                
+                [self animateTakeAlongViews];
             }
         };
         
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
         [self.animator addBehavior:snap];
 
     }
@@ -99,8 +104,14 @@
                 [_backgroundView removeFromSuperview];
                 
                 [transitionContext completeTransition:YES];
+                
+                [self animateTakeAlongViews];
             }
         };
+        
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
         [self.animator addBehavior:dynamic];
     }
     

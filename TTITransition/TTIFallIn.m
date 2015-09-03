@@ -75,6 +75,10 @@
         
         [inView layoutIfNeeded];
         
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+        
         CGSize sizeOfToViewController = toView.frame.size;
         
         toView.center = CGPointMake(inView.center.x, inView.frame.origin.y - sizeOfToViewController.height);
@@ -85,7 +89,12 @@
         toView.layer.transform = rotation;
         CGPoint newCenter = inView.center;//_backgroundView.center;
         
+        
+        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1.5 initialSpringVelocity:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionAllowAnimatedContent animations:^{
+            
+            
+            [self changeTakeAlongViews];
             
             toView.layer.transform = CATransform3DIdentity;
             toView.transform = CGAffineTransformIdentity;
@@ -93,11 +102,13 @@
             toView.layer.position = newCenter;
             _backgroundView.layer.opacity = 1;
             
+            
         } completion:^(BOOL finished) {
             toView.layer.transform = CATransform3DIdentity;
             toView.layer.anchorPoint = CGPointMake(0.5, 0.5);
 //            toView.layer.position = newCenter;// inView.layer.position;
             
+            [self removeAndCleanUptakeAlongViews];
             [transitionContext completeTransition:YES];
             
         }];
@@ -107,6 +118,9 @@
         [inView addSubview:fromView];
 //        fromView.alpha = 1;
         
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
          [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
             
              fromView.transform = CGAffineTransformMakeTranslation(0, -inView.bounds.size.height / 2 - fromView.frame.size.height / 2);
@@ -114,8 +128,10 @@
             
             _backgroundView.alpha =0;
              
+             [self changeTakeAlongViews];
+             
         } completion:^(BOOL finished) {
-            
+            [self removeAndCleanUptakeAlongViews];
             
             if ([transitionContext transitionWasCancelled]) {
                 fromView.layer.transform = CATransform3DIdentity;
