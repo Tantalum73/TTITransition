@@ -42,6 +42,10 @@
     toView.alpha = 0;
    // [inView insertSubview:toView aboveSubview:backgroundView];
     [inView addSubview:toView];
+    if (self.takeAlongController) {
+        [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+    }
+    
     CGFloat angle = M_PI;
     
     CGAffineTransform scale = CGAffineTransformMakeScale(2, 2);
@@ -52,6 +56,10 @@
     toView.transform = concatted;//CGAffineTransformConcat(scale, rotation);
     
     [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionCalculationModePaced animations:^{
+        
+        [UIView addKeyframeWithRelativeStartTime:[self transitionDuration:transitionContext] relativeDuration:1 animations:^{
+            [self changeTakeAlongViews];
+        }];
         
         [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.25 animations:^{
             fromView.transform = concatted;
@@ -68,6 +76,8 @@
             toView.transform = CGAffineTransformIdentity;
         }];
     } completion:^(BOOL finished) {
+        [self removeAndCleanUptakeAlongViews];
+        
         if ([transitionContext transitionWasCancelled]) {
 //            toView.transform = CGAffineTransformIdentity;
             [toView removeFromSuperview];

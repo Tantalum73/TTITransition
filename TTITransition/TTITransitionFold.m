@@ -104,6 +104,7 @@
         }
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:0  animations:^{
+            [self changeTakeAlongViews];
             toView.layer.transform = CATransform3DIdentity;//transform;
             
             

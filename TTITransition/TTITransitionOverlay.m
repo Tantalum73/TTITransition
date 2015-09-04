@@ -86,6 +86,9 @@
         
         [inView addSubview:toShot];
 
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
         
         [UIView animateWithDuration:([self transitionDuration:transitionContext]/5)*4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionBeginFromCurrentState animations:^{
             
@@ -97,6 +100,7 @@
                 toShot.frame = CGRectMake(screenRect.origin.x+10, screenRect.origin.y+20, screenRect.size.width-20, screenRect.size.height-40);
             }
 
+            [self changeTakeAlongViews];
             
                         toShot.layer.opacity = 1.0f;
             
@@ -108,7 +112,8 @@
             
             
             		}completion:^(BOOL finished) {
-
+                        [self removeAndCleanUptakeAlongViews];
+                        
                         [inView addSubview:toView];
                         [toShot removeFromSuperview];
                         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
@@ -127,8 +132,13 @@
                                                                          
                                                                          ,(self.toPoint.y < fromView.center.y)?
                                                                          -fabs(self.toPoint.y - fromView.center.y) : fabs(self.toPoint.y - fromView.center.y));
-		
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:4 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:4 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+            
+            [self changeTakeAlongViews];
             
             fromView.transform = CGAffineTransformConcat(scale, translation);;
             fromView.alpha = 0;
@@ -139,6 +149,7 @@
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             
 		}completion:^(BOOL finished) {
+            [self removeAndCleanUptakeAlongViews];
                         
             if ([transitionContext transitionWasCancelled]) {
                 fromView.alpha = 1;

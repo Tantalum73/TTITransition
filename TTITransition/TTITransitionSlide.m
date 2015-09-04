@@ -49,7 +49,7 @@
     
     CGFloat slideToRight = -[UIScreen mainScreen].bounds.size.width+self.gapBetweenViewControllers;
     [inView addSubview:toShot];
-    [toView removeFromSuperview];
+//    [toView removeFromSuperview];
 
     CGAffineTransform scale = CGAffineTransformMakeScale(0.7, 0.7);
     CGAffineTransform slideLeft = CGAffineTransformMakeTranslation(slideToRight, 0);
@@ -57,7 +57,14 @@
     
     toShot.transform = CGAffineTransformConcat(scale, self.open? slideRight : slideLeft);
     
+    if (self.takeAlongController) {
+        [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+    }
+    
     [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
+        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:[self transitionDuration:transitionContext] animations:^{
+            [self changeTakeAlongViews];
+        }];
         
         [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.1 animations:^{
             
@@ -87,6 +94,8 @@
         }];
         
     } completion:^(BOOL finished) {
+        [self removeAndCleanUptakeAlongViews];
+        
         if ([transitionContext transitionWasCancelled]) {
             fromView.alpha = 1;
             [fromShot removeFromSuperview];

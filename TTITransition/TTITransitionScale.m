@@ -50,6 +50,10 @@
     
     toView.transform = scale;
     
+    if (self.takeAlongController) {
+        [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+    }
+    
     [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 options:
      UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction
                      animations:^{
@@ -57,18 +61,12 @@
         fromView.transform = scale;
         fromView.alpha = 0;
         
-        
     } completion:^(BOOL finished) {
-        
     }];
-//    [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 usingSpringWithDamping:5.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
-//        
-//        fromView.transform = scale;
-//        fromView.alpha = 0.5;
-//    } completion:^(BOOL finished) {
-//        
-//    }];
+
     
+    self.transitioningContext = transitionContext;
+    [self animateTakeAlongViews];
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:[self transitionDuration:transitionContext]/2.0 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
         
@@ -76,6 +74,8 @@
         toView.transform = CGAffineTransformIdentity;
         
     } completion:^(BOOL finished) {
+        [self removeAndCleanUptakeAlongViews];
+        
         if ([transitionContext transitionWasCancelled]) {
             toView.transform = CGAffineTransformIdentity;
             [toView removeFromSuperview];

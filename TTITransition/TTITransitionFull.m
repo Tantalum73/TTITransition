@@ -32,9 +32,6 @@
 //		intermediateView.frame = CGRectMake(self.fromPoint.x, self.fromPoint.y, 0, 0);
 //		intermediateView.layer.opacity = 0.3f;
         
-        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
-        CGAffineTransform translation = CGAffineTransformMakeTranslation(fabs(self.fromPoint.x - toView.center.x), fabs(self.fromPoint.y - toView.center.y));
-        toView.transform = CGAffineTransformConcat(scale, translation);
         toView.alpha = 0;
         
         [inView addSubview:toView];
@@ -42,6 +39,11 @@
         if (self.takeAlongController) {
             [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
         }
+        
+        CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
+        CGAffineTransform translation = CGAffineTransformMakeTranslation(fabs(self.fromPoint.x - toView.center.x), fabs(self.fromPoint.y - toView.center.y));
+        toView.transform = CGAffineTransformConcat(scale, translation);
+        
         
 		[UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:1 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
 			fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
@@ -57,6 +59,7 @@
         }completion:^(BOOL finished) {
             [fromView removeFromSuperview];
             [self removeAndCleanUptakeAlongViews];
+            
             [transitionContext completeTransition:YES];
             
         }];

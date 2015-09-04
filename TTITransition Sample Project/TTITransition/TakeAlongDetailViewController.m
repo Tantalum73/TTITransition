@@ -36,7 +36,7 @@
 */
 
 -(void)takeAlongDataWithPopulatedFinalFramesForTakeAlongData:(TTITakeAlongData *)takeAlongDataToPopulate {
-    
+
     takeAlongDataToPopulate.finalView = self.viewToTakeAlong;
 }
 - (IBAction)backButtonPressed:(UIButton *)sender {

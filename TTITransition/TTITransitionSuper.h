@@ -33,6 +33,7 @@
 @property (nonatomic, readwrite) CGFloat widthProportionOfSuperView;
 @property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
 
+@property (nonatomic, weak)_Nullable id<UIViewControllerContextTransitioning>transitioningContext;
 
 -(void)applyBorderToView:(UIView *_Nonnull)view;
 -(void)applyShadowEffectToView:(UIView *_Nonnull)view;

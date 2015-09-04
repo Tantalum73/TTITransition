@@ -40,14 +40,22 @@
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:inView];
     
     if(self.open) {
-        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
+//        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
 
         
+
         
         [inView addSubview:toView];
+        
+        
         [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
         
         [inView addConstraints:[self constraintsForPresentedView:toView inView:inView widthProportion:self.widthProportionOfSuperView heightProportion:self.heightProportionOfSuperView]];
+        
+        
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
         
         [inView layoutIfNeeded];
         
@@ -69,15 +77,14 @@
         snap.action = ^{
             if (toView.center.x == inView.center.x && toView.center.y == inView.center.y) {
                 [self.animator removeAllBehaviors];
+                [self animateTakeAlongViews];
+
+                
                 [transitionContext completeTransition:YES];
                 
-                [self animateTakeAlongViews];
             }
         };
         
-        if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
-        }
         [self.animator addBehavior:snap];
 
     }
@@ -92,26 +99,28 @@
         [dynamic addAngularVelocity:1 forItem:fromView];
         [dynamic setAngularResistance:3];
         
+        
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+        
         [inView insertSubview:toView atIndex:0];
         
         // when the view no longer intersects with its superview, go ahead and remove it
         
+        [self animateTakeAlongViews];
         dynamic.action = ^{
             if (!CGRectIntersectsRect(inView.bounds,fromView.frame)) {
  
                 [self.animator removeAllBehaviors];
                 
                 [_backgroundView removeFromSuperview];
-                
+
                 [transitionContext completeTransition:YES];
                 
-                [self animateTakeAlongViews];
             }
         };
         
-        if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
-        }
         [self.animator addBehavior:dynamic];
     }
     

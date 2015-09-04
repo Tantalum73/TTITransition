@@ -139,7 +139,7 @@
 }
 
 -(void)animateTakeAlongViews {
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:[self transitionDuration:self.transitioningContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self changeTakeAlongViews];
     } completion:^(BOOL finished) {
         [self removeAndCleanUptakeAlongViews];
