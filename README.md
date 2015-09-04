@@ -7,6 +7,7 @@ Interactive transition between ViewControllers – Easy to integrate and visuall
 I call it "takeAlongTransition" and what it does is taking one UIView from the presenting ViewController towards the presented ViewController.
 
 You can read more about it below or just look at the sample project. You should do so anyway.
+
 ![Take Along Slide Transition Screencast](/Images/TakeAlongTransitionSlide.gif?raw=false "Slide Transition Screencast" = 200px)
 
 
@@ -77,6 +78,18 @@ As metioned above, I call it 'TakeAlong Transition'.<br>
 It enables your app to use one of the ```TTITransitions``` where one of your ```UIView``` is moved from the presenting ViewController to the presented ViewController during the transition.
 
 ![Take Along Overlay Transition Screencast](/Images/TakeAlongTransitionOverlay.gif?raw=false "Slide Transition Screencast" = 200px)
+
+In order to drive this animation, we need to know about the views that participates in the transitioning process.
+Therefore, both of your ViewControllers (presenting and presented) have to implement different protocols, whose methods ask for the important information.
+
+```TTITakeAlongTransitionProtocolForPresenting``` must be implemented by the presenting ViewController. Its only method is called ```-(NSArray<TTITakeAlongData*>*) dataForTakeAlongTransition``` and returns an Array of ```TTITakeAlongData```.
+This object holds every desired information. You can init it using the designated initializer ```-(instancetype) initWithInitialView:(UIView *)view key:(NSString *)key```, where view is the desired UIView to be animated and a key, that can be used to identify the object and connect it to your logic.
+
+Once an array of ```TTITakeAlongData``` is specified, the presented ViewController, which is implementing the ```TTITakeAlongTransitionProtocolForPresented``` protocol, is asked to edit each obect in the array using the ```-(void)takeAlongDataWithPopulatedFinalFramesForTakeAlongData:(TTITakeAlongData *)takeAlongDataToPopulate``` method.
+Using this method, the presented ViewController should set the ```finalView``` of the passed ```TTITakeAlongData``` object.
+Doing so, the specified ```key``` can help you to identify the context of the view.
+
+If the information is gathered, the transition will take place.
 
 ###Interaction
 If you want you presented ViewController to be dismissable by a gesture, just set the ```interactive``` argument when instanciating the ```TTITransitionController``` to ```YES``` and chose the ```UIGestureRecognizer```of your convenience just by setting the ```gestureType``` argument.

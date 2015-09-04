@@ -10,17 +10,18 @@
 #import <UIKit/UIKit.h>
 #import "TTITakeAlongData.h"
 
+///Protocol that should be implemented by the presented ViewController that is part of a TakeAlong transition.
 @protocol TTITakeAlongTransitionProtocolForPresented <NSObject>
 
-
-//-(CGRect)finalFrameForViewWithKey:(NSString *)key forOpening:(BOOL)opening;
+///Setting up every missing information about the transition. Most important one: the final view.
 -(void)takeAlongDataWithPopulatedFinalFramesForTakeAlongData:(TTITakeAlongData *)takeAlongDataToPopulate;
 
 @end
 
+///Protocol that should be implemented by the presenting ViewController that is part of a TakeAlong transition.
 @protocol TTITakeAlongTransitionProtocolForPresenting <NSObject>
 
-//-(NSDictionary<NSString *, UIView *> *)viewsToBeAnimatedDuringTransitionForOpening:(BOOL)opening;
+///An array of TTITakeAlongData objects that each holds information about one view that participates in the transitioning process.
 -(NSArray<TTITakeAlongData*> *)dataForTakeAlongTransition;
 
 
