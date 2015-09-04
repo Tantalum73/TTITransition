@@ -37,6 +37,14 @@
         self.gapBetweenViewControllers = 20;
     }
     
+    [inView insertSubview:toView atIndex:0];
+//    [inView insertSubview:fromView atIndex:1];
+    
+    if (self.takeAlongController) {
+        [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+    }
+//    [fromView removeFromSuperview];
+    [toView removeFromSuperview];
     
     toView.alpha = 1;
     UIView  *fromShot = [fromView snapshotViewAfterScreenUpdates:YES];
@@ -56,10 +64,7 @@
     CGAffineTransform slideRight = CGAffineTransformMakeTranslation(-slideToRight, 0);
     
     toShot.transform = CGAffineTransformConcat(scale, self.open? slideRight : slideLeft);
-    
-    if (self.takeAlongController) {
-        [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
-    }
+
     
     [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
         [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:[self transitionDuration:transitionContext] animations:^{
@@ -98,6 +103,7 @@
         
         if ([transitionContext transitionWasCancelled]) {
             fromView.alpha = 1;
+            [inView addSubview:fromView];
             [fromShot removeFromSuperview];
             [toShot removeFromSuperview];
             

@@ -1,15 +1,14 @@
 TTITransition
 =============
 
-Modal and interactive transition between ViewControllers – Easy to integrate and aesthetic.
+Interactive transition between ViewControllers – Easy to integrate and visually appealing.
 
-###NEW: Interactive Transitioning
-See below for details.
+#NEW: Transition with shared elements
+I call it "takeAlongTransition" and what it does is taking one UIView from the presenting ViewController towards the presented ViewController.
 
+You can read more about it below or just look at the sample project. You should do so anyway.
+![Take Along Slide Transition Screencast](/Images/TakeAlongTransitionSlide.gif?raw=false "Slide Transition Screencast" = 200px)
 
-
-
-Following transitions are implemented: "slide", "overlay", "full", "fold", "spinn", "scale" and "hang into", perfect for AlertViewish views – more are about to come.
 
 ##Slide Transition:
 ![Slide Transition Screencast](/Images/TTITransitionSlide.gif?raw=true "Slide Transition Screencast" = 200px)
@@ -40,7 +39,6 @@ Following transitions are implemented: "slide", "overlay", "full", "fold", "spin
 
 
 ##How to use
-**NEW way to interacti with TTITranition!** <br>
 First of all, you want to ```#import "TTITransitionController.h"```.<br>
 The class you will interact with is called ```TTITransitionController```.
 It handels the configuration process of ```TTITransitioningDelegate``` for you.
@@ -64,8 +62,21 @@ During the init-process, ```TTITransitionController``` will set the ```transitio
 
 <br>
 
-**OLD:**<br>
-Just set the transitioningDelegate of the presented ViewController to an instance of TTITransitioningDelegate (import it with `#import "TTITransitioningDelegate.h"`) and let the segue-magic happen (or present the ViewController manually using ```presentViewController:animated:```).
+###UINavigationController
+If you want to animate a transition between ViewControllers inside of a UINavigationController, you just initialize the ```TTITransitionController``` using 
+
+```Objective-C
+-(instancetype)initNavigationControllerTransitionWithNavigationController:(UINavigationController*) navigationController 
+transitionType:(TTINavigationControllerTransitionType) transitionType
+```
+The Transitioing Delegate will be set for you and you are ready to present (push/pop) your new ViewController.
+
+
+###Shared Element
+As metioned above, I call it 'TakeAlong Transition'.<br>
+It enables your app to use one of the ```TTITransitions``` where one of your ```UIView``` is moved from the presenting ViewController to the presented ViewController during the transition.
+
+![Take Along Overlay Transition Screencast](/Images/TakeAlongTransitionOverlay.gif?raw=false "Slide Transition Screencast" = 200px)
 
 ###Interaction
 If you want you presented ViewController to be dismissable by a gesture, just set the ```interactive``` argument when instanciating the ```TTITransitionController``` to ```YES``` and chose the ```UIGestureRecognizer```of your convenience just by setting the ```gestureType``` argument.
