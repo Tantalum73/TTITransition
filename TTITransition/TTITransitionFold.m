@@ -40,16 +40,17 @@
         fromView.layer.anchorPoint = CGPointMake(0, 0);
         fromView.frame = [transitionContext initialFrameForViewController:fromVC];
         
-        
-        
-        UIImageView *blurredTo = [self imageViewWithBlurredImageFromView:toView];
-        [inView insertSubview:blurredTo belowSubview:fromView];
-        [inView insertSubview:toView belowSubview:blurredTo];
-        
-        
+        [inView insertSubview:toView belowSubview:fromView];
         if (self.takeAlongController) {
             [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
         }
+        
+        UIImageView *blurredTo = [self imageViewWithBlurredImageFromView:toView];
+        [inView insertSubview:blurredTo aboveSubview:toView];
+//        [inView insertSubview:toView belowSubview:blurredTo];
+        
+        
+        
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseIn  animations:^{
             fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
@@ -83,6 +84,12 @@
     else {
         toView.frame = [transitionContext finalFrameForViewController:toVC];
         
+        
+        
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+        
         UIImageView *blurredFrom = [self imageViewWithBlurredImageFromView:fromView];
         blurredFrom.layer.opacity = 0.0f;
         [inView addSubview:blurredFrom];
@@ -98,10 +105,6 @@
         toView.layer.opacity = 1.0f;
         
         
-        
-        if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
-        }
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:0  animations:^{
             [self changeTakeAlongViews];

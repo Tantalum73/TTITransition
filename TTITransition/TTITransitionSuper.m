@@ -99,11 +99,13 @@
         if (self.open) {
             [self.takeAlongController.delegateForPresented takeAlongDataWithPopulatedFinalFramesForTakeAlongData:data];
             data.finalView.alpha = 0;
+            data.initialView.alpha = 0;
             data.initialViewCopy.layer.zPosition = 1000;
             [inView addSubview:data.initialViewCopy];
         }
         else {
             data.initialView.alpha = 0;
+            data.finalView.alpha = 0;
             data.finalViewCopy.layer.zPosition = 1000;
             [inView addSubview:data.finalViewCopy];
         }

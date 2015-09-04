@@ -54,13 +54,19 @@
         toView.layer.opacity = 1.0f;
         
         
+        [inView insertSubview:toView atIndex:0];
+        [inView insertSubview:fromView atIndex:0];
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+        [toView removeFromSuperview];
 
         UIGraphicsBeginImageContextWithOptions(fromView.frame.size, NO, fromView.window.screen.scale);
-        [fromView drawViewHierarchyInRect:fromView.frame afterScreenUpdates:NO];
+        [fromView drawViewHierarchyInRect:fromView.frame afterScreenUpdates:YES];
         UIImage *fromShot = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
 
-
+        
         UIImage *blurredFrom = [fromShot applyStandardBlurForTourTime];
         _blurredBackgroundView = [[UIImageView alloc] initWithImage:blurredFrom];
         _blurredBackgroundView.layer.opacity = 0.0f;
@@ -73,7 +79,7 @@
         
         [inView layoutIfNeeded];
         
-
+ 
          UIView *toShot = [toView snapshotViewAfterScreenUpdates:YES];
 
         toShot.frame = CGRectMake(self.fromPoint.x-150/2, self.fromPoint.y, 150, 150);
@@ -86,9 +92,6 @@
         
         [inView addSubview:toShot];
 
-        if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
-        }
         
         [UIView animateWithDuration:([self transitionDuration:transitionContext]/5)*4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:2 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionBeginFromCurrentState animations:^{
             
@@ -126,15 +129,17 @@
 
 		[inView insertSubview:toView belowSubview:_blurredBackgroundView];
         
+        if (self.takeAlongController) {
+            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        }
+        
         CGAffineTransform scale = CGAffineTransformMakeScale(0.5, 0.5);
         CGAffineTransform translation = CGAffineTransformMakeTranslation((self.toPoint.x < fromView.center.x)?
                                                                          -fabs(self.toPoint.x - fromView.center.x) : fabs(self.toPoint.x - fromView.center.x)
                                                                          
                                                                          ,(self.toPoint.y < fromView.center.y)?
                                                                          -fabs(self.toPoint.y - fromView.center.y) : fabs(self.toPoint.y - fromView.center.y));
-        if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
-        }
+ 
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:4 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
             
