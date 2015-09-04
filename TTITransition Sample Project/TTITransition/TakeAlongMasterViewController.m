@@ -63,7 +63,7 @@
     }
     else if([segue.identifier isEqualToString:@"ShowHangInto"] && [segue.destinationViewController respondsToSelector:@selector(takeAlongDataWithPopulatedFinalFramesForTakeAlongData:)]) {
         
-        _ttitransitionController = [[TTITransitionController alloc] initTakeAlongTransitionWithPresentedViewController:segue.destinationViewController presentingViewController:self transitionType:TTITransitionTypeHangIn fromPoint:fromPoint toPoint:fromPoint widthProportionOfSuperView:0.8 heightProportionOfSuperView:0.5 interactive:YES gestureType:TTIGestureRecognizerLeftEdge rectToStartGesture:CGRectZero];
+        _ttitransitionController = [[TTITransitionController alloc] initTakeAlongTransitionWithPresentedViewController:segue.destinationViewController presentingViewController:self transitionType:TTITransitionTypeHangIn fromPoint:fromPoint toPoint:fromPoint widthProportionOfSuperView:0.8 heightProportionOfSuperView:0.8 interactive:YES gestureType:TTIGestureRecognizerLeftEdge rectToStartGesture:CGRectZero];
     }
     else if([segue.identifier isEqualToString:@"ShowSpinn"] && [segue.destinationViewController respondsToSelector:@selector(takeAlongDataWithPopulatedFinalFramesForTakeAlongData:)]) {
         
