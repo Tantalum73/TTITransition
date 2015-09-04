@@ -91,6 +91,7 @@ Doing so, the specified ```key``` can help you to identify the context of the vi
 
 If the information is gathered, the transition will take place.
 
+*Maybe my [blogpost] (https://anerma.de/blog/ttitransi) will help you understand my approach better*
 ###Interaction
 If you want you presented ViewController to be dismissable by a gesture, just set the ```interactive``` argument when instanciating the ```TTITransitionController``` to ```YES``` and chose the ```UIGestureRecognizer```of your convenience just by setting the ```gestureType``` argument.
 
