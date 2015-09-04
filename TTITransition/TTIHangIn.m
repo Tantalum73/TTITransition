@@ -132,7 +132,7 @@
 }
 
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 1;
+    return 0.7;
 }
 
 //-(void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator {
