@@ -84,6 +84,6 @@ NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, readonly) TTITakeAlongTransitionController * _Nullable takeAlongTransitionController;
 
-@property (nonatomic, strong, readonly) UIViewController* _Nonnull presentedViewController;
+@property (nonatomic, weak, readonly) UIViewController* _Nullable presentedViewController;
 NS_ASSUME_NONNULL_END
 @end

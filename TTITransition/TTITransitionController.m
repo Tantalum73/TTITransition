@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readwrite) CGPoint toPoint;
 
-@property (nonatomic, strong, readwrite) UIViewController* _Nonnull presentedViewController;
+@property (nonatomic, weak, readwrite) UIViewController* _Nullable presentedViewController;
 
 @property (nonatomic, readwrite) CGFloat widthProportionOfSuperView;
 @property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
