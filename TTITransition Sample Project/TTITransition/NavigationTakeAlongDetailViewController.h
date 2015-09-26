@@ -1,0 +1,14 @@
+//
+//  NavigationTakeAlongDetailViewController.h
+//  TTITransition
+//
+//  Created by Andreas Neusüß on 26.09.15.
+//  Copyright © 2015 Andreas Neusüß. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "TTITransitionController.h"
+
+@interface NavigationTakeAlongDetailViewController : UIViewController <TTITakeAlongTransitionProtocolForPresented>
+
+@end

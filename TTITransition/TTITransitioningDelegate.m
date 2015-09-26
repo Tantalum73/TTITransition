@@ -110,8 +110,8 @@
     transitionAnimator.heightProportionOfSuperView = self.heightProportionOfSuperView;
     
     
-    transitionAnimator.takeAlongController = self.takeAlongCoontroller;
-    transitionAnimator.takeAlongDataArray = [self.takeAlongCoontroller.delegateForPreseting dataForTakeAlongTransition].mutableCopy;
+    transitionAnimator.takeAlongController = self.takeAlongController;
+    transitionAnimator.takeAlongDataArray = [self.takeAlongController.delegateForPreseting dataForTakeAlongTransition].mutableCopy;
     
     transitionAnimator.fromPoint = self.fromPoint;
     transitionAnimator.open = YES;

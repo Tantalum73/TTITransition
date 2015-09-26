@@ -23,9 +23,8 @@
 @implementation TTITakeAlongData
 
 -(void)setFinalView:(UIView *)newValue {
-    
     self.finalFrame = [newValue.superview convertRect:newValue.frame toView:nil];
-    self.finalViewCopy = [newValue snapshotViewAfterScreenUpdates:YES];
+    self.finalViewCopy = [newValue snapshotViewAfterScreenUpdates:NO];
     self.finalViewCopy.frame = self.finalFrame;
     
     _finalView = newValue;
@@ -33,7 +32,7 @@
 }
 -(void)setInitialView:(UIView *)newValue {
     self.initialFrame = [newValue.superview convertRect:newValue.frame toView:nil];
-    self.initialViewCopy = [newValue snapshotViewAfterScreenUpdates:YES];
+    self.initialViewCopy = [newValue snapshotViewAfterScreenUpdates:NO];
     self.initialViewCopy.frame = self.initialFrame;
     
     _initialView = newValue;
@@ -53,5 +52,6 @@
     }
     return self;
 }
+
 
 @end

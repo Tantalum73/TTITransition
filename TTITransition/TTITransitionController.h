@@ -14,7 +14,8 @@
 
 @interface TTITransitionController : NSObject 
 NS_ASSUME_NONNULL_BEGIN
--(instancetype _Nullable)initWithPresentedViewController:(UIViewController*) presentedViewController
+///Perform a modal transition.
+-(instancetype _Nullable)initModalTransitionWithPresentedViewController:(UIViewController*) presentedViewController
 
                                 transitionType:(TTITransitionType) transitionType
                                      fromPoint:(CGPoint) fromPoint
@@ -23,13 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
                    heightProportionOfSuperView: (CGFloat) heightProportionOfSuperView
                                    interactive:(BOOL)interactive
                                    gestureType:(TTIGestureRecognizerType) gestureType
-                                      rectToStartGesture:(CGRect) rectForPanGestureToStart
-NS_DESIGNATED_INITIALIZER;
+                                      rectToStartGesture:(CGRect) rectForPanGestureToStart;
 
--(instancetype _Nullable)initNavigationControllerTransitionWithNavigationController:(UINavigationController*) navigationController transitionType:(TTINavigationControllerTransitionType) transitionType
-NS_DESIGNATED_INITIALIZER;
-
--(instancetype _Nullable)initTakeAlongTransitionWithPresentedViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresented> *)presentedViewController
+///Perform a modal transition with shared elements
+-(instancetype _Nullable)initModalTakeAlongTransitionWithPresentedViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresented> *)presentedViewController
                                                    presentingViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresenting>*)presentingViewController
                                                              transitionType:(TTITransitionType)transitionType
                                                                   fromPoint:(CGPoint) fromPoint
@@ -40,6 +38,15 @@ NS_DESIGNATED_INITIALIZER;
                                                                 gestureType:(TTIGestureRecognizerType) gestureType
                                                          rectToStartGesture:(CGRect) rectForPanGestureToStart;
 
+
+///Perform a navigation controller transition
+-(instancetype _Nullable)initNavigationControllerTransitionWithNavigationController:(UINavigationController*) navigationController transitionType:(TTINavigationControllerTransitionType) transitionType;
+
+///Perform a navigation controller transition with shared elements
+-(instancetype _Nullable)initNavigationControllerTransitionWithTakeAlongElementsInNavigationController:(UINavigationController *)navigationController
+                                                                               presentedViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresented> *)presentedViewController
+                                                                              presentingViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresenting>*)presentingViewController
+                                                                                        transitionType:(TTINavigationControllerTransitionType)transitionType;
 
 @property (nonatomic, readonly, strong) TTITransitioningDelegate* _Nullable ttiTransitioningDelegate;
 @property (nonatomic, readonly, strong) TTINavigationControllerTransitioningDelegate *_Nullable ttiNavigationControllerTransitioningDelegate;

@@ -41,7 +41,7 @@
 //    [inView insertSubview:fromView atIndex:1];
     
     if (self.takeAlongController) {
-        [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
     }
 //    [fromView removeFromSuperview];
     [toView removeFromSuperview];

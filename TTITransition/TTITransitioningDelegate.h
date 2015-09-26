@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, TTITransitionType) {
  */
 @property (nonatomic) CGPoint toPoint;
 
-@property (nonatomic, strong) TTITakeAlongTransitionController * _Nullable takeAlongCoontroller;
+@property (nonatomic, strong) TTITakeAlongTransitionController * _Nullable takeAlongController;
 
 @end
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)

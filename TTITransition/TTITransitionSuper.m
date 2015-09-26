@@ -80,7 +80,7 @@
 }
 
 
--(void)insertTakeAlongViewIntoContainerViewForContest:(_Nonnull id<UIViewControllerContextTransitioning>)transitionContext {
+-(void)insertTakeAlongViewIntoContainerViewForContext:(_Nonnull id<UIViewControllerContextTransitioning>)transitionContext {
     UIView *inView = [transitionContext containerView];
     
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
@@ -95,19 +95,25 @@
 
     
     for (TTITakeAlongData* data in self.takeAlongDataArray) {
-        
+        [self.takeAlongController.delegateForPresented takeAlongDataWithPopulatedFinalFramesForTakeAlongData:data];
+
         if (self.open) {
-            [self.takeAlongController.delegateForPresented takeAlongDataWithPopulatedFinalFramesForTakeAlongData:data];
+            
             data.finalView.alpha = 0;
             data.initialView.alpha = 0;
             data.initialViewCopy.layer.zPosition = 1000;
+            data.initialViewCopy.alpha = 1;
             [inView addSubview:data.initialViewCopy];
         }
         else {
-            data.initialView.alpha = 0;
-            data.finalView.alpha = 0;
+            
+//            data.initialView.alpha = 0;
+//            data.finalView.alpha = 0;
             data.finalViewCopy.layer.zPosition = 1000;
+            data.finalViewCopy.alpha = 1;
+            
             [inView addSubview:data.finalViewCopy];
+            [data.finalView removeFromSuperview];
         }
         
     }

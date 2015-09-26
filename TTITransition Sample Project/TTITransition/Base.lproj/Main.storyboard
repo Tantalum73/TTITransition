@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivd-U6-SOv">
-                                <rect key="frame" x="252.5" y="180" width="96" height="30"/>
+                                <rect key="frame" x="252" y="180" width="96" height="30"/>
                                 <state key="normal" title="Full Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPB-je-JW4">
-                                <rect key="frame" x="247.5" y="60" width="106" height="30"/>
+                                <rect key="frame" x="247" y="60" width="106" height="30"/>
                                 <state key="normal" title="Slide Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -55,7 +55,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2O-QP-SGV">
-                                <rect key="frame" x="244.5" y="420" width="111" height="30"/>
+                                <rect key="frame" x="244" y="420" width="111" height="30"/>
                                 <state key="normal" title="Spinn Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -81,8 +81,8 @@
                                     <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowHangIn" id="Crn-uH-u4J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOG-gI-qld">
-                                <rect key="frame" x="237.5" y="120" width="124" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOG-gI-qld">
+                                <rect key="frame" x="237" y="120" width="124" height="30"/>
                                 <state key="normal" title="Overlay Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -104,6 +104,13 @@
                                     <segue destination="AY7-Hr-yMc" kind="presentation" identifier="ShowTakeAlongTransitions" id="rQ5-hk-cTv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prG-Bc-mdm">
+                                <rect key="frame" x="246.5" y="570" width="107" height="30"/>
+                                <state key="normal" title="Nav Take Along"/>
+                                <connections>
+                                    <segue destination="w5D-zn-KiQ" kind="presentation" identifier="ShowTakeAlongNavigationControllerTransistion" id="wAC-xG-Nzo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -112,8 +119,10 @@
                             <constraint firstItem="DoE-0Z-N30" firstAttribute="top" secondItem="shx-Qb-9Uf" secondAttribute="bottom" constant="2" id="82h-RQ-gEq"/>
                             <constraint firstItem="b2O-QP-SGV" firstAttribute="top" secondItem="oUy-U2-LtS" secondAttribute="bottom" constant="30" id="AYB-HS-zTc"/>
                             <constraint firstItem="DoE-0Z-N30" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="BJE-gV-wSJ"/>
+                            <constraint firstItem="prG-Bc-mdm" firstAttribute="top" secondItem="DoE-0Z-N30" secondAttribute="bottom" constant="-10" id="JOI-Y4-vbn"/>
                             <constraint firstItem="dOG-gI-qld" firstAttribute="top" secondItem="NPB-je-JW4" secondAttribute="bottom" constant="30" id="JRe-dw-SdY"/>
                             <constraint firstAttribute="centerX" secondItem="wzb-pU-Nfb" secondAttribute="centerX" id="LJL-sb-cIR"/>
+                            <constraint firstItem="prG-Bc-mdm" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="NJX-K2-Gce"/>
                             <constraint firstAttribute="centerX" secondItem="NPB-je-JW4" secondAttribute="centerX" id="NLD-4g-3Tf"/>
                             <constraint firstItem="Ivd-U6-SOv" firstAttribute="top" secondItem="dOG-gI-qld" secondAttribute="bottom" constant="30" id="QCh-mJ-PWA"/>
                             <constraint firstAttribute="centerX" secondItem="b2O-QP-SGV" secondAttribute="centerX" id="Wrg-RH-lzA"/>
@@ -202,13 +211,6 @@
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowScale" id="UCB-Zb-Z49"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="NwA-k3-l0c">
-                                <rect key="frame" x="26" y="28" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="ESZ-tI-zer"/>
-                                    <constraint firstAttribute="width" constant="200" id="bum-er-Fhc"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9f-bU-0ts">
                                 <rect key="frame" x="546" y="20" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
@@ -216,6 +218,13 @@
                                     <action selector="backButtonPressed:" destination="AY7-Hr-yMc" eventType="touchUpInside" id="Zen-Ev-UhY"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="NwA-k3-l0c">
+                                <rect key="frame" x="26" y="28" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="ESZ-tI-zer"/>
+                                    <constraint firstAttribute="width" constant="200" id="bum-er-Fhc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.94509803920000002" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -276,7 +285,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.93841666359999998" green="1" blue="0.79495917250000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="1" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="OtS-Gg-hFd" firstAttribute="centerX" secondItem="E4B-8n-9yc" secondAttribute="centerX" id="34W-HL-U9j"/>
                             <constraint firstItem="dB6-pb-HKC" firstAttribute="top" secondItem="GND-Nc-mvH" secondAttribute="bottom" constant="20" id="Hbg-vY-TOY"/>
@@ -290,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OdN-Kb-Yh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="1738"/>
+            <point key="canvasLocation" x="1606" y="221"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="8Yk-9O-rWm">
@@ -429,13 +438,111 @@
             </objects>
             <point key="canvasLocation" x="913" y="986"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DHd-x7-2VV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w5D-zn-KiQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v3K-6J-RMa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TLo-XG-Nto" kind="relationship" relationship="rootViewController" id="a0N-hP-zw3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IVR-8I-GXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144" y="-350"/>
+        </scene>
+        <!--Navigation Take Along View Controller-->
+        <scene sceneID="BdU-eR-YQ7">
+            <objects>
+                <viewController id="TLo-XG-Nto" customClass="NavigationTakeAlongViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TeJ-ZV-Cuv"/>
+                        <viewControllerLayoutGuide type="bottom" id="4xS-gJ-8Jf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vr1-rz-kVb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgd-4J-qOA">
+                                <rect key="frame" x="285" y="83" width="30" height="30"/>
+                                <state key="normal" title="Fold"/>
+                                <connections>
+                                    <segue destination="jrw-5M-goU" kind="show" identifier="ShowFold" id="HZa-vD-tdD"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-3w-gH7">
+                                <rect key="frame" x="35" y="125" width="240" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="U31-Rk-bFV"/>
+                                    <constraint firstAttribute="height" constant="200" id="pxt-mS-leB"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.94509803920000002" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wgd-4J-qOA" firstAttribute="centerX" secondItem="vr1-rz-kVb" secondAttribute="centerX" id="Of7-ib-kt7"/>
+                            <constraint firstItem="wgd-4J-qOA" firstAttribute="leading" secondItem="vAj-3w-gH7" secondAttribute="trailing" constant="10" id="OuY-gY-PsI"/>
+                            <constraint firstItem="wgd-4J-qOA" firstAttribute="top" secondItem="TeJ-ZV-Cuv" secondAttribute="bottom" constant="19" id="TNZ-dB-8g0"/>
+                            <constraint firstItem="vAj-3w-gH7" firstAttribute="top" secondItem="TeJ-ZV-Cuv" secondAttribute="bottom" constant="61" id="iBO-st-YhL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2tw-sK-dpb">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="KIZ-hy-hiX">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="TLo-XG-Nto" id="4Vl-Kf-ryr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="viewToTakeAlong" destination="vAj-3w-gH7" id="hTm-Qe-XBM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZHZ-9U-jig" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="846" y="-350"/>
+        </scene>
+        <!--Navigation Take Along Detail View Controller-->
+        <scene sceneID="x3z-iB-hIa">
+            <objects>
+                <viewController id="jrw-5M-goU" customClass="NavigationTakeAlongDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s3Z-ns-yhY"/>
+                        <viewControllerLayoutGuide type="bottom" id="qgb-iR-17z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sL9-oa-qQo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="eMv-Kc-rVv">
+                                <rect key="frame" x="49" y="193" width="200" height="200"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="eMv-Kc-rVv" firstAttribute="leading" secondItem="sL9-oa-qQo" secondAttribute="leadingMargin" constant="29" id="52o-gK-SIr"/>
+                            <constraint firstItem="eMv-Kc-rVv" firstAttribute="top" secondItem="s3Z-ns-yhY" secondAttribute="bottom" constant="129" id="X39-Z5-q0F"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="viewToTakeAlong" destination="eMv-Kc-rVv" id="Ppg-on-nGq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sFW-NT-zqu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1637" y="-350"/>
+        </scene>
     </scenes>
     <resources>
         <image name="pizza_rect_small" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Crn-uH-u4J"/>
+        <segue reference="gSj-dR-dkl"/>
         <segue reference="UCB-Zb-Z49"/>
-        <segue reference="IzP-a3-9uP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -76,7 +76,7 @@
         [inView layoutIfNeeded];
         
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
         CGSize sizeOfToViewController = toView.frame.size;
@@ -119,7 +119,7 @@
 //        fromView.alpha = 1;
         
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
          [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
             

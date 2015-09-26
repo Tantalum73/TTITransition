@@ -57,7 +57,7 @@
         [inView insertSubview:toView atIndex:0];
         [inView insertSubview:fromView atIndex:0];
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         [toView removeFromSuperview];
 
@@ -130,7 +130,7 @@
 		[inView insertSubview:toView belowSubview:_blurredBackgroundView];
         
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
         CGAffineTransform scale = CGAffineTransformMakeScale(0.5, 0.5);

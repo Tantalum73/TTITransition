@@ -42,7 +42,7 @@
         
         [inView insertSubview:toView belowSubview:fromView];
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
         UIImageView *blurredTo = [self imageViewWithBlurredImageFromView:toView];
@@ -87,7 +87,7 @@
         
         
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
         UIImageView *blurredFrom = [self imageViewWithBlurredImageFromView:fromView];

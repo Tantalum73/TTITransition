@@ -10,6 +10,8 @@
 		A12877B81B9863EB00B7EFAF /* TTITakeAlongTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = A12877B71B9863EB00B7EFAF /* TTITakeAlongTransitionController.m */; settings = {ASSET_TAGS = (); }; };
 		A13209C71AC01A6D00D054AD /* TTITransitionSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = A13209C61AC01A6D00D054AD /* TTITransitionSuper.m */; };
 		A13B5D401B35B62C008DC5CA /* TTITransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */; };
+		A16BD03B1BB6AF8400605A29 /* NavigationTakeAlongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16BD03A1BB6AF8400605A29 /* NavigationTakeAlongViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A16BD03E1BB6B0AE00605A29 /* NavigationTakeAlongDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16BD03D1BB6B0AE00605A29 /* NavigationTakeAlongDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A16CCC1919E86D4E00717793 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC1819E86D4E00717793 /* main.m */; };
 		A16CCC1C19E86D4E00717793 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC1B19E86D4E00717793 /* AppDelegate.m */; };
 		A16CCC1F19E86D4E00717793 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16CCC1E19E86D4E00717793 /* ViewController.m */; };
@@ -55,6 +57,10 @@
 		A13209C61AC01A6D00D054AD /* TTITransitionSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITransitionSuper.m; sourceTree = "<group>"; };
 		A13B5D3E1B35B62C008DC5CA /* TTITransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTITransitionController.h; sourceTree = "<group>"; };
 		A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTITransitionController.m; sourceTree = "<group>"; };
+		A16BD0391BB6AF8400605A29 /* NavigationTakeAlongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationTakeAlongViewController.h; sourceTree = "<group>"; };
+		A16BD03A1BB6AF8400605A29 /* NavigationTakeAlongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationTakeAlongViewController.m; sourceTree = "<group>"; };
+		A16BD03C1BB6B0AE00605A29 /* NavigationTakeAlongDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationTakeAlongDetailViewController.h; sourceTree = "<group>"; };
+		A16BD03D1BB6B0AE00605A29 /* NavigationTakeAlongDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationTakeAlongDetailViewController.m; sourceTree = "<group>"; };
 		A16CCC1319E86D4E00717793 /* TTITransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTITransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16CCC1719E86D4E00717793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A16CCC1819E86D4E00717793 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -126,6 +132,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A16BD03F1BB6B15600605A29 /* Take Along in NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				A16BD0391BB6AF8400605A29 /* NavigationTakeAlongViewController.h */,
+				A16BD03A1BB6AF8400605A29 /* NavigationTakeAlongViewController.m */,
+				A16BD03C1BB6B0AE00605A29 /* NavigationTakeAlongDetailViewController.h */,
+				A16BD03D1BB6B0AE00605A29 /* NavigationTakeAlongDetailViewController.m */,
+			);
+			name = "Take Along in NavigationController";
+			sourceTree = "<group>";
+		};
+		A16BD0401BB6B16600605A29 /* Take Along Modal */ = {
+			isa = PBXGroup;
+			children = (
+				A1DCE7BB1B9875FA001F836E /* TakeAlongMasterViewController.h */,
+				A1DCE7BC1B9875FA001F836E /* TakeAlongMasterViewController.m */,
+				A1DCE7BE1B987604001F836E /* TakeAlongDetailViewController.h */,
+				A1DCE7BF1B987604001F836E /* TakeAlongDetailViewController.m */,
+			);
+			name = "Take Along Modal";
+			sourceTree = "<group>";
+		};
+		A16BD0411BB6FAA900605A29 /* Transitioning Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				A194E8E11B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.h */,
+				A194E8E21B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m */,
+				A1F241681AA991E20046268B /* TTITransitioningDelegate.h */,
+				A1F241691AA991E20046268B /* TTITransitioningDelegate.m */,
+			);
+			name = "Transitioning Delegates";
+			sourceTree = "<group>";
+		};
+		A16BD0421BB70DE200605A29 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				A1F241621AA991E20046268B /* TTIHangIn.h */,
+				A1F241631AA991E20046268B /* TTIHangIn.m */,
+				A1E17CC71AC52E1500A4E116 /* TTIFallIn.h */,
+				A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */,
+				A1F241641AA991E20046268B /* TTITransitionFold.h */,
+				A1F241651AA991E20046268B /* TTITransitionFold.m */,
+				A1F241661AA991E20046268B /* TTITransitionFull.h */,
+				A1F241671AA991E20046268B /* TTITransitionFull.m */,
+				A1F2416A1AA991E20046268B /* TTITransitionOverlay.h */,
+				A1F2416B1AA991E20046268B /* TTITransitionOverlay.m */,
+				A1F2416C1AA991E20046268B /* TTITransitionScale.h */,
+				A1F2416D1AA991E20046268B /* TTITransitionScale.m */,
+				A1F2416E1AA991E20046268B /* TTITransitionSlide.h */,
+				A1F2416F1AA991E20046268B /* TTITransitionSlide.m */,
+				A1F241701AA991E20046268B /* TTITransitionSpinn.h */,
+				A1F241711AA991E20046268B /* TTITransitionSpinn.m */,
+				A13209C51AC01A6D00D054AD /* TTITransitionSuper.h */,
+				A13209C61AC01A6D00D054AD /* TTITransitionSuper.m */,
+			);
+			name = Animators;
+			sourceTree = "<group>";
+		};
+		A16BD0431BB70DF900605A29 /* Transition Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A1DCE7B81B986CE1001F836E /* TTITakeAlongData.h */,
+				A1DCE7B91B986CE1001F836E /* TTITakeAlongData.m */,
+				A194E8E41B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.h */,
+				A194E8E51B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m */,
+				A12877B61B9863EB00B7EFAF /* TTITakeAlongTransitionController.h */,
+				A12877B71B9863EB00B7EFAF /* TTITakeAlongTransitionController.m */,
+				A18F854C1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.h */,
+				A18F854D1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m */,
+				A18F854F1AC012C300E14857 /* TTIGestureController.h */,
+				A18F85501AC012C300E14857 /* TTIGestureController.m */,
+				A1F241721AA991E20046268B /* UIImage+ImageEffects.h */,
+				A1F241731AA991E20046268B /* UIImage+ImageEffects.m */,
+			);
+			name = "Transition Helpers";
+			sourceTree = "<group>";
+		};
 		A16CCC0A19E86D4E00717793 = {
 			isa = PBXGroup;
 			children = (
@@ -152,12 +235,10 @@
 				A16CCC1B19E86D4E00717793 /* AppDelegate.m */,
 				A16CCC1D19E86D4E00717793 /* ViewController.h */,
 				A16CCC1E19E86D4E00717793 /* ViewController.m */,
-				A1DCE7BB1B9875FA001F836E /* TakeAlongMasterViewController.h */,
-				A1DCE7BC1B9875FA001F836E /* TakeAlongMasterViewController.m */,
-				A1DCE7BE1B987604001F836E /* TakeAlongDetailViewController.h */,
-				A1DCE7BF1B987604001F836E /* TakeAlongDetailViewController.m */,
+				A16BD0401BB6B16600605A29 /* Take Along Modal */,
 				A194E8E71B89E9210053B6BF /* TTIInsideNavigationViewController.h */,
 				A194E8E81B89E9210053B6BF /* TTIInsideNavigationViewController.m */,
+				A16BD03F1BB6B15600605A29 /* Take Along in NavigationController */,
 				A16CCC4B19E86E4C00717793 /* DetailViewController.h */,
 				A16CCC4C19E86E4C00717793 /* DetailViewController.m */,
 				A16CCC2019E86D4E00717793 /* Main.storyboard */,
@@ -197,42 +278,11 @@
 		A1F241611AA991E20046268B /* TTITransition */ = {
 			isa = PBXGroup;
 			children = (
-				A1DCE7B81B986CE1001F836E /* TTITakeAlongData.h */,
-				A1DCE7B91B986CE1001F836E /* TTITakeAlongData.m */,
-				A194E8E11B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.h */,
-				A194E8E21B89CEFC0053B6BF /* TTINavigationControllerTransitioningDelegate.m */,
-				A194E8E41B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.h */,
-				A194E8E51B89D4A40053B6BF /* TTITransitionNavigationControllerLeftEdgeGestureHandler.m */,
 				A13B5D3E1B35B62C008DC5CA /* TTITransitionController.h */,
 				A13B5D3F1B35B62C008DC5CA /* TTITransitionController.m */,
-				A12877B61B9863EB00B7EFAF /* TTITakeAlongTransitionController.h */,
-				A12877B71B9863EB00B7EFAF /* TTITakeAlongTransitionController.m */,
-				A1F241621AA991E20046268B /* TTIHangIn.h */,
-				A1F241631AA991E20046268B /* TTIHangIn.m */,
-				A1E17CC71AC52E1500A4E116 /* TTIFallIn.h */,
-				A1E17CC81AC52E1500A4E116 /* TTIFallIn.m */,
-				A1F241641AA991E20046268B /* TTITransitionFold.h */,
-				A1F241651AA991E20046268B /* TTITransitionFold.m */,
-				A1F241661AA991E20046268B /* TTITransitionFull.h */,
-				A1F241671AA991E20046268B /* TTITransitionFull.m */,
-				A1F241681AA991E20046268B /* TTITransitioningDelegate.h */,
-				A1F241691AA991E20046268B /* TTITransitioningDelegate.m */,
-				A1F2416A1AA991E20046268B /* TTITransitionOverlay.h */,
-				A1F2416B1AA991E20046268B /* TTITransitionOverlay.m */,
-				A1F2416C1AA991E20046268B /* TTITransitionScale.h */,
-				A1F2416D1AA991E20046268B /* TTITransitionScale.m */,
-				A1F2416E1AA991E20046268B /* TTITransitionSlide.h */,
-				A1F2416F1AA991E20046268B /* TTITransitionSlide.m */,
-				A1F241701AA991E20046268B /* TTITransitionSpinn.h */,
-				A1F241711AA991E20046268B /* TTITransitionSpinn.m */,
-				A18F854C1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.h */,
-				A18F854D1AC00B2100E14857 /* TTIPercentDrivenInteractionTransitionController.m */,
-				A18F854F1AC012C300E14857 /* TTIGestureController.h */,
-				A18F85501AC012C300E14857 /* TTIGestureController.m */,
-				A13209C51AC01A6D00D054AD /* TTITransitionSuper.h */,
-				A13209C61AC01A6D00D054AD /* TTITransitionSuper.m */,
-				A1F241721AA991E20046268B /* UIImage+ImageEffects.h */,
-				A1F241731AA991E20046268B /* UIImage+ImageEffects.m */,
+				A16BD0411BB6FAA900605A29 /* Transitioning Delegates */,
+				A16BD0431BB70DF900605A29 /* Transition Helpers */,
+				A16BD0421BB70DE200605A29 /* Animators */,
 			);
 			name = TTITransition;
 			path = ../TTITransition;
@@ -340,9 +390,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A18F85511AC012C300E14857 /* TTIGestureController.m in Sources */,
+				A16BD03B1BB6AF8400605A29 /* NavigationTakeAlongViewController.m in Sources */,
 				A16CCC4D19E86E4C00717793 /* DetailViewController.m in Sources */,
 				A194E8E91B89E9210053B6BF /* TTIInsideNavigationViewController.m in Sources */,
 				A1F2417C1AA991E20046268B /* UIImage+ImageEffects.m in Sources */,
+				A16BD03E1BB6B0AE00605A29 /* NavigationTakeAlongDetailViewController.m in Sources */,
 				A16CCC1F19E86D4E00717793 /* ViewController.m in Sources */,
 				A12877B81B9863EB00B7EFAF /* TTITakeAlongTransitionController.m in Sources */,
 				A1DCE7BA1B986CE1001F836E /* TTITakeAlongData.m in Sources */,

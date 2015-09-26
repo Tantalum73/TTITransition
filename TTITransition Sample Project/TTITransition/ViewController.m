@@ -37,7 +37,7 @@
     
     if([segue.identifier isEqualToString:@"ShowFull"]) {
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeFull
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -49,7 +49,7 @@
     }
     else if([segue.identifier isEqualToString:@"ShowOverlay"]) {
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeOverlay
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -61,7 +61,7 @@
     }
     else if([segue.identifier isEqualToString:@"ShowSlide"]) {
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeSlide
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -74,7 +74,7 @@
     }
     else if([segue.identifier isEqualToString:@"ShowFold"]) {
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeFold
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -87,7 +87,7 @@
     }
     else if([segue.identifier isEqualToString:@"ShowFallIn"]) {
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeFallIn
                                  fromPoint:fromPoint
                                  toPoint:CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, 0)
@@ -100,7 +100,7 @@
     else if([segue.identifier isEqualToString:@"ShowSpinn"]) {
         
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeSpinn
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -114,7 +114,7 @@
     else if([segue.identifier isEqualToString:@"ShowScale"]) {
         
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeScale
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -128,7 +128,7 @@
     else if([segue.identifier isEqualToString:@"ShowHangIn"]) {
         
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeHangIn
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -142,7 +142,7 @@
     else if([segue.identifier isEqualToString:@"ShowNavigationControllerTransitions"]) {
         
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeFull
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -156,7 +156,21 @@
     else if([segue.identifier isEqualToString:@"ShowTakeAlongTransitions"]) {
         
         _transitionController = [[TTITransitionController alloc]
-                                 initWithPresentedViewController:destination
+                                 initModalTransitionWithPresentedViewController:destination
+                                 transitionType:TTITransitionTypeFull
+                                 fromPoint:fromPoint
+                                 toPoint:CGPointZero
+                                 widthProportionOfSuperView:1
+                                 heightProportionOfSuperView:1
+                                 interactive:NO
+                                 gestureType:TTIGestureRecognizerNone
+                                 rectToStartGesture:CGRectZero];
+        
+    }
+    else if([segue.identifier isEqualToString:@"ShowTakeAlongNavigationControllerTransistion"]) {
+        
+        _transitionController = [[TTITransitionController alloc]
+                                 initModalTransitionWithPresentedViewController:destination
                                  transitionType:TTITransitionTypeFull
                                  fromPoint:fromPoint
                                  toPoint:CGPointZero
@@ -168,14 +182,7 @@
         
     }
 
-
 }
-//- (IBAction)modalFallIntoButtonPressed:(UIButton *)sender {
-//    UIViewController *destination = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
-//    
-//    _transitionController = [[TTITransitionController alloc] initWithPresentedViewController:destination transitionType:TTITransitionTypeFallIn fromPoint:sender.center toPoint:sender.center widthProportionOfSuperView:0.6 heightProportionOfSuperView:0.5 interactive:NO gestureType:TTIGestureRecognizerPanToEdge rectToStartGesture:CGRectZero];
-//    
-//    [self presentViewController:destination animated:YES completion:nil];
-//}
+
 
 @end

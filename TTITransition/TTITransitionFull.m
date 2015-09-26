@@ -37,7 +37,7 @@
         [inView addSubview:toView];
         
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
         CGAffineTransform scale = CGAffineTransformMakeScale(0.1, 0.1);
@@ -72,7 +72,7 @@
         
         
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
 
         

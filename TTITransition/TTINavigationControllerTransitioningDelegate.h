@@ -34,5 +34,6 @@ typedef NS_ENUM(NSInteger, TTINavigationControllerTransitionType) {
  */
 @property (nonatomic, assign) TTINavigationControllerTransitionType transitionType;
 
+@property (nonatomic, strong) TTITakeAlongTransitionController * _Nullable takeAlongController;
 
 @end

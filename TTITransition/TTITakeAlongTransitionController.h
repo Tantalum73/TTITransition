@@ -32,7 +32,6 @@
 
 @property (nonatomic, weak) id<TTITakeAlongTransitionProtocolForPresented> delegateForPresented;
 @property (nonatomic, weak) id<TTITakeAlongTransitionProtocolForPresenting> delegateForPreseting;
-//@property (nonatomic, strong) TTITransitioningDelegate *transitioningDelegate;
 
-//-(instancetype) initWithDelegate:(id<TTITakeAlongTransitionProtocol>) delegate transitioningDelegate:(TTITransitioningDelegate *)transitioningDelegate NS_DESIGNATED_INITIALIZER;
+
 @end

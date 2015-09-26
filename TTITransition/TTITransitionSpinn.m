@@ -43,7 +43,7 @@
    // [inView insertSubview:toView aboveSubview:backgroundView];
     [inView addSubview:toView];
     if (self.takeAlongController) {
-        [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
     }
     
     CGFloat angle = M_PI;

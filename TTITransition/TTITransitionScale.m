@@ -51,7 +51,7 @@
     toView.transform = scale;
     
     if (self.takeAlongController) {
-        [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+        [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
     }
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 options:

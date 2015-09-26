@@ -21,7 +21,6 @@
 
 @interface TTINavigationControllerTransitioningDelegate () {
     TTITransitionSuper *_activePresentationController;
-    UIViewController *_presentedViewController;
     TTITransitionNavigationControllerLeftEdgeGestureHandler *_gestureController;
 }
 
@@ -62,9 +61,9 @@
                 break;
         }
 
+        animator.takeAlongController = self.takeAlongController;
         
-        
-        
+        animator.takeAlongDataArray = [self.takeAlongController.delegateForPreseting dataForTakeAlongTransition].mutableCopy;
         
         
         animator.open = YES;

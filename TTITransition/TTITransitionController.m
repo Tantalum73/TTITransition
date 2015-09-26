@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
--(instancetype _Nullable)initWithPresentedViewController:(UIViewController* ) presentedViewController
+-(instancetype _Nullable)initModalTransitionWithPresentedViewController:(UIViewController* ) presentedViewController
 
                                           transitionType:(TTITransitionType) transitionType
                                                fromPoint:(CGPoint) fromPoint
@@ -119,9 +119,25 @@ NS_ASSUME_NONNULL_BEGIN
     return nil;
 }
 
--(instancetype _Nullable)initTakeAlongTransitionWithPresentedViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresented> *)presentedViewController presentingViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresenting> *)presentingViewController transitionType:(TTITransitionType)transitionType fromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint widthProportionOfSuperView:(CGFloat)widthProportionOfSuperView heightProportionOfSuperView:(CGFloat)heightProportionOfSuperView interactive:(BOOL)interactive gestureType:(TTIGestureRecognizerType)gestureType rectToStartGesture:(CGRect)rectForPanGestureToStart {
+- (instancetype _Nullable)initNavigationControllerTransitionWithTakeAlongElementsInNavigationController:(UINavigationController *)navigationController presentedViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresented> *)presentedViewController presentingViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresenting> *)presentingViewController transitionType:(TTINavigationControllerTransitionType)transitionType {
     
-    self = [self initWithPresentedViewController:presentedViewController transitionType:transitionType fromPoint:fromPoint toPoint:toPoint widthProportionOfSuperView:widthProportionOfSuperView heightProportionOfSuperView:heightProportionOfSuperView interactive:interactive gestureType:gestureType rectToStartGesture:rectForPanGestureToStart];
+    self = [self initNavigationControllerTransitionWithNavigationController:navigationController transitionType:transitionType];
+    if (!self) {
+        return nil;
+    }
+    
+    self.takeAlongTransitionController = [[TTITakeAlongTransitionController alloc] init];
+    self.takeAlongTransitionController.delegateForPresented = presentedViewController;
+    self.takeAlongTransitionController.delegateForPreseting = presentingViewController;
+
+    self.ttiNavigationControllerTransitioningDelegate.takeAlongController = self.takeAlongTransitionController;
+    
+    return self;
+}
+
+-(instancetype _Nullable)initModalTakeAlongTransitionWithPresentedViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresented> *)presentedViewController presentingViewController:(UIViewController<TTITakeAlongTransitionProtocolForPresenting> *)presentingViewController transitionType:(TTITransitionType)transitionType fromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint widthProportionOfSuperView:(CGFloat)widthProportionOfSuperView heightProportionOfSuperView:(CGFloat)heightProportionOfSuperView interactive:(BOOL)interactive gestureType:(TTIGestureRecognizerType)gestureType rectToStartGesture:(CGRect)rectForPanGestureToStart {
+    
+    self = [self initModalTransitionWithPresentedViewController:presentedViewController transitionType:transitionType fromPoint:fromPoint toPoint:toPoint widthProportionOfSuperView:widthProportionOfSuperView heightProportionOfSuperView:heightProportionOfSuperView interactive:interactive gestureType:gestureType rectToStartGesture:rectForPanGestureToStart];
     if (!self) {
         return nil;
     }
@@ -131,9 +147,8 @@ NS_ASSUME_NONNULL_BEGIN
     self.takeAlongTransitionController.delegateForPresented = presentedViewController;
     self.takeAlongTransitionController.delegateForPreseting = presentingViewController;
     
-    self.ttiTransitioningDelegate.takeAlongCoontroller = self.takeAlongTransitionController;
+    self.ttiTransitioningDelegate.takeAlongController = self.takeAlongTransitionController;
     
-//    presentedViewController.transitioningDelegate = self.takeAlongTransitionController;
     
     
     return self;

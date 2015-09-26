@@ -54,7 +54,7 @@
         
         
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
         [inView layoutIfNeeded];
@@ -101,7 +101,7 @@
         
         
         if (self.takeAlongController) {
-            [self insertTakeAlongViewIntoContainerViewForContest:transitionContext];
+            [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
         [inView insertSubview:toView atIndex:0];

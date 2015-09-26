@@ -48,7 +48,7 @@
 @property (nonatomic, strong) NSMutableArray<TTITakeAlongData*> *_Nullable takeAlongDataArray;
 
 ///Setting up the take along views for transitioning.
--(void)insertTakeAlongViewIntoContainerViewForContest:(_Nonnull id<UIViewControllerContextTransitioning>)context;
+-(void)insertTakeAlongViewIntoContainerViewForContext:(_Nonnull id<UIViewControllerContextTransitioning>)context;
 
 ///Performing the update of the take along views.
 -(void)changeTakeAlongViews;
