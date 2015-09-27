@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivd-U6-SOv">
-                                <rect key="frame" x="252" y="180" width="96" height="30"/>
+                                <rect key="frame" x="252" y="140" width="96" height="30"/>
                                 <state key="normal" title="Full Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPB-je-JW4">
-                                <rect key="frame" x="247" y="60" width="106" height="30"/>
+                                <rect key="frame" x="247" y="40" width="106" height="30"/>
                                 <state key="normal" title="Slide Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3p-XX-EyJ">
-                                <rect key="frame" x="250" y="240" width="101" height="30"/>
+                                <rect key="frame" x="250" y="190" width="101" height="30"/>
                                 <state key="normal" title="Fold Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -46,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywt-p3-Goz">
-                                <rect key="frame" x="238" y="300" width="125" height="30"/>
+                                <rect key="frame" x="238" y="240" width="125" height="30"/>
                                 <state key="normal" title="Fall Into Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -55,7 +55,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2O-QP-SGV">
-                                <rect key="frame" x="244" y="420" width="111" height="30"/>
+                                <rect key="frame" x="244" y="340" width="111" height="30"/>
                                 <state key="normal" title="Spinn Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -64,7 +64,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzb-pU-Nfb">
-                                <rect key="frame" x="246" y="480" width="109" height="30"/>
+                                <rect key="frame" x="246" y="390" width="109" height="30"/>
                                 <state key="normal" title="Scale Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -73,7 +73,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUy-U2-LtS">
-                                <rect key="frame" x="231" y="360" width="138" height="30"/>
+                                <rect key="frame" x="231" y="290" width="138" height="30"/>
                                 <state key="normal" title="Hang Into Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -81,8 +81,8 @@
                                     <segue destination="sUB-ft-oTS" kind="presentation" identifier="ShowHangIn" id="Crn-uH-u4J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOG-gI-qld">
-                                <rect key="frame" x="237" y="120" width="124" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOG-gI-qld">
+                                <rect key="frame" x="238" y="90" width="124" height="30"/>
                                 <state key="normal" title="Overlay Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -91,22 +91,22 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shx-Qb-9Uf">
-                                <rect key="frame" x="190" y="518" width="220" height="30"/>
+                                <rect key="frame" x="190" y="440" width="220" height="30"/>
                                 <state key="normal" title="NavigationController Transitions"/>
                                 <connections>
                                     <segue destination="mfY-KD-3Cx" kind="presentation" identifier="ShowNavigationControllerTransitions" id="vRU-ol-6s7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoE-0Z-N30">
-                                <rect key="frame" x="222" y="550" width="155" height="30"/>
+                                <rect key="frame" x="222" y="490" width="155" height="30"/>
                                 <state key="normal" title="Take Along Transitions"/>
                                 <connections>
                                     <segue destination="AY7-Hr-yMc" kind="presentation" identifier="ShowTakeAlongTransitions" id="rQ5-hk-cTv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prG-Bc-mdm">
-                                <rect key="frame" x="246.5" y="570" width="107" height="30"/>
-                                <state key="normal" title="Nav Take Along"/>
+                                <rect key="frame" x="158" y="540" width="283" height="30"/>
+                                <state key="normal" title="Take Along inside of NavigationController"/>
                                 <connections>
                                     <segue destination="w5D-zn-KiQ" kind="presentation" identifier="ShowTakeAlongNavigationControllerTransistion" id="wAC-xG-Nzo"/>
                                 </connections>
@@ -114,28 +114,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="shx-Qb-9Uf" firstAttribute="top" secondItem="wzb-pU-Nfb" secondAttribute="bottom" constant="8" id="1Fy-yf-B2n"/>
+                            <constraint firstItem="shx-Qb-9Uf" firstAttribute="top" secondItem="wzb-pU-Nfb" secondAttribute="bottom" constant="20" id="1Fy-yf-B2n"/>
                             <constraint firstAttribute="centerX" secondItem="ywt-p3-Goz" secondAttribute="centerX" id="7eN-hu-d3A"/>
-                            <constraint firstItem="DoE-0Z-N30" firstAttribute="top" secondItem="shx-Qb-9Uf" secondAttribute="bottom" constant="2" id="82h-RQ-gEq"/>
-                            <constraint firstItem="b2O-QP-SGV" firstAttribute="top" secondItem="oUy-U2-LtS" secondAttribute="bottom" constant="30" id="AYB-HS-zTc"/>
+                            <constraint firstItem="DoE-0Z-N30" firstAttribute="top" secondItem="shx-Qb-9Uf" secondAttribute="bottom" constant="20" id="82h-RQ-gEq"/>
+                            <constraint firstItem="b2O-QP-SGV" firstAttribute="top" secondItem="oUy-U2-LtS" secondAttribute="bottom" constant="20" id="AYB-HS-zTc"/>
                             <constraint firstItem="DoE-0Z-N30" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="BJE-gV-wSJ"/>
-                            <constraint firstItem="prG-Bc-mdm" firstAttribute="top" secondItem="DoE-0Z-N30" secondAttribute="bottom" constant="-10" id="JOI-Y4-vbn"/>
-                            <constraint firstItem="dOG-gI-qld" firstAttribute="top" secondItem="NPB-je-JW4" secondAttribute="bottom" constant="30" id="JRe-dw-SdY"/>
+                            <constraint firstItem="prG-Bc-mdm" firstAttribute="top" secondItem="DoE-0Z-N30" secondAttribute="bottom" constant="20" id="JOI-Y4-vbn"/>
+                            <constraint firstItem="dOG-gI-qld" firstAttribute="top" secondItem="NPB-je-JW4" secondAttribute="bottom" constant="20" id="JRe-dw-SdY"/>
                             <constraint firstAttribute="centerX" secondItem="wzb-pU-Nfb" secondAttribute="centerX" id="LJL-sb-cIR"/>
                             <constraint firstItem="prG-Bc-mdm" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="NJX-K2-Gce"/>
                             <constraint firstAttribute="centerX" secondItem="NPB-je-JW4" secondAttribute="centerX" id="NLD-4g-3Tf"/>
-                            <constraint firstItem="Ivd-U6-SOv" firstAttribute="top" secondItem="dOG-gI-qld" secondAttribute="bottom" constant="30" id="QCh-mJ-PWA"/>
+                            <constraint firstItem="Ivd-U6-SOv" firstAttribute="top" secondItem="dOG-gI-qld" secondAttribute="bottom" constant="20" id="QCh-mJ-PWA"/>
                             <constraint firstAttribute="centerX" secondItem="b2O-QP-SGV" secondAttribute="centerX" id="Wrg-RH-lzA"/>
-                            <constraint firstItem="oUy-U2-LtS" firstAttribute="top" secondItem="ywt-p3-Goz" secondAttribute="bottom" constant="30" id="Xn6-sL-uLI"/>
+                            <constraint firstItem="oUy-U2-LtS" firstAttribute="top" secondItem="ywt-p3-Goz" secondAttribute="bottom" constant="20" id="Xn6-sL-uLI"/>
                             <constraint firstAttribute="centerX" secondItem="dOG-gI-qld" secondAttribute="centerX" id="Zwa-Ql-kxJ"/>
-                            <constraint firstItem="NPB-je-JW4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="40" id="dE0-wO-a85"/>
-                            <constraint firstItem="ywt-p3-Goz" firstAttribute="top" secondItem="P3p-XX-EyJ" secondAttribute="bottom" constant="30" id="hpD-wg-E4X"/>
+                            <constraint firstItem="NPB-je-JW4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="dE0-wO-a85"/>
+                            <constraint firstItem="ywt-p3-Goz" firstAttribute="top" secondItem="P3p-XX-EyJ" secondAttribute="bottom" constant="20" id="hpD-wg-E4X"/>
                             <constraint firstAttribute="centerX" secondItem="P3p-XX-EyJ" secondAttribute="centerX" id="i5d-oY-CB2"/>
                             <constraint firstAttribute="centerX" secondItem="Ivd-U6-SOv" secondAttribute="centerX" id="jTU-cZ-M8O"/>
                             <constraint firstAttribute="centerX" secondItem="oUy-U2-LtS" secondAttribute="centerX" id="kii-uJ-hLG"/>
-                            <constraint firstItem="P3p-XX-EyJ" firstAttribute="top" secondItem="Ivd-U6-SOv" secondAttribute="bottom" constant="30" id="lOG-Ez-SNa"/>
+                            <constraint firstItem="P3p-XX-EyJ" firstAttribute="top" secondItem="Ivd-U6-SOv" secondAttribute="bottom" constant="20" id="lOG-Ez-SNa"/>
                             <constraint firstItem="shx-Qb-9Uf" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qXW-AZ-en2"/>
-                            <constraint firstItem="wzb-pU-Nfb" firstAttribute="top" secondItem="b2O-QP-SGV" secondAttribute="bottom" constant="30" id="zNg-KH-IYC"/>
+                            <constraint firstItem="wzb-pU-Nfb" firstAttribute="top" secondItem="b2O-QP-SGV" secondAttribute="bottom" constant="20" id="zNg-KH-IYC"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -299,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OdN-Kb-Yh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="221"/>
+            <point key="canvasLocation" x="162" y="1777"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="8Yk-9O-rWm">
@@ -469,26 +469,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgd-4J-qOA">
-                                <rect key="frame" x="285" y="83" width="30" height="30"/>
+                                <rect key="frame" x="285" y="307" width="30" height="30"/>
                                 <state key="normal" title="Fold"/>
                                 <connections>
                                     <segue destination="jrw-5M-goU" kind="show" identifier="ShowFold" id="HZa-vD-tdD"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-3w-gH7">
-                                <rect key="frame" x="35" y="125" width="240" height="200"/>
+                                <rect key="frame" x="340" y="83" width="240" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="U31-Rk-bFV"/>
-                                    <constraint firstAttribute="height" constant="200" id="pxt-mS-leB"/>
+                                    <constraint firstAttribute="height" constant="200" id="NLd-XV-EX1"/>
+                                    <constraint firstAttribute="width" constant="240" id="nm1-1h-tkI"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.94509803920000002" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wgd-4J-qOA" firstAttribute="centerX" secondItem="vr1-rz-kVb" secondAttribute="centerX" id="Of7-ib-kt7"/>
-                            <constraint firstItem="wgd-4J-qOA" firstAttribute="leading" secondItem="vAj-3w-gH7" secondAttribute="trailing" constant="10" id="OuY-gY-PsI"/>
-                            <constraint firstItem="wgd-4J-qOA" firstAttribute="top" secondItem="TeJ-ZV-Cuv" secondAttribute="bottom" constant="19" id="TNZ-dB-8g0"/>
-                            <constraint firstItem="vAj-3w-gH7" firstAttribute="top" secondItem="TeJ-ZV-Cuv" secondAttribute="bottom" constant="61" id="iBO-st-YhL"/>
+                            <constraint firstItem="vAj-3w-gH7" firstAttribute="top" secondItem="TeJ-ZV-Cuv" secondAttribute="bottom" constant="19" id="BSp-kA-Nok"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vAj-3w-gH7" secondAttribute="trailing" id="Dh0-S7-gL5"/>
+                            <constraint firstItem="wgd-4J-qOA" firstAttribute="top" secondItem="vAj-3w-gH7" secondAttribute="bottom" constant="24" id="GFA-ZV-XBd"/>
+                            <constraint firstItem="wgd-4J-qOA" firstAttribute="centerX" secondItem="vr1-rz-kVb" secondAttribute="centerX" id="icw-rv-a1r"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2tw-sK-dpb">
@@ -518,7 +518,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="eMv-Kc-rVv">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="eMv-Kc-rVv">
                                 <rect key="frame" x="49" y="193" width="200" height="200"/>
                             </imageView>
                         </subviews>

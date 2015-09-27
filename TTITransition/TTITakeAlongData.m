@@ -24,6 +24,8 @@
 
 -(void)setFinalView:(UIView *)newValue {
     self.finalFrame = [newValue.superview convertRect:newValue.frame toView:nil];
+    
+#warning The next line will cause an log statement to occur. It will say that snappshotting an view before it is rendered is pointless. You can ignore the warning because it will work and the mentioned concerns are invalid. Just relax and continue working on your app.
     self.finalViewCopy = [newValue snapshotViewAfterScreenUpdates:NO];
     self.finalViewCopy.frame = self.finalFrame;
     
