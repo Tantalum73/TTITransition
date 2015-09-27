@@ -107,13 +107,12 @@
         }
         else {
             
-//            data.initialView.alpha = 0;
-//            data.finalView.alpha = 0;
             data.finalViewCopy.layer.zPosition = 1000;
             data.finalViewCopy.alpha = 1;
             
             [inView addSubview:data.finalViewCopy];
-            [data.finalView removeFromSuperview];
+            data.initialView.alpha = 0;
+            data.finalView.alpha = 0;
         }
         
     }
