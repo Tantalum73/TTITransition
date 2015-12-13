@@ -118,9 +118,9 @@
         }completion:^(BOOL finished) {
             
             
-            [self removeAndCleanUptakeAlongViews];
             
             if ([transitionContext transitionWasCancelled]) {
+                [self takeAlongTransitionCancelled];
                 [toView removeFromSuperview];
                 //[fromView removeFromSuperview];
                 [blurredFrom removeFromSuperview];
@@ -133,6 +133,9 @@
 
             }
             else {
+                
+                [self removeAndCleanUptakeAlongViews];
+                
                 toView.layer.transform = CATransform3DIdentity;
                 [fromView removeFromSuperview];
                 [inView addSubview:toView];

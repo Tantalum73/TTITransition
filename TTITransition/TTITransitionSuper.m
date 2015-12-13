@@ -144,9 +144,25 @@
         
     }
 }
+-(void)takeAlongTransitionCancelled {
+    for (TTITakeAlongData* data in self.takeAlongDataArray) {
+        
+        if (self.open) {
+            [data.finalViewCopy removeFromSuperview];
+            [data.initialViewCopy removeFromSuperview];
+            data.initialView.alpha = 1;
+        }
+        else {
+            [data.initialViewCopy removeFromSuperview];
+            [data.finalViewCopy removeFromSuperview];
+            data.finalView.alpha = 1;
+        }
+        
+    }
+}
 
 -(void)animateTakeAlongViews {
-    [UIView animateWithDuration:[self transitionDuration:self.transitioningContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:[self transitionDuration:self.transitioningContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         [self changeTakeAlongViews];
     } completion:^(BOOL finished) {
         [self removeAndCleanUptakeAlongViews];
