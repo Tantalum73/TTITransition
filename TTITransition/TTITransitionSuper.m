@@ -8,9 +8,45 @@
 
 #import "TTITransitionSuper.h"
 #import "QuartzCore/QuartzCore.h"
+#import "TTITransitioningDelegate.h"
+
+@interface TTITransitionSuper()
+
+@property (nonatomic, strong, readwrite) UIView  * _Nullable inView;
+@property (nonatomic, strong, readwrite) UIViewController  * _Nullable toVC;
+@property (nonatomic, strong, readwrite) UIViewController  * _Nullable fromVC;
+@property (nonatomic, strong, readwrite) UIView  * _Nullable toView;
+@property (nonatomic, strong, readwrite) UIView  * _Nullable fromView;
+
+@end
 
 @implementation TTITransitionSuper
 
+-(void)prepareAnimationWithTransitionContext:(id<UIViewControllerContextTransitioning> _Nonnull)transitioningContext {
+    
+    self.transitioningContext = transitioningContext;
+
+    UIView *inView = [self.transitioningContext containerView];
+    UIViewController *toVC = [self.transitioningContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController *fromVC = [self.transitioningContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    
+    UIView *toView;
+    UIView *fromView;
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        toView = [self.transitioningContext viewForKey:UITransitionContextToViewKey];
+        fromView = [self.transitioningContext viewForKey:UITransitionContextFromViewKey];
+    }
+    else {
+        toView = [toVC view];
+        fromView = [fromVC view];
+    }
+    
+    self.inView = inView;
+    self.toVC = toVC;
+    self.fromVC = fromVC;
+    self.toView = toView;
+    self.fromView = fromView;
+}
 
 -(void)updateInteractiveTransition:(CGFloat)percentComplete {
     [self.interactiveAnimator updateInteractiveTransition:percentComplete];
@@ -26,7 +62,7 @@
 }
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    
+    //empty implementation, overwritten...
 }
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return 0.5;

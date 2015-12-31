@@ -14,49 +14,35 @@
 @implementation TTITransitionFold
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIView *inView = [transitionContext containerView];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    UIView *toView;
-    UIView *fromView;
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
-    }
-    else {
-        toView = [toVC view];
-        fromView = [fromVC view];
-    }
-    
-
+    [self prepareAnimationWithTransitionContext:transitionContext];
     
     if(self.open) {
-        toView.frame = fromView.frame;
+        self.toView.frame = self.fromView.frame;
         
         
         // Add the snapshot view and animate its appearance
         //[inView insertSubview:_intermediateView aboveSubview:fromView];
-        fromView.layer.anchorPoint = CGPointMake(0, 0);
-        fromView.frame = [transitionContext initialFrameForViewController:fromVC];
+        self.fromView.layer.anchorPoint = CGPointMake(0, 0);
+        self.fromView.frame = [transitionContext initialFrameForViewController:self.fromVC];
         
-        [inView insertSubview:toView belowSubview:fromView];
+        [self.inView insertSubview:self.toView belowSubview:self.fromView];
         if (self.takeAlongController) {
             [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
-        UIImageView *blurredTo = [self imageViewWithBlurredImageFromView:toView];
-        [inView insertSubview:blurredTo aboveSubview:toView];
+        UIImageView *blurredTo = [self imageViewWithBlurredImageFromView:self.toView];
+        [self.inView insertSubview:blurredTo aboveSubview:self.toView];
 //        [inView insertSubview:toView belowSubview:blurredTo];
         
         
         
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseIn  animations:^{
-            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
-            toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+            self.fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+            self.toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             
-            fromView.layer.opacity = 1.0f;
+            self.fromView.layer.opacity = 1.0f;
             
             blurredTo.layer.opacity = 0.0f;
             
@@ -64,7 +50,7 @@
             CATransform3D transform = CATransform3DMakeRotation(M_PI/2, 0, 1, 0);
             transform.m34 = 0.2/180.0;
             CATransform3D inverseTransformation = CATransform3DInvert(transform);
-            fromView.layer.transform = inverseTransformation;
+            self.fromView.layer.transform = inverseTransformation;
             
             [self changeTakeAlongViews];
             
@@ -73,7 +59,7 @@
             self.interactiveAnimator = [TTIPercentDrivenInteractionTransitionController new];
             
             [blurredTo removeFromSuperview];
-            [fromView removeFromSuperview];
+            [self.fromView removeFromSuperview];
             [self removeAndCleanUptakeAlongViews];
             
             [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
@@ -82,7 +68,7 @@
     }
     
     else {
-        toView.frame = [transitionContext finalFrameForViewController:toVC];
+        self.toView.frame = [transitionContext finalFrameForViewController:self.toVC];
         
         
         
@@ -90,42 +76,42 @@
             [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
-        UIImageView *blurredFrom = [self imageViewWithBlurredImageFromView:fromView];
+        UIImageView *blurredFrom = [self imageViewWithBlurredImageFromView:self.fromView];
         blurredFrom.layer.opacity = 0.0f;
-        [inView addSubview:blurredFrom];
+        [self.inView addSubview:blurredFrom];
         
-        fromView.layer.opacity = 1.0f;
+        self.fromView.layer.opacity = 1.0f;
         
-        [inView insertSubview:fromView belowSubview:blurredFrom];
+        [self.inView insertSubview:self.fromView belowSubview:blurredFrom];
 //        [inView addSubview:fromView];
         
 //        [inView insertSubview:toView aboveSubview:toVxiew];
-        [inView addSubview:toView];
+        [self.inView addSubview:self.toView];
         
-        toView.layer.opacity = 1.0f;
+        self.toView.layer.opacity = 1.0f;
         
         
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:0  animations:^{
             [self changeTakeAlongViews];
-            toView.layer.transform = CATransform3DIdentity;//transform;
+            self.toView.layer.transform = CATransform3DIdentity;//transform;
             
             
             blurredFrom.layer.opacity = 1.0f;
             
 //            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
-            toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+            self.toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
         }completion:^(BOOL finished) {
             
             
             
             if ([transitionContext transitionWasCancelled]) {
                 [self takeAlongTransitionCancelled];
-                [toView removeFromSuperview];
+                [self.toView removeFromSuperview];
                 //[fromView removeFromSuperview];
                 [blurredFrom removeFromSuperview];
-                fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-                fromView.transform = CGAffineTransformIdentity;
+                self.fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+                self.fromView.transform = CGAffineTransformIdentity;
                 [transitionContext completeTransition:NO];
                 
                 
@@ -136,9 +122,9 @@
                 
                 [self removeAndCleanUptakeAlongViews];
                 
-                toView.layer.transform = CATransform3DIdentity;
-                [fromView removeFromSuperview];
-                [inView addSubview:toView];
+                self.toView.layer.transform = CATransform3DIdentity;
+                [self.fromView removeFromSuperview];
+                [self.inView addSubview:self.toView];
                 [blurredFrom removeFromSuperview];
                 
                 [transitionContext completeTransition:YES];

@@ -25,7 +25,6 @@
 
 //@property (nonatomic) CGRect targetRect;
 @property (nonatomic) CGPoint offscreenPoint;
-@property (nonatomic, strong) _Nullable id<UIViewControllerContextTransitioning> context;
 -(CGPoint)centerOfRect:(CGRect)rect;
 @property (nonatomic) CGPoint toPoint;
 
@@ -34,6 +33,13 @@
 @property (nonatomic, readwrite) CGFloat heightProportionOfSuperView;
 
 @property (nonatomic, weak)_Nullable id<UIViewControllerContextTransitioning>transitioningContext;
+@property (nonatomic, strong, readonly) UIView  * _Nullable inView;
+@property (nonatomic, strong, readonly) UIViewController  * _Nullable toVC;
+@property (nonatomic, strong, readonly) UIViewController  * _Nullable fromVC;
+@property (nonatomic, strong, readonly) UIView  * _Nullable toView;
+@property (nonatomic, strong, readonly) UIView  * _Nullable fromView;
+
+-(void)prepareAnimationWithTransitionContext:(id<UIViewControllerContextTransitioning> _Nonnull)transitioningContext;
 
 -(void)applyBorderToView:(UIView *_Nonnull)view;
 -(void)applyShadowEffectToView:(UIView *_Nonnull)view;

@@ -12,11 +12,10 @@
 
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIView *inView = [transitionContext containerView];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:inView.frame];
+    [self prepareAnimationWithTransitionContext:transitionContext];
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:self.inView.frame];
     
     if(!self.colorForBackgroundView) {
         self.colorForBackgroundView = [UIColor colorWithRed:209.0/255.0 green:209.0/255.0 blue:209.0/255.0 alpha:1];
@@ -24,31 +23,24 @@
     backgroundView.backgroundColor = self.colorForBackgroundView;
     
     
-    UIView *toView;
-    UIView *fromView;
-
-        toView = [toVC view];
-        fromView = [fromVC view];
-    
-    
-    [inView insertSubview:backgroundView atIndex:0];
+    [self.inView insertSubview:backgroundView atIndex:0];
 
     [backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [inView addConstraints:[self constraintsForBackgroundView:backgroundView]];
+    [self.inView addConstraints:[self constraintsForBackgroundView:backgroundView]];
     
     
-    fromView.alpha = 1;
-    toView.alpha = 0;
+    self.fromView.alpha = 1;
+    self.toView.alpha = 0;
     
-    [inView insertSubview:fromView aboveSubview:backgroundView];
-    [inView insertSubview:toView belowSubview:fromView];
+    [self.inView insertSubview:self.fromView aboveSubview:backgroundView];
+    [self.inView insertSubview:self.toView belowSubview:self.fromView];
     
-    toView.alpha = 0;
+    self.toView.alpha = 0;
     
     CGAffineTransform scale = CGAffineTransformMakeScale(1.7, 1.7);
     
     
-    toView.transform = scale;
+    self.toView.transform = scale;
     
     if (self.takeAlongController) {
         [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
@@ -58,8 +50,8 @@
      UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction
                      animations:^{
         
-        fromView.transform = scale;
-        fromView.alpha = 0;
+        self.fromView.transform = scale;
+        self.fromView.alpha = 0;
         
     } completion:^(BOOL finished) {
     }];
@@ -70,17 +62,17 @@
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:[self transitionDuration:transitionContext]/2.0 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent animations:^{
         
-        toView.alpha = 1;
-        toView.transform = CGAffineTransformIdentity;
+        self.toView.alpha = 1;
+        self.toView.transform = CGAffineTransformIdentity;
         
     } completion:^(BOOL finished) {
         
         if ([transitionContext transitionWasCancelled]) {
             [self takeAlongTransitionCancelled];
             
-            toView.transform = CGAffineTransformIdentity;
-            [toView removeFromSuperview];
-            fromView.transform = CGAffineTransformIdentity;
+            self.toView.transform = CGAffineTransformIdentity;
+            [self.toView removeFromSuperview];
+            self.fromView.transform = CGAffineTransformIdentity;
             [backgroundView removeFromSuperview];
             
             self.interactive = NO;
@@ -89,8 +81,8 @@
         }
         else {
             [self removeAndCleanUptakeAlongViews];
-            toView.transform = CGAffineTransformIdentity;
-            toView.alpha = 1;
+            self.toView.transform = CGAffineTransformIdentity;
+            self.toView.alpha = 1;
 //            [fromView removeFromSuperview];
             [backgroundView removeFromSuperview];
             [transitionContext completeTransition:YES];

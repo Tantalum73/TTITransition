@@ -9,7 +9,6 @@
 #import "TTIFallIn.h"
 @interface TTIFallIn () <UIDynamicAnimatorDelegate>
 @property (nonatomic, strong) UIDynamicAnimator *animator;
-@property (nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 @end
 
 @implementation TTIFallIn {
@@ -19,34 +18,18 @@
 
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-
-    UIView *inView = [transitionContext containerView];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    self.context = transitionContext;
-    
-    UIView *toView;
-    UIView *fromView;
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
-    }
-    else {
-        toView = [toVC view];
-        fromView = [fromVC view];
-    }
-    self.transitionContext = transitionContext;
+    [self prepareAnimationWithTransitionContext:transitionContext];
     self.animator.delegate = self;
     
-    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:inView];
+    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.inView];
     
     
     
     if(self.open) {
 //        fromView.frame = [transitionContext finalFrameForViewController:fromVC];
         
-        [inView insertSubview:fromView atIndex:0];
+        [self.inView insertSubview:self.fromView atIndex:0];
         
         if ([UIVisualEffectView class]) {
             UIVisualEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -54,9 +37,9 @@
             _backgroundView.backgroundColor = [UIColor clearColor];
             _backgroundView.layer.opacity = 0;
             [_backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
-            [inView insertSubview:_backgroundView atIndex:0];
+            [self.inView insertSubview:_backgroundView atIndex:0];
             
-            [inView addConstraints:[self constraintsForBackgroundView:_backgroundView]];
+            [self.inView addConstraints:[self constraintsForBackgroundView:_backgroundView]];
         }
 //        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
 //        _backgroundView.frame = fromView.frame;
@@ -65,29 +48,29 @@
 
         
         
-        [self applyShadowEffectToView:toView];
+        [self applyShadowEffectToView:self.toView];
         
         
-        [inView addSubview:toView];
+        [self.inView addSubview:self.toView];
         
-        [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [inView addConstraints:[self constraintsForPresentedView:toView inView:inView widthProportion:self.widthProportionOfSuperView heightProportion:self.heightProportionOfSuperView]];
+        [self.toView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.inView addConstraints:[self constraintsForPresentedView:self.toView inView:self.inView widthProportion:self.widthProportionOfSuperView heightProportion:self.heightProportionOfSuperView]];
         
-        [inView layoutIfNeeded];
+        [self.inView layoutIfNeeded];
         
         if (self.takeAlongController) {
             [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
-        CGSize sizeOfToViewController = toView.frame.size;
+        CGSize sizeOfToViewController = self.toView.frame.size;
         
-        toView.center = CGPointMake(inView.center.x, inView.frame.origin.y - sizeOfToViewController.height);
+        self.toView.center = CGPointMake(self.inView.center.x, self.inView.frame.origin.y - sizeOfToViewController.height);
         
-        toView.layer.zPosition = sizeOfToViewController.height / 1.7;//must be grater than sizeOfToViewController.height / 2
+        self.toView.layer.zPosition = sizeOfToViewController.height / 1.7;//must be grater than sizeOfToViewController.height / 2
         CATransform3D rotation =CATransform3DMakeRotation(M_PI/2.7, 1.0, 0, 0);
         rotation.m34 = -1.0/500.0;
-        toView.layer.transform = rotation;
-        CGPoint newCenter = inView.center;//_backgroundView.center;
+        self.toView.layer.transform = rotation;
+        CGPoint newCenter = self.inView.center;//_backgroundView.center;
         
         
         
@@ -96,16 +79,16 @@
             
             [self changeTakeAlongViews];
             
-            toView.layer.transform = CATransform3DIdentity;
-            toView.transform = CGAffineTransformIdentity;
+            self.toView.layer.transform = CATransform3DIdentity;
+            self.toView.transform = CGAffineTransformIdentity;
             
-            toView.layer.position = newCenter;
+            self.toView.layer.position = newCenter;
             _backgroundView.layer.opacity = 1;
             
             
         } completion:^(BOOL finished) {
-            toView.layer.transform = CATransform3DIdentity;
-            toView.layer.anchorPoint = CGPointMake(0.5, 0.5);
+            self.toView.layer.transform = CATransform3DIdentity;
+            self.toView.layer.anchorPoint = CGPointMake(0.5, 0.5);
 //            toView.layer.position = newCenter;// inView.layer.position;
             
             [self removeAndCleanUptakeAlongViews];
@@ -114,8 +97,8 @@
         }];
     }
     else {
-        [inView insertSubview:toView atIndex:0];
-        [inView addSubview:fromView];
+        [self.inView insertSubview:self.toView atIndex:0];
+        [self.inView addSubview:self.fromView];
 //        fromView.alpha = 1;
         
         if (self.takeAlongController) {
@@ -123,7 +106,7 @@
         }
          [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
             
-             fromView.transform = CGAffineTransformMakeTranslation(0, -inView.bounds.size.height / 2 - fromView.frame.size.height / 2);
+             self.fromView.transform = CGAffineTransformMakeTranslation(0, -self.inView.bounds.size.height / 2 - self.fromView.frame.size.height / 2);
 //             fromView.center = CGPointMake(self.toPoint.x, self.toPoint.y);//CGPointMake(self.toPoint.x, self.toPoint.y - fromView.frame.size.height / 1.5 );
             
             _backgroundView.alpha =0;
@@ -134,15 +117,15 @@
             
             if ([transitionContext transitionWasCancelled]) {
                 [self takeAlongTransitionCancelled];
-                fromView.layer.transform = CATransform3DIdentity;
+                self.fromView.layer.transform = CATransform3DIdentity;
                 
                 [transitionContext completeTransition:NO];
             }
             else {
                 [self removeAndCleanUptakeAlongViews];
                 
-                [fromView removeFromSuperview];
-                fromView.layer.transform = CATransform3DIdentity;
+                [self.fromView removeFromSuperview];
+                self.fromView.layer.transform = CATransform3DIdentity;
                 
                 [_backgroundView removeFromSuperview];
                 
@@ -151,7 +134,7 @@
                 
                 
                 //resets the frame of the presenting ViewController
-                toView.frame = inView.frame;
+                self.toView.frame = self.inView.frame;
             }
             
             

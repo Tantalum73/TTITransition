@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "TTITransitioningDelegate.h"
 #import "TTITransitionSuper.h"
 
 /*Works best under UINavigationBar or above UIToolbar*/

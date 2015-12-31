@@ -10,7 +10,6 @@
 
 @interface TTIHangIn () <UIDynamicAnimatorDelegate>
 @property (nonatomic, strong) UIDynamicAnimator *animator;
-@property (nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 @end
 
 @implementation TTIHangIn {
@@ -20,24 +19,12 @@
 
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIView *inView = [transitionContext containerView];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    UIView *toView;
-    UIView *fromView;
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
-    }
-    else {
-        toView = [toVC view];
-        fromView = [fromVC view];
-    }
-    self.transitionContext = transitionContext;
+    [self prepareAnimationWithTransitionContext:transitionContext];
+    
     self.animator.delegate = self;
     
-    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:inView];
+    self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.inView];
     
     if(self.open) {
 //        _backgroundView = [fromView snapshotViewAfterScreenUpdates:YES];
@@ -45,37 +32,37 @@
         
 
         
-        [inView addSubview:toView];
+        [self.inView addSubview:self.toView];
         
         
-        [toView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.toView setTranslatesAutoresizingMaskIntoConstraints:NO];
         
-        [inView addConstraints:[self constraintsForPresentedView:toView inView:inView widthProportion:self.widthProportionOfSuperView heightProportion:self.heightProportionOfSuperView]];
+        [self.inView addConstraints:[self constraintsForPresentedView:self.toView inView:self.inView widthProportion:self.widthProportionOfSuperView heightProportion:self.heightProportionOfSuperView]];
         
         
         if (self.takeAlongController) {
             [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
-        [inView layoutIfNeeded];
+        [self.inView layoutIfNeeded];
         
         
-        CGSize sizeOfToViewController = toView.frame.size;
+        CGSize sizeOfToViewController = self.toView.frame.size;
         
-        toView.center = CGPointMake(toView.center.x, inView.frame.origin.y - sizeOfToViewController.height/2);
+        self.toView.center = CGPointMake(self.toView.center.x, self.inView.frame.origin.y - sizeOfToViewController.height/2);
         
         
-        UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[toView]];
+        UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[self.toView]];
         [self.animator addBehavior:gravity];
 
-        self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:inView];
+        self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.inView];
 //        self.animator.delegate = self;
 
-        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:toView snapToPoint:inView.center];
+        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:self.toView snapToPoint:self.inView.center];
         snap.damping = 0.5;
         
         snap.action = ^{
-            if (toView.center.x == inView.center.x && toView.center.y == inView.center.y) {
+            if (self.toView.center.x == self.inView.center.x && self.toView.center.y == self.inView.center.y) {
                 [self.animator removeAllBehaviors];
                 [self animateTakeAlongViews];
 
@@ -90,13 +77,13 @@
     }
     else {
 //        [inView insertSubview:toView atIndex:0];
-        UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[fromView]];
+        UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[self.fromView]];
         gravity.magnitude = 1.5;
         [self.animator addBehavior:gravity];
         
-        UIDynamicItemBehavior *dynamic = [[UIDynamicItemBehavior alloc] initWithItems:@[fromView]];
+        UIDynamicItemBehavior *dynamic = [[UIDynamicItemBehavior alloc] initWithItems:@[self.fromView]];
 //        [dynamic addLinearVelocity:CGPointMake(0, 0) forItem:fromView];
-        [dynamic addAngularVelocity:1 forItem:fromView];
+        [dynamic addAngularVelocity:1 forItem:self.fromView];
         [dynamic setAngularResistance:3];
         
         
@@ -104,13 +91,13 @@
             [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
         }
         
-        [inView insertSubview:toView atIndex:0];
+        [self.inView insertSubview:self.toView atIndex:0];
         
         // when the view no longer intersects with its superview, go ahead and remove it
         
         [self animateTakeAlongViews];
         dynamic.action = ^{
-            if (!CGRectIntersectsRect(inView.bounds,fromView.frame)) {
+            if (!CGRectIntersectsRect(self.inView.bounds, self.fromView.frame)) {
  
                 [self.animator removeAllBehaviors];
                 

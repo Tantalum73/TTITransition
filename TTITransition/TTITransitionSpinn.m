@@ -12,36 +12,24 @@
 @implementation TTITransitionSpinn
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIView *inView = [transitionContext containerView];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:inView.frame];
+    [self prepareAnimationWithTransitionContext:transitionContext];
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:self.inView.frame];
     
     if(!self.colorForBackgroundView) {
         self.colorForBackgroundView = [UIColor lightGrayColor];
     }
     backgroundView.backgroundColor = self.colorForBackgroundView;
     
-//    [inView insertSubview:backgroundView atIndex:0];
 
     
-    UIView *toView;
-    UIView *fromView;
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        toView = [transitionContext viewForKey:UITransitionContextToViewKey];
-        fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
-    }
-    else {
-        toView = [toVC view];
-        fromView = [fromVC view];
-    }
 
-    [inView addSubview:fromView];
-    fromView.alpha = 1;
-    toView.alpha = 0;
+    [self.inView addSubview:self.fromView];
+    self.fromView.alpha = 1;
+    self.toView.alpha = 0;
    // [inView insertSubview:toView aboveSubview:backgroundView];
-    [inView addSubview:toView];
+    [self.inView addSubview:self.toView];
     if (self.takeAlongController) {
         [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
     }
@@ -53,7 +41,7 @@
     
     CGAffineTransform concatted = CGAffineTransformConcat(scale, rotation);
     
-    toView.transform = concatted;//CGAffineTransformConcat(scale, rotation);
+    self.toView.transform = concatted;//CGAffineTransformConcat(scale, rotation);
     
     [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionCalculationModePaced animations:^{
         
@@ -62,25 +50,25 @@
         }];
         
         [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.25 animations:^{
-            fromView.transform = concatted;
+            self.fromView.transform = concatted;
         }];
         [UIView addKeyframeWithRelativeStartTime:0.25 relativeDuration:0.25 animations:^{
-            fromView.transform = rotation;
-            fromView.alpha = 0;
-            fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+            self.fromView.transform = rotation;
+            self.fromView.alpha = 0;
+            self.fromView.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
         }];
         
         [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
             
-            toView.alpha = 1;
-            toView.transform = CGAffineTransformIdentity;
+            self.toView.alpha = 1;
+            self.toView.transform = CGAffineTransformIdentity;
         }];
     } completion:^(BOOL finished) {
         
         if ([transitionContext transitionWasCancelled]) {
             [self takeAlongTransitionCancelled];
 //            toView.transform = CGAffineTransformIdentity;
-            [toView removeFromSuperview];
+            [self.toView removeFromSuperview];
 //            fromView.transform = CGAffineTransformIdentity;
             [backgroundView removeFromSuperview];
             
@@ -90,8 +78,8 @@
         }
         else {
             [self removeAndCleanUptakeAlongViews];
-            toView.transform = CGAffineTransformIdentity;
-            [fromView removeFromSuperview];
+            self.toView.transform = CGAffineTransformIdentity;
+            [self.fromView removeFromSuperview];
             [backgroundView removeFromSuperview];
             [transitionContext completeTransition:YES];
         }

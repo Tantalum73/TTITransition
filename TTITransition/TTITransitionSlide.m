@@ -12,23 +12,16 @@
 @implementation TTITransitionSlide
 
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIView *inView = [transitionContext containerView];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    UIView *toView;
-    UIView *fromView;
-    UIView *backgroundView = [[UIView alloc] initWithFrame:inView.frame];
+    [self prepareAnimationWithTransitionContext:transitionContext];
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:self.inView.frame];
     if(!self.colorForBackgroundView) {
         self.colorForBackgroundView = [UIColor lightGrayColor];
     }
     backgroundView.backgroundColor = self.colorForBackgroundView;
 
-    [inView insertSubview:backgroundView atIndex:0];
-    
-    toView = [toVC view];
-    fromView = [fromVC view];
-    
+    [self.inView insertSubview:backgroundView atIndex:0];
     
     if(self.scaleDownViewControllers <= 0.7) {
         self.scaleDownViewControllers = 0.8;
@@ -37,28 +30,27 @@
         self.gapBetweenViewControllers = 20;
     }
     
-    [inView insertSubview:toView atIndex:0];
-//    [inView insertSubview:fromView atIndex:1];
+    [self.inView insertSubview:self.toView atIndex:0];
     
     if (self.takeAlongController) {
         [self insertTakeAlongViewIntoContainerViewForContext:transitionContext];
     }
-//    [fromView removeFromSuperview];
-    [toView removeFromSuperview];
+
+    [self.toView removeFromSuperview];
     
-    toView.alpha = 1;
-    UIView  *fromShot = [fromView snapshotViewAfterScreenUpdates:YES];
-    UIView *toShot = [toView snapshotViewAfterScreenUpdates:YES];
+    self.toView.alpha = 1;
+    UIView  *fromShot = [self.fromView snapshotViewAfterScreenUpdates:YES];
+    UIView *toShot = [self.toView snapshotViewAfterScreenUpdates:YES];
 
     
-    [inView insertSubview:fromShot aboveSubview:fromView];
-//    [fromView removeFromSuperview];//when removed, the Gesture stops!
-    fromView.alpha = 0;
+    [self.inView insertSubview:fromShot aboveSubview:self.fromView];
+
+    self.fromView.alpha = 0;
     
     CGFloat slideToRight = -[UIScreen mainScreen].bounds.size.width+self.gapBetweenViewControllers;
-    [inView addSubview:toShot];
-//    [toView removeFromSuperview];
+    [self.inView addSubview:toShot];
 
+    
     CGAffineTransform scale = CGAffineTransformMakeScale(0.7, 0.7);
     CGAffineTransform slideLeft = CGAffineTransformMakeTranslation(slideToRight, 0);
     CGAffineTransform slideRight = CGAffineTransformMakeTranslation(-slideToRight, 0);
@@ -102,8 +94,8 @@
         
         if ([transitionContext transitionWasCancelled]) {
             [self takeAlongTransitionCancelled];
-            fromView.alpha = 1;
-            [inView addSubview:fromView];
+            self.fromView.alpha = 1;
+            [self.inView addSubview:self.fromView];
             [fromShot removeFromSuperview];
             [toShot removeFromSuperview];
             
@@ -115,8 +107,8 @@
         }
         else {
             [self removeAndCleanUptakeAlongViews];
-            [inView addSubview:toView];
-            [fromView removeFromSuperview];
+            [self.inView addSubview:self.toView];
+            [self.fromView removeFromSuperview];
             
             [fromShot removeFromSuperview];
             [toShot removeFromSuperview];
