@@ -91,9 +91,10 @@
             [self changeTakeAlongViews];
             
         }completion:^(BOOL finished) {
-            [self removeAndCleanUptakeAlongViews];
             
             if ([transitionContext transitionWasCancelled]) {
+                [self takeAlongTransitionCancelled];
+                
                 fromView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
                 fromView.transform = CGAffineTransformIdentity;
                 [toView removeFromSuperview];
@@ -103,6 +104,7 @@
             }
             else {
                 
+                [self removeAndCleanUptakeAlongViews];
                 [fromView removeFromSuperview];
                 [inView addSubview:toView];
                 [transitionContext completeTransition:YES];

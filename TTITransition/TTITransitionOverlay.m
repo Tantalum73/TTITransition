@@ -154,9 +154,9 @@
 			toView.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             
 		}completion:^(BOOL finished) {
-            [self removeAndCleanUptakeAlongViews];
                         
             if ([transitionContext transitionWasCancelled]) {
+                [self takeAlongTransitionCancelled];
                 fromView.alpha = 1;
                 fromView.transform = CGAffineTransformIdentity;
                 [toView removeFromSuperview];
@@ -167,6 +167,7 @@
                 [transitionContext completeTransition:NO];
             }
             else {
+                [self removeAndCleanUptakeAlongViews];
                 [fromView removeFromSuperview];
                 [_blurredBackgroundView removeFromSuperview];
                 

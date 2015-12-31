@@ -99,9 +99,9 @@
         }];
         
     } completion:^(BOOL finished) {
-        [self removeAndCleanUptakeAlongViews];
         
         if ([transitionContext transitionWasCancelled]) {
+            [self takeAlongTransitionCancelled];
             fromView.alpha = 1;
             [inView addSubview:fromView];
             [fromShot removeFromSuperview];
@@ -114,6 +114,7 @@
             self.interactive = NO;
         }
         else {
+            [self removeAndCleanUptakeAlongViews];
             [inView addSubview:toView];
             [fromView removeFromSuperview];
             

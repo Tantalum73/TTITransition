@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ivd-U6-SOv">
                                 <rect key="frame" x="252" y="140" width="96" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Full Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -30,7 +29,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPB-je-JW4">
                                 <rect key="frame" x="247" y="40" width="106" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Slide Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,7 +38,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3p-XX-EyJ">
                                 <rect key="frame" x="250" y="190" width="101" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Fold Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -50,7 +47,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywt-p3-Goz">
                                 <rect key="frame" x="238" y="240" width="125" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Fall Into Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -60,7 +56,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2O-QP-SGV">
                                 <rect key="frame" x="244" y="340" width="111" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Spinn Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -70,7 +65,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzb-pU-Nfb">
                                 <rect key="frame" x="246" y="390" width="109" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Scale Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -80,7 +74,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUy-U2-LtS">
                                 <rect key="frame" x="231" y="290" width="138" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Hang Into Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -90,7 +83,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOG-gI-qld">
                                 <rect key="frame" x="238" y="90" width="124" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Overlay Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -100,7 +92,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shx-Qb-9Uf">
                                 <rect key="frame" x="190" y="440" width="220" height="30"/>
-                                <animations/>
                                 <state key="normal" title="NavigationController Transitions"/>
                                 <connections>
                                     <segue destination="mfY-KD-3Cx" kind="presentation" identifier="ShowNavigationControllerTransitions" id="vRU-ol-6s7"/>
@@ -108,7 +99,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoE-0Z-N30">
                                 <rect key="frame" x="222" y="490" width="155" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Take Along Transitions"/>
                                 <connections>
                                     <segue destination="AY7-Hr-yMc" kind="presentation" identifier="ShowTakeAlongTransitions" id="rQ5-hk-cTv"/>
@@ -116,14 +106,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prG-Bc-mdm">
                                 <rect key="frame" x="158" y="540" width="283" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Take Along inside of NavigationController"/>
                                 <connections>
                                     <segue destination="w5D-zn-KiQ" kind="presentation" identifier="ShowTakeAlongNavigationControllerTransistion" id="wAC-xG-Nzo"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="shx-Qb-9Uf" firstAttribute="top" secondItem="wzb-pU-Nfb" secondAttribute="bottom" constant="20" id="1Fy-yf-B2n"/>
@@ -169,7 +157,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UcT-tP-Ee4">
                                 <rect key="frame" x="247" y="248" width="106" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Slide Transition"/>
                                 <connections>
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowSlide" id="bwp-1W-9Jt"/>
@@ -177,7 +164,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t8v-GB-diO">
                                 <rect key="frame" x="238" y="286" width="124" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Overlay Transition"/>
                                 <connections>
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowOverlay" id="yxs-2E-2NB"/>
@@ -185,7 +171,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dA-QO-euj">
                                 <rect key="frame" x="252" y="324" width="96" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Full Transition"/>
                                 <connections>
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowFull" id="Zdn-2k-L4l"/>
@@ -193,7 +178,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xoz-Tz-me3">
                                 <rect key="frame" x="250" y="362" width="101" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Fold Transition"/>
                                 <connections>
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowFold" id="E2n-hV-7bX"/>
@@ -201,7 +185,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJ5-vK-N9H">
                                 <rect key="frame" x="238" y="400" width="125" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Fall Into Transition"/>
                                 <connections>
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowFallInto" id="7RN-Kd-R1t"/>
@@ -209,7 +192,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-aL-Z1e">
                                 <rect key="frame" x="231" y="438" width="138" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Hang Into Transition"/>
                                 <connections>
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowHangInto" id="cIw-Gb-o6Z"/>
@@ -217,7 +199,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8N-9N-ybP">
                                 <rect key="frame" x="245" y="476" width="111" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Spinn Transition"/>
                                 <connections>
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowSpinn" id="dAZ-m9-h5q"/>
@@ -225,7 +206,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pR0-HG-DzQ">
                                 <rect key="frame" x="245.5" y="514" width="109" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Scale Transition"/>
                                 <connections>
                                     <segue destination="X4V-v6-8HE" kind="presentation" identifier="ShowScale" id="UCB-Zb-Z49"/>
@@ -233,7 +213,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9f-bU-0ts">
                                 <rect key="frame" x="546" y="20" width="34" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="AY7-Hr-yMc" eventType="touchUpInside" id="Zen-Ev-UhY"/>
@@ -241,14 +220,12 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="NwA-k3-l0c">
                                 <rect key="frame" x="26" y="28" width="200" height="200"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="ESZ-tI-zer"/>
                                     <constraint firstAttribute="width" constant="200" id="bum-er-Fhc"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.94509803920000002" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EIk-aL-Z1e" firstAttribute="centerX" secondItem="pt5-Bl-8YK" secondAttribute="centerX" id="3Cn-bd-5JI"/>
@@ -295,7 +272,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtS-Gg-hFd">
                                 <rect key="frame" x="283" y="341" width="34" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="X4V-v6-8HE" eventType="touchUpInside" id="pdC-Lq-AMm"/>
@@ -303,14 +279,12 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="GND-Nc-mvH">
                                 <rect key="frame" x="225" y="430" width="150" height="150"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="Q7w-bv-VB4"/>
                                     <constraint firstAttribute="height" constant="150" id="oc8-JF-cwt"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="1" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="OtS-Gg-hFd" firstAttribute="centerX" secondItem="E4B-8n-9yc" secondAttribute="centerX" id="34W-HL-U9j"/>
@@ -341,7 +315,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8Z-dN-6No">
                                 <rect key="frame" x="283" y="285" width="35" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -350,7 +323,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.70196078429999997" green="0.87450980389999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="S8Z-dN-6No" secondAttribute="centerX" constant="-0.5" id="aPi-Ff-jKR"/>
@@ -376,7 +348,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyh-5b-NQ7">
                                 <rect key="frame" x="285" y="105" width="30" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Fold"/>
                                 <connections>
                                     <segue destination="Cyk-ex-dtR" kind="show" identifier="ShowFold" id="gSj-dR-dkl"/>
@@ -384,7 +355,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Uv-y7-d0w">
                                 <rect key="frame" x="285" y="151" width="30" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Full"/>
                                 <connections>
                                     <segue destination="Cyk-ex-dtR" kind="show" identifier="ShowFull" id="IzP-a3-9uP"/>
@@ -392,14 +362,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppc-Ud-nTp">
                                 <rect key="frame" x="281" y="197" width="38" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Scale"/>
                                 <connections>
                                     <segue destination="Cyk-ex-dtR" kind="show" identifier="ShowScale" id="G23-iI-8VH"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.94509803920000002" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1Uv-y7-d0w" firstAttribute="top" secondItem="Yyh-5b-NQ7" secondAttribute="bottom" constant="16" id="3Kh-qD-RB2"/>
@@ -436,13 +404,11 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next ViewController in NavigationController" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="af4-V2-Aio">
                                 <rect key="frame" x="134" y="121" width="332" height="21"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.93841666359999998" green="1" blue="0.79495917250000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="af4-V2-Aio" firstAttribute="top" secondItem="HVW-fa-ARK" secondAttribute="bottom" constant="57" id="KR6-ox-cgO"/>
@@ -462,7 +428,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bk7-7t-HKj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -481,7 +446,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="v3K-6J-RMa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -506,7 +470,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgd-4J-qOA">
                                 <rect key="frame" x="285" y="307" width="30" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Fold"/>
                                 <connections>
                                     <segue destination="jrw-5M-goU" kind="show" identifier="ShowFold" id="HZa-vD-tdD"/>
@@ -514,14 +477,12 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-3w-gH7">
                                 <rect key="frame" x="340" y="83" width="240" height="200"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="NLd-XV-EX1"/>
                                     <constraint firstAttribute="width" constant="240" id="nm1-1h-tkI"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.94509803920000002" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vAj-3w-gH7" firstAttribute="top" secondItem="TeJ-ZV-Cuv" secondAttribute="bottom" constant="19" id="BSp-kA-Nok"/>
@@ -559,10 +520,8 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_rect_small" translatesAutoresizingMaskIntoConstraints="NO" id="eMv-Kc-rVv">
                                 <rect key="frame" x="49" y="193" width="200" height="200"/>
-                                <animations/>
                             </imageView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="1" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="eMv-Kc-rVv" firstAttribute="leading" secondItem="sL9-oa-qQo" secondAttribute="leadingMargin" constant="29" id="52o-gK-SIr"/>

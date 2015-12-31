@@ -131,14 +131,16 @@
              [self changeTakeAlongViews];
              
         } completion:^(BOOL finished) {
-            [self removeAndCleanUptakeAlongViews];
             
             if ([transitionContext transitionWasCancelled]) {
+                [self takeAlongTransitionCancelled];
                 fromView.layer.transform = CATransform3DIdentity;
                 
                 [transitionContext completeTransition:NO];
             }
             else {
+                [self removeAndCleanUptakeAlongViews];
+                
                 [fromView removeFromSuperview];
                 fromView.layer.transform = CATransform3DIdentity;
                 

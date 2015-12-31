@@ -76,9 +76,9 @@
             toView.transform = CGAffineTransformIdentity;
         }];
     } completion:^(BOOL finished) {
-        [self removeAndCleanUptakeAlongViews];
         
         if ([transitionContext transitionWasCancelled]) {
+            [self takeAlongTransitionCancelled];
 //            toView.transform = CGAffineTransformIdentity;
             [toView removeFromSuperview];
 //            fromView.transform = CGAffineTransformIdentity;
@@ -89,6 +89,7 @@
             [transitionContext completeTransition:NO];
         }
         else {
+            [self removeAndCleanUptakeAlongViews];
             toView.transform = CGAffineTransformIdentity;
             [fromView removeFromSuperview];
             [backgroundView removeFromSuperview];
