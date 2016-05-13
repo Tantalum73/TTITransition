@@ -169,7 +169,7 @@ Also please be so kind and leave a short link in your app.
 ##License##
 TTITransition is published under MIT License
 
-    Copyright (c) 2015 Andreas Neusüß (@Klaarname)
+    Copyright (c) 2016 Andreas Neusuess (@Klaarname)
     Permission is hereby granted, free of charge, to any person obtaining a copy of
     this software and associated documentation files (the "Software"), to deal in
     the Software without restriction, including without limitation the rights to use,
