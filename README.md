@@ -24,16 +24,16 @@ You can read more about it below or just look at the sample project. You should 
 <img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionHangInto.gif?raw=true" width="250" alt="Hang Into Transition Screencast"/>
 
 ## Fall Into Transition:
-<img src="https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFallInto.gif?raw=true" width="250" alt="Fall In Transition Screencast"/>
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionFallInto.gif?raw=true" width="250" alt="Fall In Transition Screencast"/>
 
 ## Full Transition:
-<img src="https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFull.gif?raw=true" width="250" alt="Full Transition Screencast"/>
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionFull.gif?raw=true" width="250" alt="Full Transition Screencast"/>
 
 ## Scale Transition:
-<img src="https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionScale.gif?raw=true" width="250" alt="Scale Transition Screencast"/>
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionScale.gif?raw=true" width="250" alt="Scale Transition Screencast"/>
 
 ## Spin Transition:
-<img src="https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionSpinn.gif?raw=true" width="250" alt="Spin In Transition Screencast"/>
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionSpinn.gif?raw=true" width="250" alt="Spin In Transition Screencast"/>
 
 
 
@@ -76,7 +76,7 @@ The Transitioing Delegate will be set for you and you are ready to present (push
 As metioned above, I call it 'TakeAlong Transition'.<br>
 It enables your app to use one of the ```TTITransitions``` where one of your ```UIView``` is moved from the presenting ViewController to the presented ViewController during the transition.
 
-<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionOverlay.gif?raw=false" width="250" alt="Slide Transition Screencast"/>
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongOverlay.gif?raw=false" width="250" alt="Slide Transition Screencast"/>
 
 In order to drive this animation, we need to know about the views that participates in the transitioning process.
 Therefore, both of your ViewControllers (presenting and presented) have to implement different protocols, whose methods ask for the important information.
