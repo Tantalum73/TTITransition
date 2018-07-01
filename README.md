@@ -61,7 +61,7 @@ Every ```CGPoint``` that you not want to use, can be ```CGPointZero```, a not ne
 
 During the init-process, ```TTITransitionController``` will set the ```transitioningDelegate``` of the presented ```UIViewController``` for you.
 
-<br>
+
 
 ###UINavigationController
 If you want to animate a transition between ViewControllers inside of a UINavigationController, you just initialize the ```TTITransitionController``` using
@@ -77,7 +77,7 @@ The Transitioing Delegate will be set for you and you are ready to present (push
 As metioned above, I call it 'TakeAlong Transition'.<br>
 It enables your app to use one of the ```TTITransitions``` where one of your ```UIView``` is moved from the presenting ViewController to the presented ViewController during the transition.
 
-![Take Along Overlay Transition Screencast](/Images/TakeAlongTransitionOverlay.gif?raw=false "Slide Transition Screencast" = 200px)
+![Take Along Overlay Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionOverlay.gif?raw=false "Slide Transition Screencast" = 200px)
 
 In order to drive this animation, we need to know about the views that participates in the transitioning process.
 Therefore, both of your ViewControllers (presenting and presented) have to implement different protocols, whose methods ask for the important information.
