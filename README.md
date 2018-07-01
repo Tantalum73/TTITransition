@@ -3,7 +3,7 @@ TTITransition
 
 Interactive transition between ViewControllers – Easy to integrate and visually appealing.
 
-#NEW: Transition with shared elements
+# NEW: Transition with shared elements
 I call it "takeAlongTransition" and what it does is taking one UIView from the presenting ViewController towards the presented ViewController.
 
 You can read more about it below or just look at the sample project. You should do so anyway.
@@ -11,35 +11,35 @@ You can read more about it below or just look at the sample project. You should 
 ![Take Along Slide Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionSlide.gif?raw=true  | width=200)
 
 
-##Slide Transition:
+## Slide Transition:
 ![Slide Transition Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionSlide.gif?raw=true "Slide Transition Screencast" = 200px)
 
-##Overlay Transition:
+## Overlay Transition:
 ![Overlay Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionOverlay.gif?raw=true "Overlay Transition Screencast"  = 200px)
 
 
-##Fold Transition:
+## Fold Transition:
 ![Fold Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionFold.gif?raw=true "Fold Transition Screencast" loop=infinite  = 200px)
 
-##Hang Into Transition:
+## Hang Into Transition:
 ![Hang In Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionHangInto.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 200px)
 
-##Fall Into Transition:
+## Fall Into Transition:
 ![Fall In Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFallInto.gif?raw=true "Fall Into Transition Screencast" loop=infinite  = 250px)
 
-##Full Transition:
+## Full Transition:
 ![Full Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFull.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 
-##Scale Transition:
+## Scale Transition:
 ![Scale Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionScale.gif?raw=true "Scale Transition Screencast" loop=infinite  = 220px)
 
-##Spinn Transition:
+## Spinn Transition:
 ![Spinn Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionSpinn.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 220px)
 
 
 
 
-##How to use
+## How to use
 First of all, you want to ```#import "TTITransitionController.h"```.<br>
 The class you will interact with is called ```TTITransitionController```.
 It handels the configuration process of ```TTITransitioningDelegate``` for you.
@@ -73,7 +73,7 @@ transitionType:(TTINavigationControllerTransitionType) transitionType
 The Transitioing Delegate will be set for you and you are ready to present (push/pop) your new ViewController.
 
 
-###Shared Element
+### Shared Element
 As metioned above, I call it 'TakeAlong Transition'.<br>
 It enables your app to use one of the ```TTITransitions``` where one of your ```UIView``` is moved from the presenting ViewController to the presented ViewController during the transition.
 
@@ -92,7 +92,8 @@ Doing so, the specified ```key``` can help you to identify the context of the vi
 If the information is gathered, the transition will take place.
 
 *Maybe my [blogpost] (https://anerma.de/blog/ttitransi) will help you understand my approach better*
-###Interaction
+
+### Interaction
 If you want you presented ViewController to be dismissable by a gesture, just set the ```interactive``` argument when instanciating the ```TTITransitionController``` to ```YES``` and chose the ```UIGestureRecognizer```of your convenience just by setting the ```gestureType``` argument.
 
 You can chose between the following gestures:
@@ -148,25 +149,26 @@ You can do so, by using a property or an local instance variable.
 **Tip:**
 If you want to see the actual ```tintColor``` in the performing transition, you can set this property in the ```viewDidLoad()``` of the newly presented ViewController *(see the sample project for further details)*
 
-##Customization##
+## Customization
 You can change the point from which the new ViewController fades in by setting the `fromPoint` property to the CGPoint you like.
 
 The ```toPoint``` specified where the presented ViewController will fade out to.
 If you want them to fade into a different direction just change the `toPoint` argument before the ViewController is dismissed.
 
 You can also change the ```UIGestureRecognizer```type by setting the desired ```gestureType```
-##Related##
+## Related
 I use this transition-technique in my own app.
 Please take a look at [TourTime](https://anerma.de/TourTime/), the app that measures the time you need to get from one location to another without draining your battery.
 - [Website](https://anerma.de/TourTime/)
 - [AppStore](https://itunes.apple.com/app/id848979893)
 
-##Credits##
-###Please read through the next passage as well###
+## Credits
+
+**Please read through the next passage as well**
 Please feel free to use and have fun with **TTITransition**. If you do so, I would appreciate if you send me some kind of notification.
 Also please be so kind and leave a short link in your app.
 
-##License##
+## License
 TTITransition is published under MIT License
 
     Copyright (c) 2016 Andreas Neusuess (@Klaarname)
