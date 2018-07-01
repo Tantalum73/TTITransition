@@ -8,33 +8,33 @@ I call it "takeAlongTransition" and what it does is taking one UIView from the p
 
 You can read more about it below or just look at the sample project. You should do so anyway.
 
-![Take Along Slide Transition Screencast](/Images/TakeAlongTransitionSlide.gif?raw=false "Slide Transition Screencast" = 200px)
+![Take Along Slide Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionSlide.gif?raw=false "Slide Transition Screencast" = 200px)
 
 
 ##Slide Transition:
-![Slide Transition Screencast](/Images/TTITransitionSlide.gif?raw=true "Slide Transition Screencast" = 200px)
+![Slide Transition Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionSlide.gif?raw=true "Slide Transition Screencast" = 200px)
 
 ##Overlay Transition:
-![Overlay Transition Screencast](/Images/TTITransitionOverlay.gif?raw=true "Overlay Transition Screencast"  = 200px) 
+![Overlay Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionOverlay.gif?raw=true "Overlay Transition Screencast"  = 200px)
 
 
 ##Fold Transition:
-![Fold Transition Screencast](/Images/TTITransitionFold.gif?raw=true "Fold Transition Screencast" loop=infinite  = 200px)
+![Fold Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionFold.gif?raw=true "Fold Transition Screencast" loop=infinite  = 200px)
 
 ##Hang Into Transition:
-![Hang In Transition Screencast](/Images/TTITransitionHangInto.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 200px)
+![Hang In Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionHangInto.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 200px)
 
 ##Fall Into Transition:
-![Fall In Transition Screencast](/Images/TTITransitionFallInto.gif?raw=true "Fall Into Transition Screencast" loop=infinite  = 250px)
+![Fall In Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFallInto.gif?raw=true "Fall Into Transition Screencast" loop=infinite  = 250px)
 
 ##Full Transition:
-![Full Transition Screencast](/Images/TTITransitionFull.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
+![Full Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFull.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
 
 ##Scale Transition:
-![Scale Transition Screencast](/Images/TTITransitionScale.gif?raw=true "Scale Transition Screencast" loop=infinite  = 220px)
+![Scale Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionScale.gif?raw=true "Scale Transition Screencast" loop=infinite  = 220px)
 
 ##Spinn Transition:
-![Spinn Transition Screencast](/Images/TTITransitionSpinn.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 220px)
+![Spinn Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionSpinn.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 220px)
 
 
 
@@ -48,8 +48,8 @@ It handels the configuration process of ```TTITransitioningDelegate``` for you.
 ```Objective-C
 -initWithPresentedViewController:(UIViewController *) presentedViewController
 transitionType:(TTITransitionType) transitionType
-fromPoint:(CGPoint) fromPoint 
-toPoint:(CGPoint) toPoint 
+fromPoint:(CGPoint) fromPoint
+toPoint:(CGPoint) toPoint
 withSize:(CGSize) sizeOfPresentedViewController
 interactive:(BOOL)interactive
 gestureType:(TTIGestureRecognizerType) gestureType
@@ -64,10 +64,10 @@ During the init-process, ```TTITransitionController``` will set the ```transitio
 <br>
 
 ###UINavigationController
-If you want to animate a transition between ViewControllers inside of a UINavigationController, you just initialize the ```TTITransitionController``` using 
+If you want to animate a transition between ViewControllers inside of a UINavigationController, you just initialize the ```TTITransitionController``` using
 
 ```Objective-C
--(instancetype)initNavigationControllerTransitionWithNavigationController:(UINavigationController*) navigationController 
+-(instancetype)initNavigationControllerTransitionWithNavigationController:(UINavigationController*) navigationController
 transitionType:(TTINavigationControllerTransitionType) transitionType
 ```
 The Transitioing Delegate will be set for you and you are ready to present (push/pop) your new ViewController.
@@ -111,12 +111,12 @@ You can do so, by using a property or an local instance variable.
 ```Objective-C
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      UINavigationController *destination = segue.destinationViewController;
-    
-    
+
+
     CGPoint fromPoint = CGPointMake(self.view.frame.origin.x+(self.view.frame.size.width/2), self.view.frame.origin.y+(self.view.frame.size.height/2));
-    
-    
-    
+
+
+
     if([segue.identifier isEqualToString:@"ShowFull"]) {
         _transitionController = [[TTITransitionController alloc]
                                  initWithPresentedViewController:destination
@@ -151,7 +151,7 @@ If you want to see the actual ```tintColor``` in the performing transition, you 
 ##Customization##
 You can change the point from which the new ViewController fades in by setting the `fromPoint` property to the CGPoint you like.
 
-The ```toPoint``` specified where the presented ViewController will fade out to. 
+The ```toPoint``` specified where the presented ViewController will fade out to.
 If you want them to fade into a different direction just change the `toPoint` argument before the ViewController is dismissed.
 
 You can also change the ```UIGestureRecognizer```type by setting the desired ```gestureType```
