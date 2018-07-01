@@ -8,7 +8,7 @@ I call it "takeAlongTransition" and what it does is taking one UIView from the p
 
 You can read more about it below or just look at the sample project. You should do so anyway.
 
-![Take Along Slide Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionSlide.gif?raw=false = 200px)
+![Take Along Slide Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionSlide.gif?raw=true)
 
 
 ##Slide Transition:
