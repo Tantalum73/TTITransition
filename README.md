@@ -8,33 +8,32 @@ I call it "takeAlongTransition" and what it does is taking one UIView from the p
 
 You can read more about it below or just look at the sample project. You should do so anyway.
 
-![Take Along Slide Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionSlide.gif?raw=true  | width=200)
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionSlide.gif?raw=true" width="250" alt="Take Along Slide Transition Screencast"/>
 
 
 ## Slide Transition:
-![Slide Transition Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionSlide.gif?raw=true "Slide Transition Screencast" = 200px)
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionSlide.gif?raw=true" width="250" alt="Slide Transition Screencast"/>
 
 ## Overlay Transition:
-![Overlay Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionOverlay.gif?raw=true "Overlay Transition Screencast"  = 200px)
-
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionOverlay.gif?raw=true" width="250" alt="Overlay Transition Screencast"/>
 
 ## Fold Transition:
-![Fold Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionFold.gif?raw=true "Fold Transition Screencast" loop=infinite  = 200px)
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionFold.gif?raw=true" width="250" alt="Fold Transition Screencast"/>
 
 ## Hang Into Transition:
-![Hang In Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionHangInto.gif?raw=true "Hang Into Transition Screencast" loop=infinite  = 200px)
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TTITransitionHangInto.gif?raw=true" width="250" alt="Hang Into Transition Screencast"/>
 
 ## Fall Into Transition:
-![Fall In Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFallInto.gif?raw=true "Fall Into Transition Screencast" loop=infinite  = 250px)
+<img src="https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFallInto.gif?raw=true" width="250" alt="Fall In Transition Screencast"/>
 
 ## Full Transition:
-![Full Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFull.gif?raw=true "Full Transition Screencast" loop=infinite  = 250px)
+<img src="https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionFull.gif?raw=true" width="250" alt="Full Transition Screencast"/>
 
 ## Scale Transition:
-![Scale Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionScale.gif?raw=true "Scale Transition Screencast" loop=infinite  = 220px)
+<img src="https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionScale.gif?raw=true" width="250" alt="Scale Transition Screencast"/>
 
-## Spinn Transition:
-![Spinn Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionSpinn.gif?raw=true "Spinn Transition Screencast" loop=infinite  = 220px)
+## Spin Transition:
+<img src="https://github.com/Tantalum73/TTITransition/blob/master//Images/TTITransitionSpinn.gif?raw=true" width="250" alt="Spin In Transition Screencast"/>
 
 
 
@@ -77,7 +76,7 @@ The Transitioing Delegate will be set for you and you are ready to present (push
 As metioned above, I call it 'TakeAlong Transition'.<br>
 It enables your app to use one of the ```TTITransitions``` where one of your ```UIView``` is moved from the presenting ViewController to the presented ViewController during the transition.
 
-![Take Along Overlay Transition Screencast](https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionOverlay.gif?raw=false "Slide Transition Screencast" = 200px)
+<img src="https://github.com/Tantalum73/TTITransition/blob/master/Images/TakeAlongTransitionOverlay.gif?raw=false" width="250" alt="Slide Transition Screencast"/>
 
 In order to drive this animation, we need to know about the views that participates in the transitioning process.
 Therefore, both of your ViewControllers (presenting and presented) have to implement different protocols, whose methods ask for the important information.
